@@ -1,0 +1,43 @@
+body { 
+	background-color:#202020;  
+    color: white;
+    font-family: Montserrat;
+}
+.navigation {
+	background-color: #ccc;
+}
+.content {
+	margin-top: 15px;
+	color: black;
+}
+.paticka {
+	text-align: center;
+}
+.paticka img {
+	height: 50px;
+	width: 50px;
+}
+
+.title {
+	text-align: center;
+}
+
+.nav-item a {
+	color: black !important;
+}
+
+footer {
+	margin-top: 5px;
+}
+
+.card {
+	border: none;
+}
+
+.nav-pills .nav-link.active {
+	background-color: #ccc;
+}
+
+.tab-content {
+	min-height: 225px;
+}
