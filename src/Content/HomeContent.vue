@@ -1,26 +1,7 @@
 <template>
   <div>
-  	<container>
-    	<h6>Jsem to fakt já?</h6>
-	</container>
+  	<b-container>
+    	<h6>Toto je webová stránka, která byla vytvořena za účelem odmaturování.</h6>
+	 </b-container>
   </div>
 </template>
-
-<script>
-export default {
-  data () {
-    return {
-      slide: 0,
-      sliding: null
-    }
-  },
-  methods: {
-    onSlideStart (slide) {
-      this.sliding = true
-    },
-    onSlideEnd (slide) {
-      this.sliding = false
-    }
-  }
-}
-</script>

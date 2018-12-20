@@ -41,3 +41,35 @@ footer {
 .tab-content {
 	min-height: 225px;
 }
+
+a {
+	color: black;
+	text-decoration: underline;
+}
+
+a:active, a:hover {
+	color: #d4050c;
+}
+
+.btn.btn-secondary.dropdown-toggle {
+	background-color:#a20c16;
+	border: none;
+}
+
+a.dropdown-item:active {
+	background-color: white;
+	color: #d4050c;
+}
+
+.btn.btn-secondary {
+	background-color:#a20c16;
+	border: none;
+}
+
+.gna {
+	color: white;
+}
+
+.alert {
+	margin-top: 6px;
+}

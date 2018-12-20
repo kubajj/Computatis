@@ -9,6 +9,12 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './styles.css'
 
+import VueMathjax from 'vue-mathjax'
+Vue.use(VueMathjax)
+
+export const bus = new Vue();
+
+
 Vue.use(BootstrapVue);
 Vue.component('app-navigation', Navigation);
 Vue.component('app-content', Content);

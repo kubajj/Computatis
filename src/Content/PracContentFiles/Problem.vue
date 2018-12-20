@@ -1,7 +1,7 @@
 <template>
   <div>
   	<b-row>
-  		<!--task></task-->
+  		<task></task>
   	</b-row>
   	<b-row>
 	    <b-form inline>
