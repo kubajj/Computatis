@@ -13,3 +13,4 @@ Instalace
 	- npm i bootstrap-vue
 	- npm install --save vue-mathjax
 	- npm run dev
+	- npm install

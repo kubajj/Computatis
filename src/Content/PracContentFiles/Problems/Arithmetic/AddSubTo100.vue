@@ -23,7 +23,6 @@
 		components: {
 			'vue-mathjax': VueMathjax,
 			'heading': Heading,
-			//'ch-alerts': CheckAlerts,
 			'main-task': MainTask,
 		},
 		methods: {

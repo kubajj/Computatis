@@ -2,9 +2,18 @@
 	<footer class="paticka">
 		<p class='autor'>&copy; Jakub Jelínek</p>
 		<a href='https://www.alej.cz' target='_blank'>
-			<!--img src="./gna.png" rounded="circle"/>
-			<b-img src="./gna.png" rounded="circle"/-->
-			<b-img src="https://www.stredniskoly.cz/image/loga-skol/200/49625446.png" rounded="circle" alt="GNA" class="gna"/>
+			<img src="./assets/gna.png" alt="GNA" class="gna"/>
 		</a>
 	</footer>
 </template> 
+
+<style>
+	.gna {
+		border-radius: 50%;
+		max-height: 35px;
+		max-width: 35px;
+	}
+	.paticka {
+		text-align: center;
+	}
+</style>
