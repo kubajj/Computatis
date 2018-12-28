@@ -1,7 +1,15 @@
 <template>
-	<div class="obsah">	
-		<selection></selection>
-	</div>
+	<div>
+	<b-row>
+		<b-col cols='2'></b-col>
+		<b-col cols='8'>
+	  		<b-jumbotron class='content'>
+	    		<selection></selection>
+			</b-jumbotron>
+		</b-col>
+		<b-col cols='2'></b-col>
+	</b-row>
+  </div>
 </template>
 
 <script>

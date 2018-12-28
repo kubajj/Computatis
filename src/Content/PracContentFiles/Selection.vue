@@ -2,32 +2,37 @@
 	<div>
 		<b-row>
 			<b-col>
-				<b-dropdown id="ddown1" text="Rovnice" class="m-md-2">
-				    <b-dropdown-item @click="rovnice(1)">Lineární rovnice</b-dropdown-item>
-				    <b-dropdown-item @click="rovnice(2)">Kvadratické rovnice</b-dropdown-item>
-				    <b-dropdown-item @click="rovnice(3)">Rovnice s odmocninou</b-dropdown-item>
-				    <b-dropdown-divider></b-dropdown-divider>
-				</b-dropdown>
-				<b-dropdown id="ddown1" text="Funkce" class="m-md-2">
-				    <b-dropdown-item @click="funkce(1)">Lineární funkce</b-dropdown-item>
-				    <b-dropdown-item @click="funkce(2)">Kvadratické funkce</b-dropdown-item>
-				    <b-dropdown-item @click="funkce(3)">Exponenciální funkce</b-dropdown-item>
-				    <b-dropdown-divider></b-dropdown-divider>
-				</b-dropdown>
-				<b-dropdown id="ddown1" text="Aritmetika" class="m-md-2">
-				    <b-dropdown-item @click="aritmetika(1)">Sčítání a odčítání čísel do 100</b-dropdown-item>
-				    <b-dropdown-item @click="aritmetika(2)">Aritmetika do 1000</b-dropdown-item>
-				    <b-dropdown-item @click="aritmetika(3)">Aritmetika reálného oboru čísel</b-dropdown-item>
-				    <b-dropdown-divider></b-dropdown-divider>
-				</b-dropdown>
+				<div>
+					<b-dropdown id="ddown1" text="Rovnice" class="m-md-2">
+					    <b-dropdown-item @click="rovnice(1)">Lineární rovnice</b-dropdown-item>
+					    <b-dropdown-item @click="rovnice(2)">Kvadratické rovnice</b-dropdown-item>
+					    <b-dropdown-item @click="rovnice(3)">Rovnice s odmocninou</b-dropdown-item>
+					    <b-dropdown-divider></b-dropdown-divider>
+					</b-dropdown>
+				</div><div>
+					<b-dropdown id="ddown1" text="Funkce" class="m-md-2">
+					    <b-dropdown-item @click="funkce(1)">Lineární funkce</b-dropdown-item>
+					    <b-dropdown-item @click="funkce(2)">Kvadratické funkce</b-dropdown-item>
+					    <b-dropdown-item @click="funkce(3)">Exponenciální funkce</b-dropdown-item>
+					    <b-dropdown-divider></b-dropdown-divider>
+					</b-dropdown>
+				</div><div>
+					<b-dropdown id="ddown1" text="Aritmetika" class="m-md-2">
+					    <b-dropdown-item @click="aritmetika(1)">Sčítání a odčítání čísel do 100</b-dropdown-item>
+					    <b-dropdown-item @click="aritmetika(2)">Aritmetika do 1000</b-dropdown-item>
+					    <b-dropdown-item @click="aritmetika(3)">Aritmetika reálného oboru čísel</b-dropdown-item>
+					    <b-dropdown-item @click="aritmetika(4)">Násobení pod sebou</b-dropdown-item>
+					    <b-dropdown-divider></b-dropdown-divider>
+					</b-dropdown>
+				</div>
 			</b-col>
 			<b-col cols="8">
 				<component :is="content"></component>
 			</b-col>
-			<b-col>
-				<b-button v-if="content != 'uvod'" @click="zpet"><strong>⮈</strong> Zpět</b-button>				
-				<b-button v-if="content != 'uvod'" @click="next">Další <strong>⮊</strong></b-button>
-			</b-col>
+		</b-row>
+		<b-row>
+			<b-button v-if="content != 'uvod'" @click="zpet" class='navibut'><strong>⮈</strong> Zpět</b-button>				
+			<b-button v-if="content != 'uvod'" @click="next" class='navibut'>Další <strong>⮊</strong></b-button>
 		</b-row>
 	</div>
 </template>
@@ -40,6 +45,7 @@
 	import Rovnice2 from './Problems/Equations/PolynomEquation.vue';
 	import Aritmetika1 from './Problems/Arithmetic/AddSubTo100.vue';
 	import Funkce from './Problems/Functions/Funkce.vue';	
+	import LongMultiplication from './Problems/Arithmetic/LongMultiplication.vue';	
 
 	export default {
 		data() {
@@ -53,7 +59,8 @@
 			'rovnice1': Rovnice1,
 			'rovnice2': Rovnice2,
 			'aritmetika1': Aritmetika1,	
-			'funkce': Funkce,
+			'aritmetika4': LongMultiplication,
+			'funkce1': Funkce,
 		},
 		methods: {
 			rovnice(index) {
@@ -77,3 +84,18 @@
 		}
 	}
 </script>
+
+<style>
+	.ddown1 {
+		background-color:#a20c16;
+		border: none;
+	}
+
+	a.dropdown-item:active {
+		background-color: white;
+		color: #d4050c;
+	}
+	.navibut {
+		margin: 0px 5px 0px 5px;
+	}
+</style>

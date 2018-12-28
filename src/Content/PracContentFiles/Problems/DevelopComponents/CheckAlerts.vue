@@ -10,3 +10,9 @@
 		props: ['checked', 'result'],
 	}
 </script> 
+
+<style>
+	.alert {
+		margin-top: 6px;
+	}
+</style>

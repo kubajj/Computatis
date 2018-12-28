@@ -12,5 +12,6 @@ Instalace
  - npm install
  - npm i bootstrap-vue
  - npm install --save vue-mathjax
+ - npm install --save vue-router
+ - npm install 
  - npm run dev
- - npm install

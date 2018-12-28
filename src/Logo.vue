@@ -1,6 +1,6 @@
 <template>
 	<div class="navbar-header">
-		<a href="index.html" class="navbar-brand"><img src="./assets/logo.png" class="logo"></a>
+		<router-link to='/' class='menu'><img src="./assets/logo.png" class="logo"></router-link>
 	</div>
 </template>
 

@@ -12,8 +12,14 @@
 		border-radius: 50%;
 		max-height: 35px;
 		max-width: 35px;
+		color: white;
 	}
+
 	.paticka {
 		text-align: center;
+	}
+
+	footer {
+		margin-top: 5px;
 	}
 </style>
