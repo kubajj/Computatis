@@ -37,7 +37,7 @@
 			<b-col>
 				<p @click='giveHint' v-if='hinted1 == false'>Prosím o nápovědu.</p>
 				<p v-else-if='hinted2 == false' @click='summarise'>OK ✔</p>
-				<p v-else-if='hinted2' @click='showResultBox'>OK ✔</p>
+				<p v-else-if='hinted2 && resBox == false' @click='showResultBox'><br>OK ✔</p>
 			</b-col>
 		</b-row>
 	</div>
@@ -76,6 +76,7 @@
 				resultsOfResInputs: [],
 				tmpArray: [],
 				correctInputs: 0,
+				resBox: false,
 			}
 		},
 		watch: {
@@ -92,6 +93,7 @@
 		},
 		methods: {
 			giveHint() {
+				this.resBox = false;
 				this.hinted1 = true; 
 				this.$emit('changeStatus');
 				this.$emit('spaces', this.maxSpaces);
@@ -109,6 +111,7 @@
 				this.hinted2 = false;				
 			},
 			showResultBox() {
+				this.resBox = true;
 				this.$emit('showResultBox');
 			},
 		},

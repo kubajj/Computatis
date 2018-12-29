@@ -7,7 +7,7 @@
 			<b-col cols="3">
 				<b-form-input
 		                type="text"
-		                placeholder="Enter your result"
+		                placeholder="Výsledek"
 		                v-model="usersResult"
 		                id="inputForm">                   	
 		        </b-form-input>

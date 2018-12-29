@@ -16,7 +16,7 @@
 			<b-col cols="3">
 				<b-form-input						
 		                type="text"
-		                placeholder="Result"
+		                placeholder="Výsledek"
 		                v-model="usersResult"
 		                id="inputForm">                   	
 		        </b-form-input>
@@ -70,7 +70,6 @@
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
 			genTask() {	
-				document.getElementById('inputForm').value = '';
 				this.resultBox = false;
 				this.multiplier = this.randomNumber(11, 99);
 				this.number = this.randomNumber(101, 999);
@@ -78,7 +77,7 @@
 				this.checked = '';
 				this.hinted1 = false; 
 				this.hinted2 = false; 
-				this.repair();				
+				this.repair();			
 			},
 			changeStatus() {
 				this.hinted1 = true;
