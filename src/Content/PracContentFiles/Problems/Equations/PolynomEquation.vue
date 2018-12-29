@@ -54,9 +54,9 @@
 			<b-row>
 				<b-col cols='3'></b-col>
 				<b-col>
-					<b-form-input class='minb' v-model='binval' placeholder='- b' :state='bstate' @keyup.native='checking(binval, minb, "bstate")'></b-form-input>
+					<b-form-input class='minb' v-model='binval' placeholder='-b' :state='bstate' @keyup.native='checking(binval, minb, "bstate")'></b-form-input>
 					<span style="display: inline-block; margin-right: -5px;">± √</span>
-					<b-form-input class='disco' v-model='dinval' placeholder='b² - 4ac' :state='dstate' @keyup.native='checking(dinval, discriminant, "dstate")'></b-form-input>
+					<b-form-input class='disco' v-model='dinval' placeholder='b²-4ac' :state='dstate' @keyup.native='checking(dinval, discriminant, "dstate")'></b-form-input>
 				</b-col>
 			</b-row>
 			<b-row>

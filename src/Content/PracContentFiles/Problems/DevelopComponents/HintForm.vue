@@ -34,10 +34,9 @@
 		methods: {
 			onInput() {
 				this.$emit('input', this.inputValue)
-				console.log(this.value + ' ' + this.correctResult);			
+				console.log(this.inputValue + ' ' + this.correctResult);			
 				if (this.inputValue == this.correctResult) {
 					this.checked = true;
-					this.$emit('correction');
 				}				
 			},			
 		},

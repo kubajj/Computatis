@@ -8,8 +8,7 @@
 						<span v-for='(correct, index) in correctUnit'>
 							<hint-form 
 								v-model='resultsOfUnitInputs[index]'
-							  	:correctResult='correct'
-							  	@correction='correction'>							  		
+							  	:correctResult='correct'>							  		
 							</hint-form>
 						</span>
 					</span>
@@ -18,16 +17,27 @@
 						<span v-for='(correct, index) in correctDec'>
 							<hint-form 
 								v-model='resultsOfDecInputs[index]'
-								:correctResult='correct'
-							  	@correction='correction'>								
+								:correctResult='correct'>								
 							</hint-form>
 						</span>
+						<span v-if='hinted2' class='zero'>0</span>
 					</span>
 				</div>
-				<span v-if='hinted2'><hr>{{hinted2}}</span>
+				<span v-if='hinted2'>
+					<hr v-if='maxSpaces == 4' class='secondLine4'>
+					<hr v-else class='secondLine5'>
+					<span v-for='(correct,index) in correctResultSpaces'>
+							<hint-form 
+								v-model='resultsOfResInputs[index]'
+							  	:correctResult='correct'>							  		
+							</hint-form>
+						</span>
+				</span>
 			</b-col>
 			<b-col>
 				<p @click='giveHint' v-if='hinted1 == false'>Prosím o nápovědu.</p>
+				<p v-else-if='hinted2 == false' @click='summarise'>OK ✔</p>
+				<p v-else-if='hinted2' @click='showResultBox'>OK ✔</p>
 			</b-col>
 		</b-row>
 	</div>
@@ -40,7 +50,10 @@
 	import Nbsp from './Nbsp.vue'
 	export default {
 		props: {
-			hintProp: {
+			hintProp1: {
+				type: Boolean
+			},
+			hintProp2: {
 				type: Boolean
 			},
 			number: {
@@ -52,7 +65,7 @@
 		},
 		data() {
 			return {
-				hinted1: this.hintProp,
+				hinted1: this.hintProp1,
 				hinted2: false,
 				current1: '',
 				current2: '',
@@ -60,12 +73,16 @@
 				index: -1,
 				resultsOfUnitInputs: [],
 				resultsOfDecInputs: [],
+				resultsOfResInputs: [],
 				tmpArray: [],
 				correctInputs: 0,
 			}
 		},
 		watch: {
-			hintProp (newValue) {
+			hintProp2 (newValue) {
+				this.hinted2 = newValue;
+			},
+			hintProp1 (newValue) {
 				this.hinted1 = newValue;
 			},
 		},
@@ -79,19 +96,21 @@
 				this.$emit('changeStatus');
 				this.$emit('spaces', this.maxSpaces);
 				this.correctInputs = 0;
-				this.hinted2 = false;
+				console.log('hinted1 ' + this.hinted1);
+				console.log('hinted2 ' + this.hinted2);
 			},
 			grade(givenNum) {
 				return Math.ceil(Math.log10(givenNum));
 			},
-			correction() {
-				this.correctInputs++;
-				console.log(this.correctInputs);
-				if (this.correctInputs == (this.correctUnit.length + this.correctDec.length)) {
-					this.hinted2 = true;
-					console.log('show hint 2');
-				}
-			}
+			summarise() {
+				this.hinted2 = true;
+			},
+			makeItFalse() {
+				this.hinted2 = false;				
+			},
+			showResultBox() {
+				this.$emit('showResultBox');
+			},
 		},
 		computed: {
 			decimal() {
@@ -150,10 +169,19 @@
 					return mul;
 				}
 			},
+			correctResultSpaces() {
+				var res = this.number * this.multiplier;
+				res = '' + res;
+				var arr = res.split("");
+				console.log(arr);
+				return arr;
+			},
 		},
 		mounted () {
 			this.resultsOfUnitInputs = this.correctUnit.map(() => '')
 			this.resultsOfDecInputs = this.correctDec.map(() => '')
+			this.resultsOfResInputs = this.correctResultSpaces.map(() => '')
+			bus.$on('repair', this.makeItFalse);
 		}
 	}
 </script>
@@ -168,5 +196,20 @@
 	.wws { /*without weird space*/
 		display: flex;
 		flex-direction: row;
+	}
+	.secondLine4 {
+		background-color: black;
+		margin: 0 0 0 0;
+		display: flex;
+		width: 48px;
+	}
+	.secondLine5 {
+		background-color: black;
+		margin: 0 0 0 0;
+		display: flex;
+		width: 60px;
+	}
+	.zero {
+		font-size: 20px;
 	}
 </style>

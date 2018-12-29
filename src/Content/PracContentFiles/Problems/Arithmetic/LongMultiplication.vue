@@ -2,21 +2,21 @@
 	<div>
 		<heading head='Násobení pod sebou'></heading>
 		<div class='first'>
-			<nbsp v-if='hinted == false' :num='1'/>
+			<nbsp v-if='hinted1 == false' :num='1'/>
 			<nbsp v-else :num='spacesNum - 3'/>
 			<span id="num">{{ number }}</span>
 		</div>
 		<div class='second'>
-			<nbsp v-if='hinted' :num='spacesNum - 4'/>
+			<nbsp v-if='hinted1' :num='spacesNum - 4'/>
 			<span id="num" class="multi">x&nbsp{{ multiplier }}</span>
 		</div>
-		<hint class='hint' @changeStatus='changeStatus' :hintProp='hinted' :number='number' :multiplier='multiplier' @spaces='updateSpaces($event)'></hint>
-		<b-row v-if='hinted == false'>
+		<hint class='hint' @changeStatus='changeStatus' :hintProp1='hinted1' :hintProp2='hinted2' :number='number' :multiplier='multiplier' @spaces='updateSpaces($event)' @showResultBox='resultBox = true'></hint>
+		<b-row v-if='hinted1 == false || resultBox == true'>
 			<b-col cols="8"></b-col>
 			<b-col cols="3">
 				<b-form-input						
 		                type="text"
-		                placeholder="Enter your result"
+		                placeholder="Result"
 		                v-model="usersResult"
 		                id="inputForm">                   	
 		        </b-form-input>
@@ -51,8 +51,10 @@
 				multiplier: '',
 				number: '',
 				usersResult: '',
-				hinted: false,
+				hinted1: false,
+				hinted2: false,
 				spacesNum: 0,
+				resultBox: false,
 			}
 		},
 		components: {
@@ -68,11 +70,22 @@
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
 			genTask() {	
+				document.getElementById('inputForm').value = '';
+				this.resultBox = false;
 				this.multiplier = this.randomNumber(11, 99);
 				this.number = this.randomNumber(101, 999);
 				this.result = this.number * this.multiplier;
 				this.checked = '';
-				this.hinted = false; 
+				this.hinted1 = false; 
+				this.hinted2 = false; 
+				this.repair();				
+			},
+			changeStatus() {
+				this.hinted1 = true;
+				console.log('hint 1 true');
+			},
+			updateSpaces(maxSpaces) {
+				this.spacesNum = maxSpaces;
 			},
 			check() {
 				if (this.usersResult == this.result) {
@@ -82,11 +95,8 @@
 				}
 				document.getElementById("inputForm").value = '';
 			}, 
-			changeStatus() {
-				this.hinted = true;
-			},
-			updateSpaces(maxSpaces) {
-				this.spacesNum = maxSpaces;
+			repair() {
+				bus.$emit('repair');
 			}
 		},
 		beforeMount() {

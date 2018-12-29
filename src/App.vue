@@ -20,7 +20,7 @@
 	body { 
 		background-color:#202020;  
 	    color: white;
-	    font-family: Montserrat;
+	    font-family: monospace;
 	}
 
 	.btn.btn-secondary {
