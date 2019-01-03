@@ -7,21 +7,21 @@
 				<div>
 					<b-row>
 						<b-col>
-							<div>
+							<div class='dropdiv'>
 								<b-dropdown id="ddown1" text="Rovnice" class="m-md-2">
 								    <b-dropdown-item @click="rovnice(1)">Lineární rovnice</b-dropdown-item>
 								    <b-dropdown-item @click="rovnice(2)">Kvadratické rovnice</b-dropdown-item>
 								    <b-dropdown-item @click="rovnice(3)">Rovnice s odmocninou</b-dropdown-item>
 								    <b-dropdown-divider></b-dropdown-divider>
 								</b-dropdown>
-							</div><div>
+							</div><div class='dropdiv'>
 								<b-dropdown id="ddown1" text="Funkce" class="m-md-2">
 								    <b-dropdown-item @click="funkce(1)">Lineární funkce</b-dropdown-item>
 								    <b-dropdown-item @click="funkce(2)">Kvadratické funkce</b-dropdown-item>
 								    <b-dropdown-item @click="funkce(3)">Exponenciální funkce</b-dropdown-item>
 								    <b-dropdown-divider></b-dropdown-divider>
 								</b-dropdown>
-							</div><div>
+							</div><div class='dropdiv'>
 								<b-dropdown id="ddown1" text="Aritmetika" class="m-md-2">
 								    <b-dropdown-item @click="aritmetika(1)">Sčítání a odčítání čísel do 100</b-dropdown-item>
 								    <b-dropdown-item @click="aritmetika(2)">Aritmetika do 1000</b-dropdown-item>
@@ -115,5 +115,8 @@
 	}
 	.navibut {
 		margin: 0px 5px 0px 5px;
+	}
+	.dropdiv {
+		margin-top: 5px;
 	}
 </style>

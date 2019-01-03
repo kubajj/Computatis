@@ -1,44 +1,10 @@
 <template>
-	<b-form-input
-		@input.native="onInput"
-		type="text"
-        class="int"
-        v-model="inputValue"
-        :state="checked"
-        id='inputForm'>        	
-    </b-form-input>
+	<div>
+		<b-form-input
+	        type="text"
+	        placeholder="x1"
+	        v-model.trim="usersX1"
+	        id="inputForm1">                   	
+		</b-form-input>
+	</div>
 </template>
-
-<script>
-	import {bus} from './../../../../main.js'
-	export default {
-		props: {
-			value: {
-				type: String
-			},
-			correctResult: {
-				type: String
-			},
-		},
-		data() {
-			return {
-				checked: false,
-				inputValue: this.value
-			}
-		},
-		watch: {
-			value (newValue) {
-				this.inputValue = newValue
-			},
-		},
-		methods: {
-			onInput() {
-				this.$emit('input', this.inputValue)
-				console.log(this.inputValue + ' ' + this.correctResult);			
-				if (this.inputValue == this.correctResult) {
-					this.checked = true;
-				}				
-			},			
-		},
-	}
-</script>

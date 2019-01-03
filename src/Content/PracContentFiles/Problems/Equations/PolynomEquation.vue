@@ -40,37 +40,88 @@
 				<b-col cols='10'>
 					<vue-mathjax :formula="unmodtask"></vue-mathjax>
 				</b-col>
-				<b-col v-if='hint2 == false' cols='2' @click='hint2 = true' class='hintstyle'>OK ✔</b-col>
+				<b-col 
+					cols='2'
+					v-if='hint2 == false' 
+					@click='hint2 = true' 
+					class='hintstyle'>
+						OK ✔
+				</b-col>
 			</b-row>
 		</span>			
-		<span v-if='hint2 == true'><b-row><h6>Diskriminant:</h6></b-row>
-			<b-row v-if='ok == false'>
-				<b-col cols='8'>
-					<vue-mathjax :formula="disc"></vue-mathjax>
-				</b-col>				
-				<b-col v-if='ok == false' cols='2' @click='discrime' class='hintstyle'>OK ✔</b-col>
-			</b-row>
-			<span v-if='ok'>
-			<b-row>
-				<b-col cols='3'></b-col>
-				<b-col>
-					<b-form-input class='minb' v-model='binval' placeholder='-b' :state='bstate' @keyup.native='checking(binval, minb, "bstate")'></b-form-input>
-					<span style="display: inline-block; margin-right: -11px;">± √</span>
-					<b-form-input class='disco' v-model='dinval' placeholder='b²-4ac' :state='dstate' @keyup.native='checking(dinval, discriminant, "dstate")'></b-form-input>
-				</b-col>
-			</b-row>
-			<b-row>
-				<b-col cols='2'>
-					<vue-mathjax :formula="disc"></vue-mathjax>
-				</b-col>
-				<b-col cols='6'><hr class='frac'></b-col>
-			</b-row>
-			<b-row>
-				<b-col cols='4'></b-col>
-				<b-col>
-					<b-form-input class='minb' v-model='ainval' placeholder='2a' :state='astate' @keyup.native='checking(ainval, twoa, "astate")'></b-form-input>
-				</b-col>
-			</b-row>
+		<span v-if='hint2 == true'>
+			<span v-if='mode == "disc"'>
+				<b-row><h6>Diskriminant:</h6></b-row>
+				<b-row v-if='ok == false'>
+					<b-col cols='8'>
+						<vue-mathjax :formula="disc"></vue-mathjax>
+					</b-col>				
+					<b-col 
+						cols='2'
+						v-if='ok == false'  
+						@click='discrime' 
+						class='hintstyle'>
+							OK ✔
+					</b-col>
+				</b-row>
+				<span v-if='ok'>
+					<b-row>
+						<b-col cols='3'></b-col>
+						<b-col>
+							<b-form-input 
+								class='minb' 
+								v-model='binval' 
+								placeholder='-b' 
+								:state='bstate' 
+								@keyup.native='checking(binval, minb, "bstate")'>								
+							</b-form-input>
+							<span style="display: inline-block; margin-right: -11px;">± √</span>
+							<b-form-input 
+								class='disco' 
+								v-model='dinval' 
+								placeholder='b²-4ac' 
+								:state='dstate' 
+								@keyup.native='checking(dinval, discriminant, "dstate")'>								
+							</b-form-input>
+						</b-col>
+					</b-row>
+					<b-row>
+						<b-col cols='2'>
+							<vue-mathjax :formula="disc"></vue-mathjax>
+						</b-col>
+						<b-col cols='6'><hr class='frac'></b-col>
+					</b-row>
+					<b-row>
+						<b-col cols='4'></b-col>
+						<b-col>
+							<b-form-input 
+								class='minb' 
+								v-model='ainval' 
+								placeholder='2a' 
+								:state='astate' 
+								@keyup.native='checking(ainval, twoa, "astate")'>								
+							</b-form-input>
+						</b-col>
+					</b-row>
+				</span>
+			</span>
+			<span v-else-if='mode == "fact"'>
+				<b-row><h6>Rozklad na součin:</h6></b-row>
+				<b-row v-if='ok == false'>
+					<b-col cols='8'>
+						<vue-mathjax :formula="fact"></vue-mathjax>
+					</b-col>				
+					<b-col v-if='ok == false' cols='2' @click='hint3 = true' class='hintstyle'>OK ✔</b-col>
+				</b-row>
+			</span>
+			<span v-else-if='mode == "sqrt"'>
+				<b-row><h6>Odmocnění:</h6></b-row>
+				<b-row v-if='ok == false'>
+					<b-col cols='8'>
+						<vue-mathjax :formula="sqrt"></vue-mathjax>
+					</b-col>				
+					<b-col v-if='ok == false' cols='2' @click='hint3 = true' class='hintstyle'>OK ✔</b-col>
+				</b-row>
 			</span>
 		</span>
 		<b-row>
@@ -104,7 +155,7 @@
 </template>
 
 <script>
-	import {bus} from './../../../../main.js'
+	import { bus } from './../../../../main.js'
 	import { VueMathjax } from 'vue-mathjax'
 	import Heading from './../DevelopComponents/Heading.vue'
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
@@ -125,6 +176,8 @@
 				hint3: false,
 				discriminant: '',
 				disc: '$$x_{1;2} = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$',
+				fact: '',
+				sqrt: '',
 				bstate: false,
 				dstate: false,
 				astate: false,
@@ -133,6 +186,7 @@
 				ainval: '',
 				minb: '',
 				twoa: '',
+				mode: 'disc',
 			}
 		},
 		components: {
@@ -149,14 +203,16 @@
 				return arr[rnd];
 			},
 			genTask() {
+				this.mode = 'disc';
 				this.disc = '$$x_{1;2} = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$';
 				var x1 = this.randomNumber(0, 19) * this.znamenko();
 				var x2 = this.randomNumber(0, 19) * this.znamenko();
 				this.rightx1 = x1;
 				this.rightx2 = x2;
-				var a = this.randomNumber(1, 5) * this.znamenko();	
-				this.twoa = 2 * a;			
+				var a = this.randomNumber(1, 5) * this.znamenko();							
 				var b = - a * (x1 + x2);
+				var c = a * (x1 * x2);
+				this.twoa = 2 * a;
 				this.minb = - b;
 				var disc = Math.pow(b, 2);
 				var bx = '';
@@ -164,22 +220,47 @@
 					bx = '+ ' + b + 'x';
 				} else if (b == 0) {
 					bx = '';
+					this.mode = 'sqrt'; //square root of number c
+				} else if (b == -1) {
+					bx = '-';
 				} else {
 					bx = b + 'x';
 				}	
-				var c = a * (x1 * x2);
 				disc -= 4 * a * c;
 				this.discriminant = disc;
 				var ax = a;
 				if (a == 1) {
 					ax = '';
+				} else if (a == -1) {
+					ax = '-';
 				}
 				var cx = c;
 				if (c > 0) {
 					cx = '+' + c;
 				} else if (c == 0) {
 					cx = '';
-				}		
+					this.mode = 'fact'; //factorization
+				}	
+				if (this.mode == 'sqrt') {	
+					if (c > 0)	{
+						this.sqrt = '$$' + ax + '=' + '-' + c + '$$';
+					} else {
+						var ct = c * (-1);
+						this.sqrt = '$$' + ax + '=' + c + '$$';
+					}
+				} else if (this.mode == 'fact') {
+					if (a > 0) {
+						this.fact = '$$x(' + a + 'x +' + b + ') = 0$$';  
+					} else {
+						var minb = 0;
+						if (b > 0) {
+							minb = - b;
+						} else {
+							minb = '+' + b * (-1);
+						}
+						this.fact = '$$-x(' + -a + 'x' + minb + ') = 0$$';  
+					}
+				}
 				var string = '$$' + ax + 'x^2' + bx + cx + '= 0$$';
 				this.unmodtask = string;
 				var amod = this.randomNumber(0, 99) * this.znamenko();
@@ -201,6 +282,8 @@
 					ax2 = '';
 				} else if(modia == 0) {
 					ax2 = '';
+				} else if (modia == -1) {
+					ax2 = '-';
 				}
 				var cx2 = modic;
 				if (modic > 0) {

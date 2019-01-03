@@ -1,24 +1,35 @@
 <template>
 	<div>
 		<heading head='Násobení pod sebou'></heading>
-		<div class='first'>
-			<nbsp v-if='hinted1 == false' :num='1'/>
-			<nbsp v-else :num='spacesNum - 3'/>
-			<span id="num">{{ number }}</span>
-		</div>
-		<div class='second'>
-			<nbsp v-if='hinted1' :num='spacesNum - 4'/>
-			<span id="num" class="multi">x&nbsp{{ multiplier }}</span>
-		</div>
-		<hint class='hint' @changeStatus='changeStatus' :hintProp1='hinted1' :hintProp2='hinted2' :number='number' :multiplier='multiplier' @spaces='updateSpaces($event)' @showResultBox='resultBox = true'></hint>
-		<b-row v-if='hinted1 == false || resultBox == true'>
+		<span v-if='begin == false'>
+			<p>{{ number }} x {{ multiplier }} = </p>
+			<p @click='giveHint' class='hintstyle'>Chci násobit pod sebou</p>
+		</span>
+		<span v-else>
+			<div v-if='begin' class='first'>
+				<nbsp :num='spacesNum - 3'/>
+				<span id="num">{{ number }}</span>
+			</div>
+			<div v-if='begin' class='second'>
+				<nbsp :num='spacesNum - 4'/>
+				<span id="num" class="multi">x&nbsp{{ multiplier }}</span>
+			</div>
+			<hint v-if='begin'
+				class='hint' 
+				@changeStatus='changeStatus' 
+				:number='number' 
+				:multiplier='multiplier' 
+				@spaces='updateSpaces($event)'>				
+			</hint>
+		</span>
+		<b-row>
 			<b-col cols="8"></b-col>
 			<b-col cols="3">
 				<b-form-input						
 		                type="text"
 		                placeholder="Výsledek"
 		                v-model="usersResult"
-		                id="inputForm">                   	
+		                id="inputRes">                   	
 		        </b-form-input>
 		    </b-col>
 	        <b-col cols="1">
@@ -52,9 +63,9 @@
 				number: '',
 				usersResult: '',
 				hinted1: false,
-				hinted2: false,
 				spacesNum: 0,
 				resultBox: false,
+				begin: false,
 			}
 		},
 		components: {
@@ -70,14 +81,13 @@
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
 			genTask() {	
+				this.begin = false;
 				this.resultBox = false;
 				this.multiplier = this.randomNumber(11, 99);
 				this.number = this.randomNumber(101, 999);
 				this.result = this.number * this.multiplier;
 				this.checked = '';
-				this.hinted1 = false; 
-				this.hinted2 = false; 
-				this.repair();			
+				this.hinted1 = false;			  
 			},
 			changeStatus() {
 				this.hinted1 = true;
@@ -85,6 +95,7 @@
 			},
 			updateSpaces(maxSpaces) {
 				this.spacesNum = maxSpaces;
+				console.log('spacesUpdated ' + maxSpaces)
 			},
 			check() {
 				if (this.usersResult == this.result) {
@@ -92,10 +103,10 @@
 				} else {
 					this.checked = 'wrong';
 				}
-				document.getElementById("inputForm").value = '';
+				document.getElementById("inputRes").value = '';
 			}, 
-			repair() {
-				bus.$emit('repair');
+			giveHint() {
+				this.begin = true;
 			}
 		},
 		beforeMount() {
