@@ -11,6 +11,7 @@
 		                type="text"
 		                placeholder="x1"
 		                v-model.trim="usersX1"
+		                @keyup.native.enter='check'
 		                id="inputForm1">                   	
 		        </b-form-input>
 		    </b-col>
@@ -24,6 +25,7 @@
 		                type="text"
 		                placeholder="x2"
 		                v-model.trim="usersX2"
+		                @keyup.native.enter='check'
 		                id="inputForm2">                   	
 		        </b-form-input>
 		    </b-col>
@@ -151,6 +153,7 @@
 	        </b-col>
 		</b-row>
 		<ch-alerts :checked='checked' :result='"x1: " + rightx1 + ", x2: " + rightx2'></ch-alerts>
+		<b-alert v-if='onlyone' show variant="danger">Vyplňte prosím oba výsledky</b-alert>
 	</div>
 </template>
 
@@ -187,6 +190,7 @@
 				minb: '',
 				twoa: '',
 				mode: 'disc',
+				onlyone: false,
 			}
 		},
 		components: {
@@ -203,6 +207,9 @@
 				return arr[rnd];
 			},
 			genTask() {
+				this.onlyone = false;
+				this.usersX1 = '';
+				this.usersX2 = '';
 				this.mode = 'disc';
 				this.disc = '$$x_{1;2} = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$';
 				var x1 = this.randomNumber(0, 19) * this.znamenko();
@@ -316,11 +323,17 @@
 				document.getElementById("inputForm2").value = '';
 			},
 			check() {
+				if (this.usersX1 == "" || this.usersX2 == "") {
+					this.onlyone = true;
+					return;
+				}
 				if (this.rightx1 == this.usersX1 && this.rightx2 == this.usersX2 || this.rightx1 == this.usersX2 && this.rightx2 == this.usersX1) {
 					this.checked = 'right';
+					this.onlyone = false;
 					console.log('supr');
 				} else {
 					this.checked = 'wrong';
+					this.onlyone = false;
 					console.log('meh');
 				}
 			},

@@ -29,6 +29,7 @@
 		                type="text"
 		                placeholder="Výsledek"
 		                v-model="usersResult"
+		                @keyup.native.enter='check'
 		                id="inputRes">                   	
 		        </b-form-input>
 		    </b-col>

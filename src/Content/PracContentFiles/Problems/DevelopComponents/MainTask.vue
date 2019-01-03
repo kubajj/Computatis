@@ -9,6 +9,7 @@
 		                type="text"
 		                placeholder="Výsledek"
 		                v-model="usersResult"
+		                @keyup.native.enter='check'
 		                id="inputForm">                   	
 		        </b-form-input>
 		    </b-col>
