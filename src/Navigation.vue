@@ -4,9 +4,9 @@
 		<b-collapse is-nav id="nav_collapse">
 		<logo></logo>
 		<b-navbar-nav>
-			<b-nav-item><b-button><router-link to='/' class='menu'>Home</router-link></b-button></b-nav-item>
-			<b-nav-item><b-button><router-link to='/teorie' class='menu'>Teorie</router-link></b-button></b-nav-item>
-			<b-nav-item><b-button><router-link to='/procvicovani' class='menu'>Procvičování</router-link></b-button></b-nav-item>
+			<b-nav-item><router-link to='/' class='menu'>Home</router-link></b-nav-item>
+			<b-nav-item><router-link to='/teorie' class='menu'>Teorie</router-link></b-nav-item>
+			<b-nav-item><router-link to='/procvicovani' class='menu'>Procvičování</router-link></b-nav-item>
 		</b-navbar-nav>
 		<search></search>
 		</b-collapse>

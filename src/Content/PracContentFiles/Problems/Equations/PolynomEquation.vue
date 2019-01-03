@@ -149,6 +149,7 @@
 				return arr[rnd];
 			},
 			genTask() {
+				this.disc = '$$x_{1;2} = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$';
 				var x1 = this.randomNumber(0, 19) * this.znamenko();
 				var x2 = this.randomNumber(0, 19) * this.znamenko();
 				this.rightx1 = x1;
