@@ -14,19 +14,19 @@
 								    <b-dropdown-item @click="rovnice(3)">Rovnice s odmocninou</b-dropdown-item>
 								    <b-dropdown-divider></b-dropdown-divider>
 								</b-dropdown>
-							</div><div class='dropdiv'>
+							</div><!--div class='dropdiv'>
 								<b-dropdown id="ddown1" text="Funkce" class="m-md-2">
 								    <b-dropdown-item @click="funkce(1)">Lineární funkce</b-dropdown-item>
 								    <b-dropdown-item @click="funkce(2)">Kvadratické funkce</b-dropdown-item>
 								    <b-dropdown-item @click="funkce(3)">Exponenciální funkce</b-dropdown-item>
 								    <b-dropdown-divider></b-dropdown-divider>
 								</b-dropdown>
-							</div><div class='dropdiv'>
+							</div--><div class='dropdiv'>
 								<b-dropdown id="ddown1" text="Aritmetika" class="m-md-2">
 								    <b-dropdown-item @click="aritmetika(1)">Sčítání a odčítání čísel do 100</b-dropdown-item>
 								    <b-dropdown-item @click="aritmetika(2)">Aritmetika do 1000</b-dropdown-item>
 								    <b-dropdown-item @click="aritmetika(3)">Aritmetika reálného oboru čísel</b-dropdown-item>
-								    <b-dropdown-item @click="aritmetika(4)">Násobení pod sebou</b-dropdown-item>
+								    <b-dropdown-item @click="aritmetika(4)">Násobení</b-dropdown-item>
 								    <b-dropdown-divider></b-dropdown-divider>
 								</b-dropdown>
 							</div>
@@ -50,20 +50,12 @@
 
 <script>
 	import {bus} from './../main.js';
-	import Uvod from './PracContentFiles/Problems/UvodKProcvicovani.vue';
-	import Rovnice1 from './PracContentFiles/Problems/Equations/LinearEquation.vue';
-	import Rovnice2 from './PracContentFiles/Problems/Equations/PolynomEquation.vue';
-	import Aritmetika1 from './PracContentFiles/Problems/Arithmetic/AddSubTo100.vue';
-	import Funkce from './PracContentFiles/Problems/Functions/Funkce.vue';	
-	import LongMultiplication from './PracContentFiles/Problems/Arithmetic/LongMultiplication.vue';	
-	/*import VueRouter from 'vue-router';
-	import pracRoutes from './PracContentFiles/pracRoutes'
-
-	Vue.use(VueRouter);
-
-	const router2 = new VueRouter({
-		routes: pracRoutes
-	})*/
+	import Uvod from './PracContentFiles/UvodKProcvicovani.vue';
+	import Rovnice1 from './PracContentFiles/Equations/LinearEquation.vue';
+	import Rovnice2 from './PracContentFiles/Equations/PolynomEquation.vue';
+	import Aritmetika1 from './PracContentFiles/Arithmetic/AddSubTo100.vue';
+	import Funkce from './PracContentFiles/Functions/Funkce.vue';	
+	import LongMultiplication from './PracContentFiles/Arithmetic/LongMultiplication.vue';	
 
 	export default {
 		data() {
@@ -118,5 +110,8 @@
 	}
 	.dropdiv {
 		margin-top: 5px;
+	}
+	.hintstyle {
+		color: #aaa;
 	}
 </style>
