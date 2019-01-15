@@ -13,11 +13,16 @@ export default [
 	{ path: '/teorie', component: TheoryContent},
 	{ path: '/procvicovani', component: PracContent,
 		children: [
-		{ path: '/', component: UvodKProcvicovani },
+		/*{ path: '/', component: UvodKProcvicovani },
 		{ path: '/nasobeni', component: LongMultiplication },
 		{ path: '/scitaniaodcitanido100', component: AddSubTo100 },
 		{ path: '/linearnirovnice', component: LinearEquation },
-		{ path: '/kvadratickarovnice', component: PolynomEquation },
+		{ path: '/kvadratickarovnice', component: PolynomEquation },*/
+		{ path: '/procvicovani/', component: UvodKProcvicovani },
+		{ path: '/procvicovani/nasobeni', component: LongMultiplication },
+		{ path: '/procvicovani/scitaniaodcitanido100', component: AddSubTo100 },
+		{ path: '/procvicovani/linearnirovnice', component: LinearEquation },
+		{ path: '/procvicovani/kvadratickarovnice', component: PolynomEquation },
 		]
 	},
 ]

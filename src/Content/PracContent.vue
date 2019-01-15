@@ -9,8 +9,8 @@
 						<b-col>
 							<div class='dropdiv'>
 								<b-dropdown id="ddown1" text="Rovnice" class="m-md-2">
-								    <b-dropdown-item><router-link to='/linearnirovnice'>Lineární rovnice</router-link></b-dropdown-item>
-								    <b-dropdown-item><router-link to='/kvadratickarovnice'>Kvadratické rovnice</router-link></b-dropdown-item>
+								    <b-dropdown-item><router-link to='/procvicovani/linearnirovnice'>Lineární rovnice</router-link></b-dropdown-item>
+								    <b-dropdown-item><router-link to='/procvicovani/kvadratickarovnice'>Kvadratické rovnice</router-link></b-dropdown-item>
 								    <!--b-dropdown-item @click="rovnice(3)">Rovnice s odmocninou</b-dropdown-item-->
 								    <b-dropdown-divider></b-dropdown-divider>
 								</b-dropdown>
@@ -23,10 +23,10 @@
 								</b-dropdown>
 							</div--><div class='dropdiv'>
 								<b-dropdown id="ddown1" text="Aritmetika" class="m-md-2">
-								    <b-dropdown-item><router-link to='/scitaniaodcitanido100'>Sčítání a odčítání čísel do 100</router-link></b-dropdown-item>
+								    <b-dropdown-item><router-link to='/procvicovani/scitaniaodcitanido100'>Sčítání a odčítání čísel do 100</router-link></b-dropdown-item>
 								    <!--b-dropdown-item @click="aritmetika(2)">Aritmetika do 1000</b-dropdown-item>
 								    <b-dropdown-item @click="aritmetika(3)">Aritmetika reálného oboru čísel</b-dropdown-item-->
-								    <b-dropdown-item><router-link to='/nasobeni'>Násobení</router-link></b-dropdown-item>
+								    <b-dropdown-item><router-link to='/procvicovani/nasobeni'>Násobení</router-link></b-dropdown-item>
 								    <b-dropdown-divider></b-dropdown-divider>
 								</b-dropdown>
 							</div>
