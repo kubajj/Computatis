@@ -3,7 +3,7 @@ Computatis
 
 Toto je můj maturitní projekt.
 
-## Build Setup
+## Instalace
 
 ``` bash
 # git clone této složky
