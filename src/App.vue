@@ -32,6 +32,7 @@
 		margin-top: 15px;
 		color: black;
 		background-color: white;
+		min-height: 300px;
 	}
 
 	.title {

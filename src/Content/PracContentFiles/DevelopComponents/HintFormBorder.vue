@@ -2,15 +2,14 @@
 	<b-form-input
 		@input.native="onInput"
 		type="text"
-        class="int"
+        class="inputWithBorder"
         v-model="inputValue"
-        :state="checked"
-        id='inputForm'>        	
+        :state="checked">        	
     </b-form-input>
 </template>
 
 <script>
-	import {bus} from './../../../../main.js'
+	import {bus} from './../../../main.js'
 	export default {
 		props: {
 			value: {
