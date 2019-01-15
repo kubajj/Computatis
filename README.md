@@ -9,7 +9,7 @@ Toto je můj maturitní projekt.
 # git clone této složky
 git clone https://github.com/kubajj/Computatis.git
 
-#přesun do složky
+# přesun do složky
 cd Computatis
 
 # instalace projektu
