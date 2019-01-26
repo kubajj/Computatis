@@ -1,15 +1,15 @@
-image: node:latest
-
 pages:
-  cache:
-    paths:
-    - node_modules/
-  script:
-    - npm install
-    - npm run docs:build
-  artifacts:
-    paths:
-      - public
-  only:
-    - master
-
+ image: node:latest
+ stage: deploy
+ script:
+  - npm install --progress=false
+  - npm run build
+  - rm -rf public
+  - mkdir public
+  - cp -r dist/* public
+ artifacts:
+  expire_in: 1 week
+  paths:
+  - public
+ only:
+  - master
