@@ -8,7 +8,7 @@ import AddSubTo100 from './Content/PracContentFiles/Arithmetic/AddSubTo100.vue'
 import LinearEquation from './Content/PracContentFiles/Equations/LinearEquation.vue'
 import PolynomEquation from './Content/PracContentFiles/Equations/PolynomEquation.vue'
 import BaseConversion from './Content/PracContentFiles/NumeralSystems/BaseConversion.vue'
-import WeirdTask from './Content/PracContentFiles/NumeralSystems/WeirdTask.vue'
+import AdressesInMemory from './Content/PracContentFiles/NumeralSystems/AdressesInMemory.vue'
 
 export default [
 	{ path: '/', component: HomeContent},
@@ -21,7 +21,7 @@ export default [
 		{ path: '/procvicovani/linearnirovnice', component: LinearEquation },
 		{ path: '/procvicovani/kvadratickarovnice', component: PolynomEquation },
 		{ path: '/procvicovani/prevodymezisoustavami', component: BaseConversion },
-		{ path: '/procvicovani/adresyvpameti', component: WeirdTask },
+		{ path: '/procvicovani/adresyvpameti', component: AdressesInMemory },
 		]
 	},
 ]

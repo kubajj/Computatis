@@ -6,6 +6,7 @@
 				<vue-mathjax :formula="intro"/>
 			</b-col>
 		</b-row>
+		<b-row><p> </p></b-row>
 		<b-row>
 			<b-col cols='1'></b-col>
 			<b-col cols='1'>
@@ -128,8 +129,8 @@
 				var firstPos = this.randomNumber(0, 7);
 				var secondPos = this.randomNumber(8, 15);
 				
-				this.firstAdress = this.convertNumber(beginning + firstPos, 10, 16);
-				this.secondAdress = this.convertNumber(beginning + secondPos, 10, 16);				
+				this.firstAdress = "0" + this.convertNumber(beginning + firstPos, 10, 16);
+				this.secondAdress = "0" + this.convertNumber(beginning + secondPos, 10, 16);				
 
 				var firstline = firstlineadress + "\\text{ | }";
 				var secondline = secondlineadress + "\\text{ | }";
@@ -148,7 +149,7 @@
 				var bytes = 1 << this.randomNumber(1, 3);
 				this.bits = bytes * 8;
 				var thirdPos = this.randomNumber(0, 24 - bytes);
-				this.thirdAdress = this.convertNumber(beginning + thirdPos, 10, 16);
+				this.thirdAdress = "0" + this.convertNumber(beginning + thirdPos, 10, 16);
 				var endianMode = this.randomNumber(0, bytes == 2 ? 1 : 2);
 				for (let i = 0; i < bytes; i++) {
 					if (endianMode == 0) {
