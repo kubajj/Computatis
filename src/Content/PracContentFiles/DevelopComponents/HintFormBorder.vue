@@ -2,6 +2,7 @@
 	<b-form-input
 		@input.native="onInput"
 		type="text"
+		:placeholder=placeHolder
         class="inputWithBorder"
         v-model="inputValue"
         :state="checked">        	
@@ -16,6 +17,9 @@
 				type: String
 			},
 			correctResult: {
+				type: String
+			},
+			placeHolder: {
 				type: String
 			},
 		},

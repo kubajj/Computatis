@@ -17,7 +17,7 @@ Vue.use(VueRouter);
 export const bus = new Vue();
 const router = new VueRouter({
 	routes: Routes,
-	mode: 'history'
+	/*mode: 'history'*/
 });
 
 Vue.component('app-navigation', Navigation);

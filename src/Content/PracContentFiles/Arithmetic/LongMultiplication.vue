@@ -141,15 +141,11 @@
 			}, 
 			giveHint() {
 				this.begin = true;
-				/* just a test */
 				for (let i = 0; i < this.resultsOfResInputs.length; i++) {					
-					//console.log(document.getElementsByClassName('inputWithBorder form-control is-invalid')[i].value);
 					this.$data.resultsOfResInputs[i] = '';
 					this.$data.resultsOfUnitInputs[i] = '';
 					this.$data.resultsOfDecInputs[i] = '';
 				} 
-				/* var test = document.getElementsByClassName("inputWithBorder form-control is-invalid");
-				 console.log(test);*/
 			},
 			grade(givenNum) {
 				return Math.ceil(Math.log10(givenNum));

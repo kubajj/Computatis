@@ -195,7 +195,7 @@
 				var x2 = this.randomNumber(-19, 19);
 				this.rightx1 = x1;
 				this.rightx2 = x2;
-				var a = this.randomNumber(-5, 5);							
+				var a = this.randomNumber(1, 5) * this.sign();
 				var b = - a * (x1 + x2);
 				var c = a * (x1 * x2);
 				this.twoa = 2 * a;
@@ -214,12 +214,6 @@
 				this.ok = false;
 				this.checked = '';
 
-				/*if (document.getElementById("inputForm1").value != '')  {
-					document.getElementById("inputForm1").value = '';
-				}
-				if (document.getElementById("inputForm2").value != '')  {
-					document.getElementById("inputForm2").value = '';
-				}*/
 				this.$data.usersX1 = '';
 				this.$data.usersX2 = '';
 			},
@@ -246,7 +240,7 @@
 					if (mode == 3) {
 						bx = b + 'x';
 					} else {
-						bx = '+ ' + b + 'x';
+						bx = '+' + b + 'x';
 					}
 				} else if (b == 0) {
 					bx = '';
@@ -275,10 +269,10 @@
 			unmodTaskGenerator(a, b, c, ax, bx, cx) {
 				if (this.mode == 'sqrt') {	
 					if (c > 0)	{
-						this.sqrt = '$$' + ax + 'x^2' + '=' + '-' + c + '$$';
+						this.sqrt = '$$' + ax + '=' + '-' + c + '$$';
 					} else {
 						var ct = c * (-1);
-						this.sqrt = '$$' + ax + 'x^2' + '=' + ct + '$$';
+						this.sqrt = '$$' + ax + '=' + ct + '$$';
 					}
 				} else if (this.mode == 'fact') {
 					if (a > 0) {
