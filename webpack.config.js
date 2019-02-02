@@ -1,11 +1,12 @@
 var path = require('path')
 var webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '',
+    publicPath: '/dist/',
     filename: 'build.js'
   },
   module: {
@@ -53,7 +54,15 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new CopyWebpackPlugin([
+      {
+        from: './index.html',
+        to: './'
+      },
+    ])
+]
 }
 
 if (process.env.NODE_ENV === 'production') {
