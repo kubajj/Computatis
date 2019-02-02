@@ -205,9 +205,7 @@
 				var ax = this.controlA(a, 1);
 				var cx = this.controlC(c, 1);	
 				this.unmodTaskGenerator(a, b, c, ax, bx, cx);
-				this.modTaskGenerator(a, b, c);
-
-				console.log(x1 + " " + x2);				
+				this.modTaskGenerator(a, b, c);			
 				this.hint1 = false;
 				this.hint2 = false;
 				this.hint3 = false;
