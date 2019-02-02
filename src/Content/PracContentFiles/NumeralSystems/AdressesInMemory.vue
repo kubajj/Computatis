@@ -25,13 +25,7 @@
 			</b-col>
 		</b-row>
 		<b-row><p> </p></b-row>
-		<b-row v-if='taskGiven == false'>
-			<b-col cols='8'></b-col>
-			<b-col cols='3'>
-				<p @click='giveTask' class='hintstyle'>Úkol</p>
-			</b-col>
-		</b-row>
-		<div v-if='taskGiven == true'>
+		<div>
 			<b-row>
 				<b-col cols='8'>
 					<vue-mathjax :formula="task"/>
@@ -72,7 +66,6 @@
 				table: '',
 				values: [],
 				secondHalfOfHeading: '$$\\text{Obsah paměti}$$',
-				taskGiven: false,
 				task: '',
 				lastTask: 0,
 				firstAdress: '',				
@@ -114,7 +107,6 @@
 				this.intro = '';
 				this.table = '$$';
 				this.lastTask = 0;
-				this.taskGiven = false;
 				this.$data.usersResult = '';
 				this.thirdVal = '';
 			},			
@@ -170,6 +162,7 @@
 					thirdline += "\\text{ }" + "\\text{ }" + this.values[i + 16];
 				}
 				this.table += firstline + "\\\\" + secondline + "\\\\" + thirdline + "$$";
+				this.giveTask();
 			},
 			firstResult(firstVal) {
 				var val = this.convertNumber(firstVal, 16, 10);
