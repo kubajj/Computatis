@@ -34,7 +34,7 @@ Zde můžete vidět náhled kódu jednoho z funkčních komponentů:
 V následující části dokumentace bude podrobně rozebrán.
 ### HTML
 První část definuje uspořádání stránky. Tedy spíše bílého boxu na stránce:
-![White box](doc-images/WhiteBox.jpg "Bílý box")
+![White box](doc-images/WhiteBox.png "Bílý box")
 
 Tato část je ohraničena dvěmi značkami:
 ```html
