@@ -7,22 +7,21 @@ import LongMultiplication from './Content/PracContentFiles/Arithmetic/LongMultip
 import AddSubTo100 from './Content/PracContentFiles/Arithmetic/AddSubTo100.vue'
 import LinearEquation from './Content/PracContentFiles/Equations/LinearEquation.vue'
 import PolynomEquation from './Content/PracContentFiles/Equations/PolynomEquation.vue'
+import BaseConversion from './Content/PracContentFiles/NumeralSystems/BaseConversion.vue'
+import WeirdTask from './Content/PracContentFiles/NumeralSystems/WeirdTask.vue'
 
 export default [
 	{ path: '/', component: HomeContent},
 	{ path: '/teorie', component: TheoryContent},
 	{ path: '/procvicovani', component: PracContent,
 		children: [
-		/*{ path: '/', component: UvodKProcvicovani },
-		{ path: '/nasobeni', component: LongMultiplication },
-		{ path: '/scitaniaodcitanido100', component: AddSubTo100 },
-		{ path: '/linearnirovnice', component: LinearEquation },
-		{ path: '/kvadratickarovnice', component: PolynomEquation },*/
 		{ path: '/procvicovani/', component: UvodKProcvicovani },
 		{ path: '/procvicovani/nasobeni', component: LongMultiplication },
 		{ path: '/procvicovani/scitaniaodcitanido100', component: AddSubTo100 },
 		{ path: '/procvicovani/linearnirovnice', component: LinearEquation },
 		{ path: '/procvicovani/kvadratickarovnice', component: PolynomEquation },
+		{ path: '/procvicovani/prevodymezisoustavami', component: BaseConversion },
+		{ path: '/procvicovani/adresyvpameti', component: WeirdTask },
 		]
 	},
 ]

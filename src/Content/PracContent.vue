@@ -14,19 +14,29 @@
 								    <!--b-dropdown-item @click="rovnice(3)">Rovnice s odmocninou</b-dropdown-item-->
 								    <b-dropdown-divider></b-dropdown-divider>
 								</b-dropdown>
-							</div><!--div class='dropdiv'>
+							</div>
+							<!--div class='dropdiv'>
 								<b-dropdown id="ddown1" text="Funkce" class="m-md-2">
 								    <b-dropdown-item @click="funkce(1)">Lineární funkce</b-dropdown-item>
 								    <b-dropdown-item @click="funkce(2)">Kvadratické funkce</b-dropdown-item>
 								    <b-dropdown-item @click="funkce(3)">Exponenciální funkce</b-dropdown-item>
 								    <b-dropdown-divider></b-dropdown-divider>
 								</b-dropdown>
-							</div--><div class='dropdiv'>
+							</div-->
+							<div class='dropdiv'>
 								<b-dropdown id="ddown1" text="Aritmetika" class="m-md-2">
 								    <b-dropdown-item><router-link to='/procvicovani/scitaniaodcitanido100'>Sčítání a odčítání čísel do 100</router-link></b-dropdown-item>
 								    <!--b-dropdown-item @click="aritmetika(2)">Aritmetika do 1000</b-dropdown-item>
 								    <b-dropdown-item @click="aritmetika(3)">Aritmetika reálného oboru čísel</b-dropdown-item-->
 								    <b-dropdown-item><router-link to='/procvicovani/nasobeni'>Násobení</router-link></b-dropdown-item>
+								    <b-dropdown-divider></b-dropdown-divider>
+								</b-dropdown>
+							</div>
+							<div class='dropdiv'>
+								<b-dropdown id="ddown1" text="Číselné soustavy" class="m-md-2">
+								    <b-dropdown-item><router-link to='/procvicovani/prevodymezisoustavami'>Převody mezi soustavami</router-link></b-dropdown-item>
+								    <b-dropdown-item><router-link to='/procvicovani/adresyvpameti'>Adresy v paměti</router-link></b-dropdown-item>
+								    <!--b-dropdown-item @click="rovnice(3)">Rovnice s odmocninou</b-dropdown-item-->
 								    <b-dropdown-divider></b-dropdown-divider>
 								</b-dropdown>
 							</div>
