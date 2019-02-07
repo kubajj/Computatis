@@ -1,12 +1,13 @@
 var path = require('path')
 var webpack = require('webpack')
 //const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    publicPath: './',
     filename: 'build.js'
   },
   module: {
@@ -55,14 +56,13 @@ module.exports = {
     hints: false
   },
   devtool: '#eval-source-map',
-  /*plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: './index.html',
-        to: './'
-      },
-    ])
-]*/
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "Computatis",
+      // doplnit další podle
+      // https://github.com/jantimon/html-webpack-plugin#options
+    })
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {
