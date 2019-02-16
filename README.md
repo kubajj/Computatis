@@ -339,14 +339,16 @@ Funkce těchto jednotlivých částí nyní rozeberu.\
 V části data můžete specifikovat jednotlivé proměnné.
 Používá se javascriptový zápis pro objekty:
 ``` javascript
-jménoproměnné: hodnotaproměnné,
+name*: value**,
 ``` 
+\*name = jméno proměnné\
+\*\*value = hodnota proměnné
 *Všechny řádky ukončujte čárkou.*\
 Více o javascriptových objektech naleznete [zde](https://www.w3schools.com/js/js_objects.asp).
 
 Na takto definované proměnné můžete odkazovat dvěma způsoby:
 1. `this.var*`
-2. `this.$data.var*`
+2. `this.$data.var*`\
 \*var = název proměnné\
 Pokud na ně odkazujete z HTML části, prefix `this.` se nepřidává (ani `$data.`).
 
