@@ -5,7 +5,7 @@
 		:placeholder=placeHolder
         class="inputWithBorder"
         v-model="inputValue"
-        :state="checked">        	
+        :state="status">        	
     </b-form-input>
 </template>
 
@@ -25,7 +25,7 @@
 		},
 		data() {
 			return {
-				checked: false,
+				status: false,
 				inputValue: this.value
 			}
 		},
@@ -38,7 +38,9 @@
 			onInput() {
 				this.$emit('input', this.inputValue);			
 				if (this.inputValue == this.correctResult) {
-					this.checked = true;
+					this.status = true;
+				} else {
+					this.status = false;
 				}				
 			},			
 		},

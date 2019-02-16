@@ -3,42 +3,54 @@
 		<heading head='Převody mezi soustavami'></heading>
 		<b-row>
 			<b-col cols='8'>
-				<vue-mathjax :formula="task"/>
+				<p>{{ task }}</p>
 			</b-col>
 		</b-row>		
-		<div v-if="hinted">
-			<b-row><p> </p></b-row>
+		<div v-if='hinted'>
 			<b-row>
-				<b-col cols='8'>
-					<vue-mathjax :formula="comment"/>
-				</b-col>
+				<p>{{ comment }}</p>
 			</b-row>
 			<b-row>
-				<b-col cols='8'>
-					<vue-mathjax :formula="hint"/>
-				</b-col>
+				<p>{{ hint }}</p>
 			</b-row>
 		</div>
-		<b-row v-if='specialHint' class='special'>
-			<span v-for='(correct, index) in correctCalculation'>
+		<div v-if='fromHint'>
+			<b-row v-for='line in usedHintLines'>
+				<p>{{ line }}</p>
+			</b-row>
+		</div>
+		<div  v-if='hintWithInputs'>
+			<b-row>
+				<p>{{ currentLineHint }} =</p>
+				<!-- v-model in two next forms is not supposed to be changed, it is unnecessary, so it is not binded-->
 				<hint-form 
-					v-model='resultsInputs[index]'
-					:placeHolder='placeHolders[index]'
-				  	:correctResult='correct'>							  		
+					style='margin-left: 15px; margin-right: 5px;'
+					v-model='currentLinesInputs[0]'
+					:placeHolder='place1'
+					:correctResult='correctLinesInputs[0]'
+					@change='checkHint'
+					@keyup.native.enter='checkHint'>		
+					<!--
+				  	:correctResult='correct' -->					  		
 				</hint-form>
-			</span>
-		</b-row>
+				<p v-if='rest'> zb.:</p>
+				<p v-if='add'> => </p>
+				<hint-form
+					v-if='both' 
+					style='margin-left: 5px;'
+					v-model='currentLinesInputs[1]'
+					:placeHolder='place2'
+					:correctResult='correctLinesInputs[1]'
+					@change='checkHint'
+					@keyup.native.enter='checkHint'>							  		
+				</hint-form>
+			</b-row>
+		</div>
 		<div class="result">
 			<b-row v-if='hinted == false && specialHint == false'>
 				<b-col cols='8'></b-col>
 				<b-col cols='3'>
-					<p @click='hints(from, number, to)' class='hintstyle'>Nápovědu prosím</p>
-				</b-col>
-			</b-row>
-			<b-row v-if='hinted == true && placeHolders.length != 0'>
-				<b-col cols='8'></b-col>
-				<b-col cols='3'>
-					<p @click='specialHintCommand' class='hintstyle'>Další nápovědu prosím</p>
+					<p @click='hints' class='hintstyle'>Nápovědu prosím</p>
 				</b-col>
 			</b-row>
 			<b-row>
@@ -75,15 +87,32 @@
 				checked: '',
 				result: '',
 				hint: '',
-				comment: '$$ boooom $$',
+				comment: '',
 				hinted: false,
-				from: '',
-				number: '',
-				to: '',
+				from: 0,
+				to: 0,
 				correctCalculation: [],
 				resultsInputs: [],
 				specialHint: false,
 				placeHolders: [],
+				usedHintLines: [], //string of used lines of decHint
+				fromHint: false, //hint that shows up with dec to hex or binary conversion	
+				currentLinesInputs: [],
+				correctLinesInputs: [],
+				currentLineHint: '',
+				currentLineValues: '',
+				lineNumber: 0,
+				numberForHints: 0,
+				BaseForHints: 0,
+				hintWithInputs: false,
+				both: false,
+				rest: false,
+				add: false,
+				currentArray: [],
+				currentString: '',
+				place1: 'podíl',
+				place2: 'zbytek',
+				added: 0,
 			}
 		}, 
 		components: {
@@ -122,10 +151,27 @@
 				}
 				this.specialHint = false;
 				this.placeHolders = [];
+				this.lastIndex = 0;
+				this.usedHintLines= [];
+				this.fromHint = false;
+				this.currentLinesInputs = [];
+				this.correctLinesInputs = [];
+				this.currentLineHint = '';
+				this.currentLineValues = '';
+				this.lineNumber = 0;
+				this.numberForHints = 0;
+				this.BaseForHints = 0;
+				this.hintWithInputs = false;
+				this.both = false;
+				this.rest = false;
+				this.add = false;
+				this.place1 = 'podíl';
+				this.place2 = 'zbytek';
+				this.added = 0;
 			},
 			genTask() {
 				this.resetAll();
-				this.task = "$$\\text {Převeďte číslo }";
+				this.task = "Převeďte číslo ";
 				var ArrayOfModes = [2, 10, 16];
 				var ArrayOfTexts = ["dvojkové", "desítkové", "šestnáctkové"];
 				var from = this.randomNumber(0, 2);
@@ -136,67 +182,150 @@
 					to = this.randomNumber(0, 2);
 				}
 				var modeTo = ArrayOfModes[to];
+				this.BaseForHints = modeTo;
 				this.to = modeTo;
-				var number = this.convertNumber(this.randomNumber(1, 10000), 10, modeFrom);
-				this.number = number;
-				this.task += number + "\\text { " + this.preposition(from) + " " + ArrayOfTexts[from] + " soustavě do " + ArrayOfTexts[to] + " soustavy.}"
-				this.result = this.convertNumber(number, modeFrom, modeTo);
-				this.task += "$$";
+				var number = this.convertNumber(this.randomNumber(1, 10000), 10, modeFrom).toUpperCase();
+				this.numberForHints = number;
+				this.task += number + " " + this.preposition(from) + " " + ArrayOfTexts[from] + " soustavě do " + ArrayOfTexts[to] + " soustavy."
+				this.result = this.convertNumber(number, modeFrom, modeTo).toUpperCase();
 			},
-			hints(modeFrom, number, modeTo) {
-				if (modeFrom == 2 && modeTo == 16) {
-					var positions = Math.ceil(Math.log10(number));
+			hints() {
+				if (this.from == 2 && this.to == 16 || this.from == 16 && this.to == 2) {
+					this.hintWithInputs = true;
+					this.fromHint = true;
+					this.hexBin();
+					this.place1 = 'převod';
+				}
+				if (this.to == 10) {
+					this.hintWithInputs = true;
+					this.fromHint = true;
+					this.correctLinesInputs[1] = 0;
+					this.toTen();
+					this.place1 = 'převod';
+					this.place2 = 'součet';
+					this.both = true;
+					this.add = true;
+				}
+				if (this.from == 10) {
+					this.hintWithInputs = true;
+					this.fromHint = true;
+					this.fromTen();
+					this.both = true;
+					this.rest = true;
+				}
+			},
+			fromTen() {		
+				var division = this.numberForHints + ' / ' + this.to;
+				this.currentLineHint = division;
+				var times = Math.floor(this.numberForHints / this.to);
+				var modulo = this.numberForHints % this.to;
+				console.log(times + '  ' + modulo + ' ' + this.numberForHints);
+				this.numberForHints = times;
+				this.correctLinesInputs[0] = "" + times;
+				this.correctLinesInputs[1] = "" + modulo;
+				if (this.to == 16 && modulo > 9) {
+					var simplifier = this.convertNumber(modulo, 10, 16).toUpperCase();
+					this.currentLineValues = division + ' = ' + times + ' zb.: ' + modulo + ' (' + simplifier + ')'; 
+				} else {
+					this.currentLineValues = division + ' = ' + times + ' zb.: ' + modulo; 
+				}
+			},
+			hexBin() {
+				if (this.lineNumber == 0 && this.to == 2) {
+					this.currentString = "" + this.numberForHints;
+					this.currentArray = this.currentString.split(""); //this command makes an array of chars from the numberForHints
+				} else if (this.lineNumber == 0 && this.to == 16) {
+					var positions = this.numberForHints.length;
 					var end = positions % 4;
-					this.comment = "$$\\text {Každá část čísla ve dvojkové soustavě odpovídá jednomu číslu v šestnáctkové.}$$"
-					var hint = "$$\\text{" + number.substr(0, end);
-					number = number.slice(end);
+					positions -= end;
+					var i = 0;
+					this.currentString = "" + this.numberForHints;
+					if (end != 0) {
+						this.currentArray[i++] = this.currentString.substr(0, end);
+						this.currentString = this.currentString.slice(end);
+					}
 					while(positions > 0)  {
-						hint += " " + number.substr(0, 4);
-						number = number.slice(4);
+						this.currentArray[i++] = this.currentString.substr(0, 4);
+						this.currentString = this.currentString.slice(4);
 						positions -= 4;
 					}
-					hint += "}\\\\$$";
-					this.hint = hint;
 				}
-				if (modeFrom == 16 && modeTo == 2) {
-					this.comment = "$$\\text {Převeďte každou cifru zvlášť. Jedna cifra odpovídá čtyřem ve dvojkové soustavě.}$$"
+				var current = this.currentArray[this.lineNumber];
+				var conversion = current + ' -> ' + this.to;
+				this.currentLineHint = conversion;
+				var equals = this.convertNumber(current, this.from, this.to).toUpperCase();
+				console.log(equals + '  ' + this.numberForHints);
+				this.correctLinesInputs[0] = "" + equals;
+				if (this.lineNumber != 0 && this.from == 16) {
+					if (equals.length == 1) {
+						equals = "000" + equals;
+					}
+					if (equals.length == 1) {
+						equals = "00" + equals;
+					}
+					if (equals.length == 3) {
+						equals = "0" + equals;
+					}
 				}
-				if (modeFrom == 10 && modeTo == 16) {
-					this.comment = "$$\\text {Opakujte dělení číslem 16, zapisujte si zbytky po dělení a nakonec otočte jejich pořadí.}$$"
-				}
-				if (modeFrom == 10 && modeTo == 2) {
-					this.comment += "$$\\text {Opakujte dělení číslem 2, zapisujte si zbytky po dělení a nakonec otočte jejich pořadí.}$$"
-				}
-				if (modeTo == 10) {
-					this.toTen(modeFrom, number);
-				}
-				this.hinted = true;
+				this.currentLineValues = conversion + ' = ' + equals; 
 			},
-			toTen(from, number) {
-				this.comment = "$$\\text {Umocněte " + from + " na číslo pod čárou a vynásobte ho tím nad ní.}$$"
-				var positions = number.length;
-				this.hint = "$$";
-				var index = 0;
-				while(positions > 0) {
-					var multiplier = this.convertNumber(number.substr(0, 1), from, 10)
-					this.hint += "\\text {       } \\frac {" + multiplier + "}{" + (positions - 1) + "} \\text {     } ";
-					this.placeHolders[index] = multiplier + "x" + from + "^" + (positions - 1);
-					this.correctCalculation[index++] =  multiplier * Math.pow(from, positions - 1);
-					number = number.slice(1);
-					positions--;
+			toTen() {
+				if (this.lineNumber == 0) {
+					this.currentString = "" + this.numberForHints;
+					this.currentArray = this.currentString.split(""); //this command makes an array of chars from the numberForHints
+					this.correctLinesInputs[1] = 0;
 				}
-				this.hint += "$$";
+				if(this.from == 2) {
+					var current = this.currentArray[this.lineNumber]*Math.pow(10, this.numberForHints.length - 1 - this.lineNumber);
+				} else {
+					var dec = this.convertNumber(this.currentArray[this.lineNumber], 16, 10);
+					var decVal = dec*Math.pow(16, this.numberForHints.length - 1 - this.lineNumber);
+					var decValHex = this.convertNumber(decVal, 10, 16).toUpperCase();
+
+					var current = decValHex;
+				}
+				var conversion = current + ' -> ' + 10;
+				this.currentLineHint = conversion;
+				var equals = this.convertNumber(current, this.from, this.to);
+				console.log(equals + '  ' + this.numberForHints);
+				this.correctLinesInputs[0] = "" + equals;
+				console.log('this.added = ' + this.added);
+				console.log(this.added + ' += ' + equals);
+				this.added = Number(equals) + Number(this.added);	
+				console.log('this.added = ' + this.added);			
+				this.correctLinesInputs[1] = "" + this.added;
+				this.currentLineValues = conversion + ' = ' + equals + ' => ' + this.added; 
 			},
-			specialHintCommand() {
-				this.specialHint = true;
-				this.hinted = false
+			checkHint() {
+				if (this.currentLinesInputs[0].toUpperCase() == this.correctLinesInputs[0]) {		
+					if (this.numberForHints == 0 || this.from != 10 && this.currentArray.length == this.lineNumber || this.from != 10 && this.currentArray[this.lineNumber+1] == undefined) {
+						this.usedHintLines[this.lineNumber] = this.currentLineValues;
+						this.hintWithInputs = false;
+						return;
+					}
+					if (this.from == 10 && this.currentLinesInputs[1] != this.correctLinesInputs[1] || this.to == 10 && this.currentLinesInputs[1] != this.correctLinesInputs[1]) {
+						return;
+					}
+					var line = this.lineNumber++;
+					this.usedHintLines[line] = this.currentLineValues;
+					console.log('tak jsem tu');
+					if (this.from == 10) {
+						this.fromTen();	
+					} else if (this.to != 10) {
+						this.hexBin();
+					} else {
+						this.toTen();
+					}
+					this.currentLinesInputs[0] = '';
+					this.currentLinesInputs[1] = '';			
+				}
 			},
 			check() {
 				if (this.checked == 'right') {
 					this.genTask();
 					return;
 				}
-				if (this.usersResult.toLowerCase() == this.result) {
+				if (this.usersResult.toUpperCase() == this.result) {
 					this.checked = 'right';
 				} else {
 					this.checked = 'wrong';

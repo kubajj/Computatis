@@ -1,10 +1,7 @@
 <template>
-		<b-row>
-			<b-col cols='4'>
-				<vue-mathjax :formula="heading" class="heading"></vue-mathjax>
-			</b-col>
-			<b-col cols='8'></b-col>
-		</b-row>
+	<b-col cols='4'>
+		<vue-mathjax :formula="heading" class="heading"></vue-mathjax>
+	</b-col>
 </template>
 
 <script>
