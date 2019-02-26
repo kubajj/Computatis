@@ -1,50 +1,47 @@
 <template>
 	<div>
 		<heading head='Násobení'></heading>
-		<span v-if='begin == false'>
+		<span v-if='begin == false'><!-- this shows the task in normal mode - not using long multiplication-->
 			<p>{{ number }} x {{ multiplier }} = </p>
-			<p @click='giveHint' class='hintstyle'>Chci násobit pod sebou</p>
-		</span>
+			<p @click='giveHint' class='hintstyle'>Chci násobit pod sebou</p><!-- this adds a button that switches the mode to the one with long multiplication -->
+		</span> 
 		<span v-else>
-			<div v-if='begin' class='first'>
+			<div v-if='begin' class='first'><!-- this shows the first line of the task -->
 				<nbsp :num='maxSpaces - 3'/>
 				<span id="num">{{ number }}</span>
 			</div>
-			<div v-if='begin' class='second'>
+			<div v-if='begin' class='second'><!-- this shows the second line of the task -->
 				<nbsp :num='maxSpaces - 4'/>
 				<span id="num" class="multi">x&nbsp{{ multiplier }}</span>
 			</div>
 			<b-row>	
 				<b-col cols='8'>		
 					<div>
-						<span v-if='unitArray[0] != "x"' class='wws'>
-							<nbsp :num='maxSpaces - unitArray.length'></nbsp>
+						<span v-if='correctUnit[0] != "x"' class='wws'><!-- this shows the first line of the hint inputs -->
+							<nbsp :num='maxSpaces - correctUnit.length'></nbsp><!-- spaces -->
 							<span v-for='(correct, index) in correctUnit'>
 								<hint-form 
 									v-model='resultsOfUnitInputs[index]'
-								  	:correctResult='correct'>							  		
-								</hint-form>
+								  	:correctResult='correct'/>
 							</span>
 						</span>
-						<span class="wws">
-							<nbsp :num='maxSpaces - (decArray.length + 1)'/>
+						<span class="wws"><!-- this shows the second line of the hint inputs -->
+							<nbsp :num='maxSpaces - (correctDec.length + 1)'/><!-- spaces -->
 							<span v-for='(correct, index) in correctDec'>
 								<hint-form 
 									v-model='resultsOfDecInputs[index]'
-									:correctResult='correct'>								
-								</hint-form>
+									:correctResult='correct'/>
 							</span>
 							<span class='zero'>0</span>
 						</span>
-						<span>
-							<hr v-if='maxSpaces == 4' class='secondLine4'>
+						<span><!-- this shows the last line of the hint inputs -->
+							<hr v-if='maxSpaces == 4' class='secondLine4'><!-- horizontal line -->
 							<hr v-else class='secondLine5'>
 							<span v-for='(correct,index) in correctResultSpaces'>
-									<hint-form 
-										v-model='resultsOfResInputs[index]'
-									  	:correctResult='correct'>							  		
-									</hint-form>
-								</span>
+								<hint-form 
+									v-model='resultsOfResInputs[index]'
+								  	:correctResult='correct'/>
+							</span>
 						</span>
 					</div>				
 				</b-col>
@@ -58,8 +55,7 @@
 		                placeholder="Výsledek"
 		                v-model="usersResult"
 		                @keyup.native.enter='check'
-		                id="inputRes">                   	
-		        </b-form-input>
+		                id="inputRes"/><!-- this renders a form for the insertion of the result -->
 		    </b-col>
 	        <b-col cols="1">
 	        	<b-button @click="check">✔</b-button>
@@ -67,13 +63,13 @@
 		</b-row>
 		<b-row>
 			<b-col>	
-				<ch-alerts :checked='checked' :result='result'></ch-alerts>
+				<ch-alerts :checked='checked' :result='result'/><!-- this calls the ch-alerts component that shows the user the correct answer for the task or congratulates him for computing the correct result-->
 			</b-col>
 		</b-row>
 	</div>
 </template>
 
-<script>
+<script>//the following lines of code import the necessary components, which are later specified in the components section and used in the template part
 	import {bus} from './../../../main.js'
 	import { VueMathjax } from 'vue-mathjax'
 	import Heading from './../DevelopComponents/Heading.vue'
@@ -87,19 +83,13 @@
 				result: 0,
 				usersResult: '',
 				checked: '',
-				multiplier: '',
-				number: '',
+				multiplier: '',//second row
+				number: '',//first row
 				usersResult: '',
-				hinted1: false,
-				spacesNum: 0,
-				resultBox: false,
-				begin: false,
-				current1: '',
-				current2: '',
-				current3: '',
-				resultsOfUnitInputs: [],
-				resultsOfDecInputs: [],
-				resultsOfResInputs: [],
+				begin: false,//boolean that stores information about mode (normal/long multiplication) - name is from begin multiplication
+				resultsOfUnitInputs: [],//user inputs from first line of inputs
+				resultsOfDecInputs: [],//user inputs from second line of inputs
+				resultsOfResInputs: [],//user inputs from the last line of inputs
 			}
 		},
 		components: {
@@ -110,36 +100,30 @@
 			'nbsp': Nbsp,
 		},
 		methods: {
-			randomNumber(min, max) {
+			randomNumber(min, max) {//this method generates a random number in the interval that was specified in the parentheses
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
-			genTask() {	
+			genTask() {	//this method generates the task (more of a resetAll method)
 				this.begin = false;
-				this.resultBox = false;
 				this.multiplier = this.randomNumber(11, 99);
 				this.number = this.randomNumber(101, 999);
 				this.result = this.number * this.multiplier;
 				this.checked = '';
-				this.hinted1 = false;
 				this.$data.usersResult = '';				
 			},
-			changeStatus() {
-				this.hinted1 = true;
-				console.log('hint 1 true');
-			},
 			check() {
-				if (this.checked == 'right') {
+				if (this.checked == 'right') {//if the user result is right and user presses enter 2 times, it generates next task
 					this.genTask();
 					return;
 				}
-				if (this.usersResult == this.result) {
+				if (this.usersResult == this.result) {//checks if the user result (inserted to input) is right
 					this.checked = 'right';
 				} else {
 					this.checked = 'wrong';
 				}
 				this.$data.usersResult = '';
 			}, 
-			giveHint() {
+			giveHint() {//shows the inputs
 				this.begin = true;
 				for (let i = 0; i < this.resultsOfResInputs.length; i++) {					
 					this.$data.resultsOfResInputs[i] = '';
@@ -147,77 +131,57 @@
 					this.$data.resultsOfDecInputs[i] = '';
 				} 
 			},
-			grade(givenNum) {
+			grade(givenNum) {//shows the maximal grade of the number
 				return Math.ceil(Math.log10(givenNum));
 			},
 		},
 		computed: {
-			decimal() {
+			decimal() {//the decimal part of multiplier
 				var dec = (this.multiplier - (this.multiplier % 10)) / 10;
 				return dec;
 			},
-			decres() {
+			decRes() {//the result of the multiplication between number and decimal
 				return this.decimal * this.number;
 			},
-			unit() {
+			unit() {//the unit part of multiplier
 				var uni = this.multiplier % 10;
 				return uni;
 			},
-			unitres() {
+			unitRes() {//the result of the multiplication between number and unit
 				var ur = this.unit * this.number;
 				return ur;
 			},
-			correctUnit() {
+			correctUnit() {//an array of numbers of the unitRes
 				var arr= [];
-				var uni = '' + this.unitres;
-				arr = uni.split("");
+				var unit = '' + this.unitRes;
+				arr = unit.split("");
+				if (this.unitRes == 0) {
+					return ['x'];
+				}
 				return arr;
 			},
-			correctDec() {
+			correctDec() {//an array of numbers of the decRes
 				var arr= [];
-				var dec = '' + this.decres;
+				var dec = '' + this.decRes;
 				arr = dec.split("");
 				return arr;
 			},
-			unitArray() {
-				if (this.unit == 0) {
-					return ['x'];
-				}
-				var arr = [];
-				for (let i = 0; i < this.grade(this.unitres); i++) {
-					arr[i] = i;
-				}
-				return arr;
-			},
-			decArray() {
-				var arr = [];
-				for (let i = 0; i < this.grade(this.decres); i++) {
-					arr[i] = 'deccurrent' + i;
-				}
-				return arr;
-			},
-			correctResultSpaces() {
+			correctResultSpaces() {//digits of the result
 				var res = this.number * this.multiplier;
 				res = '' + res;
 				var arr = res.split("");
 				return arr;
 			},
-			maxSpaces() {
-				var arr = [this.decArray.length + 1, this.unitArray.length, this.correctResultSpaces.length];
-				var max = 4;
-				for (let i = 0; i < 3; i++) {
-					if (arr[i] > max) {
-						max = arr[i];
-					}
-				}
-				return max;
+			maxSpaces() {//number of digits of the result
+				return this.correctResultSpaces.length;
 			},
 		},
-		beforeMount() {
+		beforeMount() {//generates the task when the component loads
 			this.genTask();
 		},
-		mounted() {
+		mounted() {//enables the usage of next method in PracContent.vue
 		    bus.$on('next', this.genTask);
+		    //resets all three input arrays
 		    this.resultsOfUnitInputs = this.correctUnit.map(() => '')
 			this.resultsOfDecInputs = this.correctDec.map(() => '')
 			this.resultsOfResInputs = this.correctResultSpaces.map(() => '')

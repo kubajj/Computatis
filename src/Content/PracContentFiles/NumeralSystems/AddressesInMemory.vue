@@ -3,39 +3,29 @@
 		<heading head='Adresy v paměti'></heading>
 		<b-row>
 			<b-col cols='8'>
-				<p>{{ intro }}</p>
+				<p>{{ intro }}</p><!-- this shows the intro of the task -->
 			</b-col>
 		</b-row>
 		<b-row><p> </p></b-row>
 		<b-row>
 			<b-col cols='1'>
 				<b-col></b-col>
-				<b-col><p>Adresa</p></b-col>
+				<b-col><p>Adresa</p></b-col><!-- this shows the first part of the heading -->
 				<b-col></b-col>
 			</b-col>
 			<b-col cols='1'></b-col>
-			<b-col cols='3'><p>Obsah paměti</p></b-col>
+			<b-col cols='3'><p>Obsah paměti</p></b-col><!-- this shows the second part of the heading -->
 		</b-row>
-		<b-row>
+		<b-row v-for='line in table'>
 			<b-col cols='8'>
-			<p>{{ table[0] }}</p>
+			<p>{{ line }}</p><!-- this renders all three lines of the addresses -->
 			</b-col>
 		</b-row>
-		<b-row>
-			<b-col cols='8'>
-			<p>{{ table[1] }}</p>
-			</b-col>
-		</b-row>
-		<b-row>
-			<b-col cols='8'>
-			<p>{{ table[2] }}</p>
-			</b-col>
-		</b-row>
-		<b-row><p> </p></b-row>
+		<b-row><p> </p></b-row><!-- this skips a line -->
 		<div>
 			<b-row>
 				<b-col cols='8'>
-				<p>{{ task }}</p>
+				<p>{{ task }}</p><!-- this shows the current task -->
 				</b-col>
 			</b-row>
 			<b-row>
@@ -44,54 +34,52 @@
 			        <b-form-select 
                      	:value="null"
                      	:options="choices"
-                     	v-on:change="getSelectedItem"
                      	v-model="selected"
-                     	id="inlineFormCustomSelectPref">
-      				</b-form-select>
+                     	id="inlineFormCustomSelectPref"/><!-- this shows a drop down with choices for the third task -->
       			</b-col>
-      			<b-col cols="3" v-else>
+      			<b-col cols="3" v-else><!-- this renders a form for the insertion of the result -->
 					<b-form-input
 		                type="text"
 		                placeholder="Výsledek"
 		                v-model="usersResult"
 		                @keyup.native.enter='check'
-		                id="inputForm">                   	
-			        </b-form-input>
+		                id="inputForm"/> 
 			    </b-col>
 		        <b-col cols="1">
 		        	<b-button @click="check">✔</b-button>
 		        </b-col>
 			</b-row>	
 		</div>
-		<ch-alerts :checked='checked' :result='correctResult'></ch-alerts>
+		<ch-alerts :checked='checked' :result='correctResult'/><!-- this calls the ch-alerts component that shows the user the correct answer for the task or congratulates him for computing the correct result-->
 	</div>
 </template>
 
-<script>
+<script>//the following lines of code import the necessary components, which are later specified in the components section and used in the template part
 	import { bus } from './../../../main.js'
 	import { VueMathjax } from 'vue-mathjax'
 	import Heading from './../DevelopComponents/Heading.vue'
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
+
 	export default {
 		data() {
 			return {
-				intro: '',
+				intro: '', //introduction to the task
 				usersResult: '',
 				checked: '',
 				correctResult: '',
-				table: '',
-				values: [],
+				table: [], //array with all three lines of bytes
+				values: [],//array with 
 				task: '',
-				lastTask: 0,
-				firstAdress: '',				
-				secondAdress: '',
-				thirdAdress: '',
-				correctFirst: '',
-				correctSecond: '',
-				correctThird: '',
+				lastTask: 0,//stores number of last task, so the application knows, which is going to be next
+				firstAdress: '',//address that is in the first task				
+				secondAdress: '',//address that is in the second task	
+				thirdAdress: '',//address that is in the third task	
+				correctFirst: '',//correct result for the first task
+				correctSecond: '',//correct result for the second task
+				correctThird: '',//correct result for third the task
 				thirdVal: '',
-				bits: '',
-				choices: [],
+				bits: '',//stores number of bits that the number in the third task has
+				choices: [],//stores possible answers for he third task - they show as options in the drop down
 			}
 		}, 
 		components: {
@@ -99,10 +87,10 @@
 			'ch-alerts': CheckAlerts,
 		},
 		methods: {
-			randomNumber(min, max) {
+			randomNumber(min, max) {//this method generates a random number in the interval that was specified in the parentheses
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
-			convertNumber(n, fromBase, toBase) {
+			convertNumber(n, fromBase, toBase) {//this method converts numbers from one system to another - (number, from, to)
 			  	if (fromBase === void 0) {
 			  	  fromBase = 10;
 			 	}
@@ -117,17 +105,17 @@
 			 	}
 			 	return ret;
 			},
-			resetAll() {
+			resetAll() {//this method resets all variables that have been changed and will be used in the next call of genTask
 				this.hinted = false;
 				this.checked = '';
 				this.intro = '';
-				this.table = '';
+				this.table = [];
 				this.lastTask = 0;
 				this.$data.usersResult = '';
 				this.thirdVal = '';
 				this.selected = '';
 			},			
-			genTask() {
+			genTask() {//this method generates the task
 				this.resetAll();
 				var beginning = this.randomNumber(2097152,33554431)*8;
 				var firstlineadress = "0" + this.convertNumber(beginning, 10, 16).toUpperCase();
@@ -139,7 +127,7 @@
 				var secondPos = this.randomNumber(8, 15);
 				
 				this.firstAdress = "0" + this.convertNumber(beginning + firstPos, 10, 16).toUpperCase();
-				this.secondAdress = "0" + this.convertNumber(beginning + secondPos, 10, 16).toUpperCase();				
+				this.secondAdress = "0" + this.convertNumber(beginning + secondPos, 10, 16).toUpperCase();//generate addresses that are used in tasks				
 
 				var firstline = firstlineadress + " | ";
 				var secondline = secondlineadress + " | ";
@@ -175,14 +163,14 @@
 				}
 
 				for (let i = 0; i < 8; i++) {
-					firstline += " " + " " + this.values[i];
-					secondline += " " + " " + this.values[i + 8];
-					thirdline += " " + " " + this.values[i + 16];
+					firstline += "  " + this.values[i];
+					secondline += "  " + this.values[i + 8];
+					thirdline += "  " + this.values[i + 16];
 				}
 				this.table = [firstline, secondline, thirdline];
 				this.giveTask();
 			},
-			firstResult(firstVal) {
+			firstResult(firstVal) {//this method computes the number in two's complement in decimal
 				var val = this.convertNumber(firstVal, 16, 10);
 				if (val <= 127) {
 					return val;
@@ -190,7 +178,7 @@
 					return val - 256;
 				}
 			},
-			secondResult(secondVal) {
+			secondResult(secondVal) {//this method extends the number to 16 bits with sign extension
 				var val = this.convertNumber(secondVal, 16, 10);
 				if (val <= 127) {
 					return "00" + secondVal;
@@ -198,7 +186,7 @@
 					return "ff" + secondVal;
 				}
 			},
-			giveTask() {
+			giveTask() { //this method changes the value of the task variable for the next task
 				if (this.lastTask == 0) {
 					this.task = '8-bitové číslo uložené na adrese 0x' + this.firstAdress + ' interpretujte jako celé číslo ve dvojkovém doplňku a napište jeho hodnotu v desítkové soustavě.';
 				} else if (this.lastTask == 1) {
@@ -210,18 +198,16 @@
 				this.taskGiven = true;
 				this.lastTask++;
 			},
-			getSelectedItem: function() {
-		        console.log(this.selected);
-		    },
 			check() {
-				if (this.checked == 'right' && this.lastTask == 3) {
+				if (this.checked == 'right' && this.lastTask == 3) {//if the user result is right, the last task was given and user presses enter 2 times, it generates next task
 					this.genTask();
 					return;
-				} else if (this.checked == 'right' && this.lastTask != 3) {
+				} else if (this.checked == 'right' && this.lastTask != 3) {//if the result is right, but the task was not the third one, it gives the next task
 					this.checked = '';
 					this.giveTask();
 					return;
 				} 
+				//following if statements are checking each result with its dedicated correct one
 				if (this.lastTask == 1) {
 					this.correctResult = this.correctFirst;
 				} else if (this.lastTask == 2) {
@@ -229,9 +215,7 @@
 				} else if (this.lastTask == 3) {
 					this.correctResult = this.correctThird;
 				} 
-				if (this.lastTask != 3 && this.usersResult.toUpperCase() == this.correctResult) {
-					this.checked = 'right';
-				} else if (this.lastTask == 3 && this.selected == this.correctResult) {
+				if (this.lastTask != 3 && this.usersResult.toUpperCase() == this.correctResult || this.lastTask == 3 && this.selected == this.correctResult) {//checks if the user result (inserted to input) is right
 					this.checked = 'right';
 				} else {
 					this.checked = 'wrong';
@@ -239,10 +223,10 @@
 				document.getElementById("inputForm").value = '';
 			}, 
 		},
-		beforeMount() {
+		beforeMount() {//generates the task when the component loads
 			this.genTask();
 		},
-		mounted() {
+		mounted() {//enables the usage of next method in PracContent.vue
 		    bus.$on('next', this.genTask);
 		},  
 	}

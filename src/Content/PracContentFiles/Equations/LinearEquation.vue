@@ -3,16 +3,16 @@
 		<heading head='Lineární rovnice'></heading>
 		<b-row>
 			<b-col cols='8'>
-				<vue-mathjax :formula="task"/>
+				<vue-mathjax :formula="task"/> <!-- this shows the task in the mathjax format -->
 			</b-col>
 		</b-row>
 		<b-row>&nbsp</b-row>
 		<b-row>
-			<b-col cols='8'>
+			<b-col cols='8'><!-- this shows the hint button and describes its function -->
 				<span v-if='!hinted' @click='hint' class='hintstyle'>Nápovědu prosím</span>
 				<span v-else><vue-mathjax :formula="hintValue1"/></span>
 			</b-col>
-			<b-col cols="3">
+			<b-col cols="3"><!-- this renders a form for the insertion of the result -->
 				<b-form-input
 		                type="text"
 		                placeholder="Výsledek"
@@ -21,15 +21,15 @@
 		                id="inputForm">                   	
 		        </b-form-input>
 		    </b-col>
-	        <b-col cols="1">
+	        <b-col cols="1"><!-- this renders a button for the submission of the result -->
 	        	<b-button @click="check">✔</b-button>
 	        </b-col>
 		</b-row>	
-		<ch-alerts :checked='checked' :result='result'></ch-alerts>
+		<ch-alerts :checked='checked' :result='result'></ch-alerts><!-- this calls the ch-alerts component that shows the user the correct answer for the task or congratulates him for computing the correct result-->
 	</div>
 </template>
 
-<script>
+<script>//the following lines of code import the necessary components, which are later specified in the components section and used in the template part
 	import { bus } from './../../../main.js'
 	import { VueMathjax } from 'vue-mathjax'
 	import Heading from './../DevelopComponents/Heading.vue'
@@ -43,7 +43,7 @@
 				checked: '',
 				result: '',
 				hinted: false,
-				hintValue1: '',
+				hintValue1: '',//this variable consists of number of xs = number of values
 			}
 		}, 
 		components: {
@@ -51,47 +51,47 @@
 			'ch-alerts': CheckAlerts,
 		},
 		methods: {
-			randomNumber(min, max) {
+			randomNumber(min, max) { //this method generates a random number in the interval that was specified in the parentheses
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
-			sign() {
+			sign() { //this method simplifies the process of having numbers with negative value while not including 0
 				var arr = [1, -1];
 				var rnd = this.randomNumber(0,1);
-				return arr[rnd];
+				return arr[rnd]; //it returns 1 or -1
 			},
-			variants() {
+			variants() { //this method decide whether the number, which was generated will be number of xs or just number
 				var arr = ['x', 'n'];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			position() {				
+			position() {	//b == before "=", a == after "="			
 				var arr = ['b', 'a'];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			resetAll() {
+			resetAll() { //this method resets all variables that have been changed and will be used in the next call of genTask
 				this.checked = '';
 				this.usersResult = '';				
 				this.task = '';
 				this.result = '';
 				this.hinted = false;
 			},
-			hint() {
+			hint() { //shows hint
 				this.hinted = true;
 			},
-			genTask() {
+			genTask() { //this method generates the task
 				this.resetAll();
 				var quantity = this.randomNumber(1, 5);
-				var rationalResult = false;
-				while (!rationalResult) {
-					var xs = this.randomNumber(-50, 50);
+				var rationalResult = false; //the result should be only k, k/2 or k/4, so it is easier to be inserted in the result input
+				while (!rationalResult) { //if the final result is not rational it renders again with different number
+					var xs = this.randomNumber(1, 50)*this.sign();
 					var firstx = this.controlX(xs);
-					var firstnum = this.randomNumber(-50, 50);
-					var tmpstringb = '$$' + firstx + 'x';
+					var firstnum = this.randomNumber(1, 50)*this.sign();
+					var tmpstringb = '$$' + firstx + 'x'; //assigning two variables for before = and after it
 					var tmpstringa = '=' + firstnum;
 					var numbers = firstnum;
-					for (let i = 1; i < quantity; i++) {
-						var tmpnumber = this.randomNumber(-50, 50);
+					for (let i = 1; i < quantity; i++) { //generates random numbers and includes them to tmp string
+						var tmpnumber = this.randomNumber(1, 50)*this.sign();
 						var tmpvalue = '';
 						var variant = this.variants()
 						if (variant == 'x') {
@@ -124,7 +124,7 @@
 							tmpstringa += tmpvalue;
 						}
 					}
-					var x = (numbers / xs);
+					var x = (numbers / xs); //counts the ratio of the result if it is not whole number, half or a quarter, it has to be computed again
 					if ((x % 1 == 0 || x % 1 == 0.5 || x % 1 == 0.25) && numbers != 0) {
 						rationalResult = true;
 						this.task = tmpstringb + tmpstringa + '$$'
@@ -132,8 +132,12 @@
 							xs = - xs;
 							numbers = -numbers;
 						}
-						if (xs == 1) {xs = ''} 
-							if (xs == -1) {xs = '-'}
+						if (xs == 1) {
+							xs = '';
+						} 
+						if (xs == -1) {
+							xs = '-';
+						}
 						this.hintValue1 = '$$' + xs + 'x = ' + numbers + '$$';
 						break;
 					} else {
@@ -142,7 +146,7 @@
 				}
 				this.result = x;
 			},
-			controlX(x) {
+			controlX(x) { //this method handles the avoidance of having 1x and -1x, which are substituted by only x and -x
 				if (x == 1) {
 					return '';
 				} else if (x == -1) {
@@ -151,11 +155,11 @@
 				return x;
 			},
 			check() {
-				if (this.checked == 'right') {
+				if (this.checked == 'right') { //if the user result is right and user press enter 2 times, it generates next task
 					this.genTask();
 					return;
 				}
-				if (this.usersResult == this.result) {
+				if (this.usersResult == this.result) { //checks if the user result (inserted to input) is right
 					this.checked = 'right';
 				} else {
 					this.checked = 'wrong';
@@ -163,10 +167,10 @@
 				document.getElementById("inputForm").value = '';
 			}, 
 		},
-		beforeMount() {
+		beforeMount() { //generates the task when the component loads
 			this.genTask();
 		},
-		mounted() {
+		mounted() { //enables the usage of next method in PracContent.vue
 		    bus.$on('next', this.genTask);
 		},  
 	}

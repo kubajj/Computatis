@@ -2,18 +2,10 @@
 	<div>
 		<b-row>
 			<heading head='Sčítání a odčítání do 100'></heading>
-			<b-col cols='7'></b-col>
-			<b-col cols='1'><b-button v-b-modal.modal-tall>?</b-button></b-col>
 		</b-row>
-		<b-modal id="modal-tall" title="Overflowing Content">
-		    <p class="my-4" v-for="i in 20" :key="i">
-		      Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-		      in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-		    </p>
-		</b-modal>
 		<b-row style='margin-top: 5px;'>
 			<b-col cols="8">
-				<vue-mathjax :formula="task"></vue-mathjax>
+				<vue-mathjax :formula="task"></vue-mathjax><!-- this shows the task -->
 			</b-col>
 			<b-col cols="3">
 				<b-form-input
@@ -21,56 +13,17 @@
 		                placeholder="Výsledek"
 		                v-model="usersResult"
 		                @keyup.native.enter='check'
-		                id="inputForm">                   	
-		        </b-form-input>
+		                id="inputForm"/> <!-- this renders a form for the insertion of the result -->
 		    </b-col>
 	        <b-col cols="1">
 	        	<b-button @click="check">✔</b-button>
 	        </b-col>
-		</b-row>	
-		<!--b-row style='margin-top: 5px;'>
-			<b-col cols='8'></b-col>
-			<b-col cols='4'>
-				<p>Maximum:</p>
-			</b-col>
 		</b-row>
-		<b-row style='margin-top: -15px;'>
-			<b-col cols='8'></b-col>
-			<b-col cols='4'>
-				<b-input-group prepend="10" append="10000">
-					<b-form-input 
-						v-model='max'
-						@change='genTask'
-						type="range" 
-						min="10" 
-						max="10000"/>
-				</b-input-group>
-			</b-col>
-		</b-row>
-		<b-row style='margin-top: 5px;'>
-			<b-col cols='8'></b-col>
-			<b-col cols='4'>
-				<p>Počet sčítanců/menšitelů:</p>
-			</b-col>
-		</b-row>
-		<b-row style='margin-top: -15px;'>
-			<b-col cols='8'></b-col>
-			<b-col cols='4'>
-				<b-input-group prepend="3" append="10">
-					<b-form-input 
-						v-model='maxQuantity'
-						@change='genTask'
-						type="range" 
-						min="3" 
-						:max="10"/>
-				</b-input-group>
-			</b-col>
-		</b-row-->
-		<ch-alerts :checked='checked' :result='result'></ch-alerts>
+		<ch-alerts :checked='checked' :result='result'/><!-- this calls the ch-alerts component that shows the user the correct answer for the task or congratulates him for computing the correct result-->
 	</div>
 </template>
 
-<script>
+<script>//the following lines of code import the necessary components, which are later specified in the components section and used in the template part
 	import {bus} from './../../../main.js'
 	import { VueMathjax } from 'vue-mathjax'
 	import Heading from './../DevelopComponents/Heading.vue'
@@ -83,8 +36,8 @@
 				usersResult: '',
 				checked: '',
 				task: '',
-				max: 100,
-				maxQuantity: 8,
+				max: 100,//maximal value
+				maxQuantity: 8,//maximal quantity of terms
 				modal: false,
 			}
 		},
@@ -94,28 +47,21 @@
 			'ch-alerts': CheckAlerts,
 		},
 		methods: {
-			randomNumber(min, max) {
+			randomNumber(min, max) {//this method generates a random number in the interval that was specified in the parentheses
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
-			sign() {
+			sign() {//this method simplifies the process of having numbers with negative value while not including 0
 				var arr = [1, -1];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			genTask() {	
+			genTask() {	//this method generates the task	
 			    this.checked = ''
 			    var quantity = this.randomNumber(3, this.maxQuantity);	
 			    var first = this.randomNumber(1, this.max)*this.sign();
 			    this.task = '$$' + first;
 			    var currentValue = first;
 			    for (let i = 1; i < quantity; i++) {
-			    	/*var newNumber = this.randomNumber(1, this.max)*this.sign();
-			    	if (newNumber > 0) {
-			    		this.task += '+' + newNumber;
-			    	} else {
-				    	this.task += newNumber; 
-				    }
-			    	this.result += newNumber;*/
 			    	var newNumber = this.randomNumber(-currentValue, (100 - currentValue) > 100 ? 100 : (100 - currentValue));
 			    	currentValue += newNumber;
 			    	if (newNumber > 0) {
@@ -128,11 +74,11 @@
 			    this.task += ' = $$';
 			},
 			check() {
-				if (this.checked == 'right') {
+				if (this.checked == 'right') {//if the user result is right and user presses enter 2 times, it generates next task
 					this.genTask();
 					return;
 				}
-				if (this.usersResult == this.result) {
+				if (this.usersResult == this.result) {//checks if the user result (inserted to input) is right
 					this.checked = 'right';
 				} else {
 					this.checked = 'wrong';
@@ -140,10 +86,10 @@
 				document.getElementById("inputForm").value = '';
 			}, 
 		},
-		beforeMount() {
+		beforeMount() {//generates the task when the component loads
 			this.genTask();
 		},
-		mounted() {
+		mounted() {//enables the usage of next method in PracContent.vue
 		    bus.$on('next', this.genTask);
 		},  
 	}

@@ -28,12 +28,12 @@
 			</b-row>
 		</span>			
 		<span v-if='hint2 == true'>
-			<span v-if='mode == "disc"'>
+			<span v-if='mode == "disc"'> <!-- if the quadratic equation have all terms (a, b, c) the discriminant is used and shown to user-->
 				<b-row><h6>Diskriminant:</h6></b-row>
 				<b-row v-if='ok == false'>
 					<b-col cols='8'>
-						<vue-mathjax :formula="disc"/>
-					</b-col> <!-- vysvětlit, proč z tohohle  nedělat component-->				
+						<vue-mathjax :formula="disc"/><!-- shows user the discriminant formula -->
+					</b-col>			
 					<b-col 
 						cols='2'
 						v-if='ok == false'  
@@ -42,7 +42,7 @@
 							OK ✔
 					</b-col>
 				</b-row>
-				<span v-if='ok'>
+				<span v-if='ok'> <!-- the parts of disc. formula are changed to inputs and ready to be filled in by user -->
 					<b-row>
 						<b-col cols='3'></b-col>
 						<b-col>
@@ -83,7 +83,7 @@
 					</b-row>
 				</span>
 			</span>
-			<span v-else-if='mode == "fact"'>
+			<span v-else-if='mode == "fact"'> <!-- if the c term is missing, the factorization is used and shown to user -->
 				<b-row><h6>Rozklad na součin:</h6></b-row>
 				<b-row>
 					<b-col cols='8'>
@@ -91,7 +91,7 @@
 					</b-col>
 				</b-row>
 			</span>
-			<span v-else-if='mode == "sqrt"'>
+			<span v-else-if='mode == "sqrt"'> <!-- the square root method is used when the b term is missing -->
 				<b-row><h6>Odmocnění:</h6></b-row>
 				<b-row>
 					<b-col cols='8'>
@@ -100,7 +100,7 @@
 				</b-row>
 			</span>
 		</span>		
-		<b-row>
+		<b-row> <!-- following inputs are the result inputs, there are two of them, because it is quadratic equation combined from two result -->
 			<b-col cols='8'></b-col>
 			<b-col cols="3">
 				<b-form-input
@@ -127,12 +127,12 @@
 	        	<b-button @click="check">✔</b-button>
 	        </b-col>
 		</b-row>
-		<ch-alerts :checked='checked' :result='"x1: " + rightx1 + ", x2: " + rightx2'></ch-alerts>
+		<ch-alerts :checked='checked' :result='"x1: " + rightX1 + ", x2: " + rightX2'></ch-alerts> <!-- if one of the results is missing or at least one of the is wrong, this component shows the correct result and allows user to skip to the next task -->
 		<b-alert 
 			v-if='onlyone' 
 			show variant="danger">
 			Vyplňte prosím oba výsledky
-		</b-alert>
+		</b-alert> <!-- this alert is shown, if one of the results is missing and the user already pressed enter -->
 	</div>
 </template>
 
@@ -146,30 +146,30 @@
 		data() {
 			return {
 				task: '',
-				unmodtask: '',
+				unmodtask: '',//the left side - the right side
 				checked: '',
-				usersX1: '',
-				usersX2: '',
-				rightx1: 0,
-				rightx2: 0,
-				hint1: false,
-				ok: false,
+				usersX1: '',//first result input
+				usersX2: '',//second result input
+				rightX1: 0,//right results
+				rightX2: 0,
+				hint1: false,//hint that shows unmodified task
+				ok: false,//user understands the discriminant formula 
 				hint2: false,
 				hint3: false,
-				discriminant: '',
-				disc: '$$x_{1;2} = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$',
+				disc: '$$x_{1;2} = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$', //discriminant formula without any changes
 				fact: '',
 				sqrt: '',
-				bstate: false,
+				bstate: false,//variables that stores the information about the border color of inputs in discriminant formula
 				dstate: false,
 				astate: false,
-				binval: '',
+				binval: '',//variables that stores the user input values from inputs in discriminant formula
 				dinval: '',
 				ainval: '',
+				discriminant: '',//correct results of the discriminant formula inputs
 				minb: '',
 				twoa: '',
 				mode: 'disc',
-				onlyone: false,
+				onlyone: false,//user submitted only one result
 			}
 		},
 		components: {
@@ -177,24 +177,27 @@
 			'heading': Heading,
 		},		
 		methods: {
-			randomNumber(min, max) {
+			randomNumber(min, max) { //this method generates a random number in the interval that was specified in the parentheses
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
-			sign() {
+			sign() { //this method simplifies the process of having numbers with negative value while not including 0
 				var arr = [1, -1];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			genTask() {
+			resetAll() { //this method resets all variables that have been changed and will be used in the next call of genTask
 				this.onlyone = false;
 				this.usersX1 = '';
 				this.usersX2 = '';
 				this.mode = 'disc';
 				this.disc = '$$x_{1;2} = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$';
+			},
+			genTask() { //this method generates the task	
+				this.resetAll();			
 				var x1 = this.randomNumber(-19, 19);
 				var x2 = this.randomNumber(-19, 19);
-				this.rightx1 = x1;
-				this.rightx2 = x2;
+				this.rightX1 = x1;
+				this.rightX2 = x2;
 				var a = this.randomNumber(1, 5) * this.sign();
 				var b = - a * (x1 + x2);
 				var c = a * (x1 * x2);
@@ -215,7 +218,7 @@
 				this.$data.usersX1 = '';
 				this.$data.usersX2 = '';
 			},
-			controlA(a, mode) {
+			controlA(a, mode) { //this method handles special values before x^2
 				var ax = a;
 				var add = '';
 				if (mode != 3) {
@@ -232,7 +235,7 @@
 				}
 				return ax;
 			},
-			controlB(b, mode) {
+			controlB(b, mode) {//this method handles special values before x
 				var bx = '';
 				if (b > 0) {
 					if (mode == 3) {
@@ -252,7 +255,7 @@
 				}
 				return bx;
 			},
-			controlC(c, mode) {
+			controlC(c, mode) {//this method adds + operand where it is needed before c and also handles special values of c term
 				var cx = c;
 				if (c > 0) {
 					cx = '+' + c;
@@ -264,7 +267,7 @@
 				}	
 				return cx;
 			},
-			unmodTaskGenerator(a, b, c, ax, bx, cx) {
+			unmodTaskGenerator(a, b, c, ax, bx, cx) { //this method generates basic unmodified task
 				if (this.mode == 'sqrt') {	
 					if (c > 0)	{
 						this.sqrt = '$$' + ax + '=' + '-' + c + '$$';
@@ -299,7 +302,7 @@
 				var string = '$$' + ax + bx + cx + '= 0$$';
 				this.unmodtask = string;
 			},
-			modTaskGenerator(a, b, c) {				
+			modTaskGenerator(a, b, c) {		//this method changes the unmodtask to be more complicated by adding right part (after =)		
 				var amod = this.randomNumber(-99, 99);
 				var bmod = this.randomNumber(-99, 99);
 				var cmod = this.randomNumber(-99, 99);
@@ -320,25 +323,23 @@
 				this.task = modstring;
 			},
 			check() {
-				if (this.checked == 'right') {
+				if (this.checked == 'right') { //if the user result is right and user press enter 2 times, it generates next task
 					this.genTask();
 					return;
 				}
-				if (this.usersX1 == "" || this.usersX2 == "") {
+				if (this.usersX1 == "" || this.usersX2 == "") { //handles the situation when one of two results was not submitted
 					this.onlyone = true;
 					return;
 				}
-				if (this.rightx1 == this.usersX1 && this.rightx2 == this.usersX2 || this.rightx1 == this.usersX2 && this.rightx2 == this.usersX1) {
+				if (this.rightX1 == this.usersX1 && this.rightX2 == this.usersX2 || this.rightX1 == this.usersX2 && this.rightX2 == this.usersX1) {//checks if the user results (inserted to input) are right
 					this.checked = 'right';
 					this.onlyone = false;
-					console.log('supr');
 				} else {
 					this.checked = 'wrong';
 					this.onlyone = false;
-					console.log('meh');
 				}
 			},
-			checkOfTheDiscForm(inputvalue, right, state) {
+			checkOfTheDiscForm(inputvalue, right, state) {//this mathod handles the correction of inputs in discriminant formula
 				console.log('checking' + inputvalue + " " + right + " " + state);
 				var value = false;
 				if (inputvalue == right) {
@@ -355,19 +356,19 @@
 					this.hint3 = true;
 				}
 			},
-			discrime() {
+			discrime() {//simplify the change from whole disc formula to disc with inputs
 				this.disc = '$$x_{1;2} = $$';
 				this.ok = true;
 			},
-			hideOK() {
+			hideOK() { //hides OK button
 				this.hint3 = true;
 				this.ok = true;
 			},
 		},
-		beforeMount() {
+		beforeMount() {//genereates the task when the component loads
 			this.genTask();
 		},
-		mounted() {
+		mounted() { //enables the usage of next method in PracContent.vue
 		    bus.$on('next', this.genTask);
 		},  
 	}
