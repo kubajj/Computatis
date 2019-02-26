@@ -37,16 +37,16 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 		<heading head='Lineární rovnice'></heading>
 		<b-row>
 			<b-col cols='8'>
-				<vue-mathjax :formula="task"/>
+				<vue-mathjax :formula="task"/> <!-- tato značka umožňuje zobrazit uživateli zadání v Latexu -->
 			</b-col>
 		</b-row>
 		<b-row>&nbsp</b-row>
 		<b-row>
-			<b-col cols='8'>
+			<b-col cols='8'><!-- následující značka ukáže tlačítko pro spuštění nápovědy a popíše jeho funkci -->
 				<span v-if='!hinted' @click='hint' class='hintstyle'>Nápovědu prosím</span>
 				<span v-else><vue-mathjax :formula="hintValue1"/></span>
 			</b-col>
-			<b-col cols="3">
+			<b-col cols="3"><!--následující část vygeneruje fomrulář pro zapsání a kontrolu výsledku -->
 				<b-form-input
 		                type="text"
 		                placeholder="Výsledek"
@@ -55,15 +55,15 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 		                id="inputForm">                   	
 		        </b-form-input>
 		    </b-col>
-	        <b-col cols="1">
+	        <b-col cols="1"><!-- tato značka vygeneruje tlačítko pro potvrzení výsledku -->
 	        	<b-button @click="check">✔</b-button>
 	        </b-col>
 		</b-row>	
-		<ch-alerts :checked='checked' :result='result'></ch-alerts>
+		<ch-alerts :checked='checked' :result='result'></ch-alerts><!-- tato značka volá ch-alerts komponent, který buď uživateli oznámí chybu a ukáže správný výsledek, nebo ukáže hlášku: "Správně" -->
 	</div>
 </template>
 
-<script>
+<script>//následující řádky uvádí, které komponenty se musí naimportovat, tyto kopmonenty musí být upřesněny ještě v sekci components
 	import { bus } from './../../../main.js'
 	import { VueMathjax } from 'vue-mathjax'
 	import Heading from './../DevelopComponents/Heading.vue'
@@ -77,7 +77,7 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				checked: '',
 				result: '',
 				hinted: false,
-				hintValue1: '',
+				hintValue1: '',//tato proměnná ukládá string, který je tvořen počtem neznámých (x), znaménkem "=" a hodnotě, které daný počet neznámých odpovídá
 			}
 		}, 
 		components: {
@@ -85,47 +85,47 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 			'ch-alerts': CheckAlerts,
 		},
 		methods: {
-			randomNumber(min, max) {
+			randomNumber(min, max) { //tato metoda generuje náhodné číslo (celé) z intervalu, který je specifikován v závorkách
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
-			sign() {
+			sign() { //tato metoda je schopna na požádání vrátit 1 nebo -1, usnadňuje tím prevenci too, aby nebyly generovány proměnné s hodnotou 0
 				var arr = [1, -1];
 				var rnd = this.randomNumber(0,1);
-				return arr[rnd];
+				return arr[rnd]; //it returns 1 or -1
 			},
-			variants() {
+			variants() { //tato metoda rozhoduje, zda bude k následujícímu náhodnému číslu přiřazeno 'x', nebo ne
 				var arr = ['x', 'n'];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			position() {				
+			position() {	//b == před (anglicky => before) "=", a == po "=" (anglicky => after)		
 				var arr = ['b', 'a'];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			resetAll() {
+			resetAll() { //this method resets all variables that have been changed and will be used in the next call of genTask tato metoda změní hodnotu proměnných, které před každým zavoláním metody genTask musí mít původní hodnotu, na hodnotu, která je jim přidělena v sekci data
 				this.checked = '';
 				this.usersResult = '';				
 				this.task = '';
 				this.result = '';
 				this.hinted = false;
 			},
-			hint() {
+			hint() { //ukáže nápovědu
 				this.hinted = true;
 			},
-			genTask() {
+			genTask() { //tato metoda generuje zadání
 				this.resetAll();
 				var quantity = this.randomNumber(1, 5);
-				var rationalResult = false;
-				while (!rationalResult) {
-					var xs = this.randomNumber(-50, 50);
+				var rationalResult = false; //the result should be only k, k/2 or k/4, so it is easier to be inserted in the result inputvýsledek musí být číslo, které lze zapsat zlomkem, který má ve jmenovateli čísla: 1, 2, 4 -> usnadňuje zadávání výsledků uživatelem do formuláře
+				while (!rationalResult) { //pokud výsledek neodpovídá výše zmíněné podmínce, je vygenerována nová rovnice
+					var xs = this.randomNumber(1, 50)*this.sign();
 					var firstx = this.controlX(xs);
-					var firstnum = this.randomNumber(-50, 50);
-					var tmpstringb = '$$' + firstx + 'x';
+					var firstnum = this.randomNumber(1, 50)*this.sign();
+					var tmpstringb = '$$' + firstx + 'x'; 
 					var tmpstringa = '=' + firstnum;
 					var numbers = firstnum;
-					for (let i = 1; i < quantity; i++) {
-						var tmpnumber = this.randomNumber(-50, 50);
+					for (let i = 1; i < quantity; i++) { //generuje náhodná čísla a přidává je do dočasných (tmp) stringů
+						var tmpnumber = this.randomNumber(1, 50)*this.sign();
 						var tmpvalue = '';
 						var variant = this.variants()
 						if (variant == 'x') {
@@ -158,7 +158,7 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 							tmpstringa += tmpvalue;
 						}
 					}
-					var x = (numbers / xs);
+					var x = (numbers / xs); //spočítá hodnotu výsledku
 					if ((x % 1 == 0 || x % 1 == 0.5 || x % 1 == 0.25) && numbers != 0) {
 						rationalResult = true;
 						this.task = tmpstringb + tmpstringa + '$$'
@@ -166,8 +166,12 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 							xs = - xs;
 							numbers = -numbers;
 						}
-						if (xs == 1) {xs = ''} 
-							if (xs == -1) {xs = '-'}
+						if (xs == 1) {
+							xs = '';
+						} 
+						if (xs == -1) {
+							xs = '-';
+						}
 						this.hintValue1 = '$$' + xs + 'x = ' + numbers + '$$';
 						break;
 					} else {
@@ -176,7 +180,7 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				}
 				this.result = x;
 			},
-			controlX(x) {
+			controlX(x) { //tato metoda zamezí zobrazení +1 nebo -1 před neznámou -> má pouze estetickou funkci
 				if (x == 1) {
 					return '';
 				} else if (x == -1) {
@@ -185,11 +189,11 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				return x;
 			},
 			check() {
-				if (this.checked == 'right') {
+				if (this.checked == 'right') { //pokud je výsledek, který uživatel odeslal správný, a uživatel znovu stlačí klávesu enter (nebo znovu potvrdí výsledek pomocí tlačítka), ukáže uživateli další příklad
 					this.genTask();
 					return;
 				}
-				if (this.usersResult == this.result) {
+				if (this.usersResult == this.result) { //zkrontroluje, jestli je výsledek, který uživatel zadal, správný
 					this.checked = 'right';
 				} else {
 					this.checked = 'wrong';
@@ -197,14 +201,15 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				document.getElementById("inputForm").value = '';
 			}, 
 		},
-		beforeMount() {
+		beforeMount() { //vygeneruje první zadání, když se komponent načte
 			this.genTask();
 		},
-		mounted() {
+		mounted() { //umožní komponentu PracContent.vue zavolat metodu genTask
 		    bus.$on('next', this.genTask);
 		},  
 	}
 </script>
+
 
 <style>
 	.result {
@@ -457,7 +462,7 @@ Nemusíte je ale specifikovat v sekci [data](#data).
 ###### **Random Number**
 Metoda, která vám vygeneruje náhodné číslo v uzavřeném intervalu mezi čísly v závorce:
 ```javascript
-randomNumber(min, max) {
+randomNumber(min, max) {//tato metoda generuje náhodné číslo (celé) z intervalu, který je specifikován v závorkách
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 },
 ```
@@ -465,17 +470,17 @@ randomNumber(min, max) {
 Umožní vám zkontrolovat výsledek uživatele:
 ```javascript
 check() {
-	if (this.checked == 'right') {
+	if (this.checked == 'right') { //pokud je výsledek, který uživatel odeslal správný, a uživatel znovu stlačí klávesu enter (nebo znovu potvrdí výsledek pomocí tlačítka), ukáže uživateli další příklad
 		this.genTask();
 		return;
 	}
-	if (this.usersResult == this.result) {
+	if (this.usersResult == this.result) { //zkrontroluje, jestli je výsledek, který uživatel zadal, správný
 		this.checked = 'right';
 	} else {
 		this.checked = 'wrong';
 	}
-	this.$data.usersResult = '';
-}, 
+	document.getElementById("inputForm").value = '';
+},
 ```
 Pokud nepoužívate [vývojářský projekt](https://github.com/kubajj/ComputatisDevelopmentProject), kde je již naimplementována, je nutné ji implementovat.
 ###### **Grade**
