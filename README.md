@@ -470,11 +470,14 @@ randomNumber(min, max) {//tato metoda generuje náhodné číslo (celé) z inter
 Umožní vám zkontrolovat výsledek uživatele:
 ```javascript
 check() {
-	if (this.checked == 'right') { //pokud je výsledek, který uživatel odeslal správný, a uživatel znovu stlačí klávesu enter (nebo znovu potvrdí výsledek pomocí tlačítka), ukáže uživateli další příklad
+	if (this.checked == 'right') { /*pokud je výsledek, který uživatel odeslal správný, 
+		a uživatel znovu stlačí klávesu enter (nebo znovu potvrdí výsledek pomocí tlačítka), 
+		ukáže uživateli další příklad*/
 		this.genTask();
 		return;
 	}
-	if (this.usersResult == this.result) { //zkrontroluje, jestli je výsledek, který uživatel zadal, správný
+	if (this.usersResult == this.result) { /*zkrontroluje, jestli je výsledek, 
+		který uživatel zadal, správný*/
 		this.checked = 'right';
 	} else {
 		this.checked = 'wrong';
