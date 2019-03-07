@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    publicPath: './',
     filename: 'build.js'
   },
   module: {
@@ -59,6 +59,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: "Computatis",
+      template: 'index.html'
       // doplnit další podle
       // https://github.com/jantimon/html-webpack-plugin#options
     })
