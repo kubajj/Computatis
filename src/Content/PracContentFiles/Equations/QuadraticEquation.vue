@@ -381,6 +381,8 @@
 		max-width: 36px !important;
 		padding: 0 0 0 0;
 		display: inline !important;
+		background-image: none;
+		background: none;
 	}
 	.disco {
 		max-height: 24px;
@@ -388,6 +390,8 @@
 		padding: 0 0 0 0;
 		display: inline !important;	
 		border-top: 1px solid black !important;
+		background-image: none;
+		background: none;		
 	}
 	.bigger {
 		font-size: 24px;
