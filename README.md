@@ -84,9 +84,8 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				checked: '',
 				result: '',
 				hinted: false,
-				hintValue1: '',//tato proměnná ukládá string, který je tvořen počtem neznámých 
-				(x), znaménkem "="
-				a hodnotě, které daný počet neznámých odpovídá
+				hintValue1: '',/*tato proměnná ukládá string, který je tvořen počtem neznámých 
+				(x), znaménkem "=" a hodnotě, které daný počet neznámých odpovídá*/
 			}
 		}, 
 		components: {
