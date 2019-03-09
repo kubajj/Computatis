@@ -84,8 +84,9 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				checked: '',
 				result: '',
 				hinted: false,
-				hintValue1: '',/*tato proměnná ukládá string, který je tvořen počtem neznámých 
-				(x), znaménkem "=" a hodnotě, které daný počet neznámých odpovídá*/
+				hintValue1: '',/*tato proměnná ukládá string, který je tvořen počtem 
+				neznámých (x), znaménkem "=" a hodnotě, které daný počet neznámých 
+				odpovídá*/
 			}
 		}, 
 		components: {
@@ -114,8 +115,9 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			resetAll() { /*tato metoda změní hodnotu proměnných, které před každým zavoláním metody 
-				genTask musí mít původní hodnotu, na hodnotu, která je jim přidělena v sekci data*/
+			resetAll() { /*tato metoda změní hodnotu proměnných, které před každým zavoláním 
+				metody genTask musí mít původní hodnotu, na hodnotu, která je jim přidělena 
+				v sekci data*/
 				this.checked = '';
 				this.usersResult = '';				
 				this.task = '';
@@ -139,7 +141,8 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 					var tmpstringb = '$$' + firstx + 'x'; 
 					var tmpstringa = '=' + firstnum;
 					var numbers = firstnum;
-					for (let i = 1; i < quantity; i++) { //generuje náhodná čísla a přidává je do dočasných (tmp) stringů
+					for (let i = 1; i < quantity; i++) { /*generuje náhodná čísla a přidává je do 
+						dočasných (tmp) stringů*/
 						var tmpnumber = this.randomNumber(1, 50)*this.sign();
 						var tmpvalue = '';
 						var variant = this.variants()
@@ -195,7 +198,8 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				}
 				this.result = x;
 			},
-			controlX(x) { //tato metoda zamezí zobrazení +1 nebo -1 před neznámou -> má pouze estetickou funkci
+			controlX(x) { /*tato metoda zamezí zobrazení +1 nebo -1 před neznámou -> má pouze 
+				estetickou funkci*/
 				if (x == 1) {
 					return '';
 				} else if (x == -1) {
@@ -204,12 +208,14 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				return x;
 			},
 			check() {
-				if (this.checked == 'right') { //pokud je výsledek, který uživatel odeslal správný, a uživatel znovu 
-					stlačí klávesu enter (nebo znovu potvrdí výsledek pomocí tlačítka), ukáže uživateli další příklad
+				if (this.checked == 'right') { /*pokud je výsledek, který uživatel odeslal 
+					správný, a uživatel znovu stlačí klávesu enter (nebo znovu potvrdí 
+					výsledek pomocí tlačítka), ukáže uživateli další příklad*/
 					this.genTask();
 					return;
 				}
-				if (this.usersResult == this.result) { //zkrontroluje, jestli je výsledek, který uživatel zadal, správný
+				if (this.usersResult == this.result) { /*zkrontroluje, jestli je výsledek, 
+					který uživatel zadal, správný*/
 					this.checked = 'right';
 				} else {
 					this.checked = 'wrong';
