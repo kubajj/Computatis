@@ -130,19 +130,19 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 			genTask() { //tato metoda generuje zadání
 				this.resetAll();
 				var quantity = this.randomNumber(1, 5);
-				var rationalResult = false; /*výsledek musí být číslo, které lze zapsat zlomkem, 
-				který má ve jmenovateli čísla: 1, 2, 4 -> usnadňuje zadávání výsledků uživatelem 
-				do formuláře*/
-				while (!rationalResult) { /*pokud výsledek neodpovídá výše zmíněné podmínce, je 
-					vygenerována nová rovnice*/
+				var rationalResult = false; /*výsledek musí být číslo, které lze zapsat 
+				zlomkem, který má ve jmenovateli čísla: 1, 2, 4 -> usnadňuje zadávání 
+				výsledků uživatelem do formuláře*/
+				while (!rationalResult) { /*pokud výsledek neodpovídá výše zmíněné podmínce, 
+					je vygenerována nová rovnice*/
 					var xs = this.randomNumber(1, 50)*this.sign();
 					var firstx = this.controlX(xs);
 					var firstnum = this.randomNumber(1, 50)*this.sign();
 					var tmpstringb = '$$' + firstx + 'x'; 
 					var tmpstringa = '=' + firstnum;
 					var numbers = firstnum;
-					for (let i = 1; i < quantity; i++) { /*generuje náhodná čísla a přidává je do 
-						dočasných (tmp) stringů*/
+					for (let i = 1; i < quantity; i++) { /*generuje náhodná čísla 
+						a přidává je do dočasných (tmp) stringů*/
 						var tmpnumber = this.randomNumber(1, 50)*this.sign();
 						var tmpvalue = '';
 						var variant = this.variants()
