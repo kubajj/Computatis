@@ -388,6 +388,7 @@
 		padding: 0 0 0 0 !important;
 		display: inline !important;	
 		border-top: 1px solid black !important;
+		margin-right: 5px;
 	}
 	.bigger {
 		font-size: 24px;
