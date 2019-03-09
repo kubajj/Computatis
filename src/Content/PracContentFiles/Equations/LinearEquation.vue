@@ -2,26 +2,28 @@
 	<div>
 		<heading head='Lineární rovnice'></heading>
 		<b-row>
-			<b-col cols='8'>
+			<b-col cols='12' sm="10" md="9" lg="8" xl="8">
 				<vue-mathjax :formula="task"/> <!-- this shows the task in the mathjax format -->
 			</b-col>
 		</b-row>
 		<b-row>&nbsp</b-row>
 		<b-row>
-			<b-col cols='8'><!-- this shows the hint button and describes its function -->
+			<b-col v-if='same' cols='12' sm="10" md="9" lg="8" xl="8"/>
+			<b-col v-else cols='12' sm="10" md="9" lg="7" xl="8"><!-- this shows the hint button and describes its function -->
 				<span v-if='!hinted' @click='hint' class='hintstyle'>Nápovědu prosím</span>
-				<span v-else><vue-mathjax :formula="hintValue1"/></span>
+				<span v-else><vue-mathjax :formula="hintValue"/></span>
 			</b-col>
-			<b-col cols="3"><!-- this renders a form for the insertion of the result -->
+			<b-col cols="8" sm="7" md="6" lg="4" xl="3"><!-- this renders a form for the insertion of the result -->
 				<b-form-input
 		                type="text"
 		                placeholder="Výsledek"
 		                v-model="usersResult"
 		                @keyup.native.enter='check'
-		                id="inputForm">                   	
+		                id="inputForm"
+		                style='margin-bottom: 5px;'>                   	
 		        </b-form-input>
 		    </b-col>
-	        <b-col cols="1"><!-- this renders a button for the submission of the result -->
+	        <b-col cols="4" sm="3" md="2" lg="1" xl="1"><!-- this renders a button for the submission of the result -->
 	        	<b-button @click="check">✔</b-button>
 	        </b-col>
 		</b-row>	
@@ -43,7 +45,8 @@
 				checked: '',
 				result: '',
 				hinted: false,
-				hintValue1: '',//this variable consists of number of xs = number of values
+				hintValue: '',//this variable consists of number of xs = number of values
+				theSame: '',//this boolean stores true if the task and hintValue are completely same
 			}
 		}, 
 		components: {
@@ -75,6 +78,7 @@
 				this.task = '';
 				this.result = '';
 				this.hinted = false;
+				this.same = false;
 			},
 			hint() { //shows hint
 				this.hinted = true;
@@ -138,7 +142,10 @@
 						if (xs == -1) {
 							xs = '-';
 						}
-						this.hintValue1 = '$$' + xs + 'x = ' + numbers + '$$';
+						this.hintValue = '$$' + xs + 'x=' + numbers + '$$';
+						if (this.task == this.hintValue) {
+							this.same = true;
+						}
 						break;
 					} else {
 						continue;
@@ -161,6 +168,7 @@
 				}
 				if (this.usersResult == this.result) { //checks if the user result (inserted to input) is right
 					this.checked = 'right';
+					this.same = true; //if the hint was not used and user answered correctly, the hint button hides
 				} else {
 					this.checked = 'wrong';
 				}
