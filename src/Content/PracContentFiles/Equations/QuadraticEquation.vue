@@ -53,7 +53,7 @@
 								:state='bstate' 
 								@keyup.native='checkOfTheDiscForm(binval, minb, "bstate")'>								
 							</b-form-input>
-							<span style="display: inline-block; margin-right: -11px;">± √</span>
+							<span style="display: inline-block; margin-right: -6px;">± √</span>
 							<b-form-input 
 								class='disco' 
 								v-model='dinval' 
@@ -388,7 +388,6 @@
 		padding: 0 0 0 0 !important;
 		display: inline !important;	
 		border-top: 1px solid black !important;
-		margin-right: 5px;
 	}
 	.bigger {
 		font-size: 24px;
