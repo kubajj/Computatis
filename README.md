@@ -37,16 +37,19 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 		<heading head='Lineární rovnice'></heading>
 		<b-row>
 			<b-col cols='8'>
-				<vue-mathjax :formula="task"/> <!-- tato značka umožňuje zobrazit uživateli zadání v Latexu -->
+				<vue-mathjax :formula="task"/> <!-- tato značka umožňuje zobrazit uživateli 
+				zadání v Latexu -->
 			</b-col>
 		</b-row>
 		<b-row>&nbsp</b-row>
 		<b-row>
-			<b-col cols='8'><!-- následující značka ukáže tlačítko pro spuštění nápovědy a popíše jeho funkci -->
+			<b-col cols='8'><!-- následující značka ukáže tlačítko pro spuštění nápovědy 
+			a popíše jeho funkci -->
 				<span v-if='!hinted' @click='hint' class='hintstyle'>Nápovědu prosím</span>
 				<span v-else><vue-mathjax :formula="hintValue1"/></span>
 			</b-col>
-			<b-col cols="3"><!--následující část vygeneruje fomrulář pro zapsání a kontrolu výsledku -->
+			<b-col cols="3"><!--následující část vygeneruje fomrulář pro zapsání a kontrolu 
+			výsledku -->
 				<b-form-input
 		                type="text"
 		                placeholder="Výsledek"
@@ -59,13 +62,15 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 	        	<b-button @click="check">✔</b-button>
 	        </b-col>
 		</b-row>	
-		<ch-alerts :checked='checked' :result='result'></ch-alerts><!-- tato značka volá ch-alerts komponent, 
-		který buď uživateli oznámí chybu a ukáže správný výsledek, nebo ukáže hlášku: "Správně" -->
+		<ch-alerts :checked='checked' :result='result'></ch-alerts><!-- tato značka volá 
+		ch-alerts komponent, 
+		který buď uživateli oznámí chybu a ukáže správný výsledek, nebo ukáže hlášku: 
+		"Správně" -->
 	</div>
 </template>
 
-<script>//následující řádky uvádí, které komponenty se musí naimportovat, tyto kopmonenty musí být upřesněny 
-		ještě v sekci components
+<script>/*následující řádky uvádí, které komponenty se musí naimportovat, tyto komponenty 
+		musí být upřesněny ještě v sekci components*/
 	import { bus } from './../../../main.js'
 	import { VueMathjax } from 'vue-mathjax'
 	import Heading from './../DevelopComponents/Heading.vue'
@@ -79,7 +84,8 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				checked: '',
 				result: '',
 				hinted: false,
-				hintValue1: '',//tato proměnná ukládá string, který je tvořen počtem neznámých (x), znaménkem "="
+				hintValue1: '',//tato proměnná ukládá string, který je tvořen počtem neznámých 
+				(x), znaménkem "="
 				a hodnotě, které daný počet neznámých odpovídá
 			}
 		}, 
@@ -88,17 +94,18 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 			'ch-alerts': CheckAlerts,
 		},
 		methods: {
-			randomNumber(min, max) { //tato metoda generuje náhodné číslo (celé) z intervalu, který je specifikován 
-				v závorkách
+			randomNumber(min, max) { /*tato metoda generuje náhodné číslo (celé) z intervalu, 
+				který je specifikován v závorkách*/
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
-			sign() { //tato metoda je schopna na požádání vrátit 1 nebo -1, usnadňuje tím prevenci too, aby nebyly 
-				generovány proměnné s hodnotou 0
+			sign() { /*tato metoda je schopna na požádání vrátit 1 nebo -1, usnadňuje tím 
+						prevenci toho, aby nebyly generovány proměnné s hodnotou 0*/
 				var arr = [1, -1];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd]; //it returns 1 or -1
 			},
-			variants() { //tato metoda rozhoduje, zda bude k následujícímu náhodnému číslu přiřazeno 'x', nebo ne
+			variants() { /*tato metoda rozhoduje, zda bude k následujícímu náhodnému číslu 
+							přiřazeno 'x', nebo ne*/
 				var arr = ['x', 'n'];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
@@ -108,8 +115,8 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			resetAll() { // tato metoda změní hodnotu proměnných, které před každým zavoláním metody genTask musí mít 
-				původní hodnotu, na hodnotu, která je jim přidělena v sekci data
+			resetAll() { /*tato metoda změní hodnotu proměnných, které před každým zavoláním metody 
+				genTask musí mít původní hodnotu, na hodnotu, která je jim přidělena v sekci data*/
 				this.checked = '';
 				this.usersResult = '';				
 				this.task = '';
@@ -122,9 +129,11 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 			genTask() { //tato metoda generuje zadání
 				this.resetAll();
 				var quantity = this.randomNumber(1, 5);
-				var rationalResult = false; //výsledek musí být číslo, které lze zapsat zlomkem, který má ve jmenovateli 
-				čísla: 1, 2, 4 -> usnadňuje zadávání výsledků uživatelem do formuláře
-				while (!rationalResult) { //pokud výsledek neodpovídá výše zmíněné podmínce, je vygenerována nová rovnice
+				var rationalResult = false; /*výsledek musí být číslo, které lze zapsat zlomkem, 
+				který má ve jmenovateli čísla: 1, 2, 4 -> usnadňuje zadávání výsledků uživatelem 
+				do formuláře*/
+				while (!rationalResult) { /*pokud výsledek neodpovídá výše zmíněné podmínce, je 
+					vygenerována nová rovnice*/
 					var xs = this.randomNumber(1, 50)*this.sign();
 					var firstx = this.controlX(xs);
 					var firstnum = this.randomNumber(1, 50)*this.sign();
