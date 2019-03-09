@@ -29,15 +29,15 @@
 				</b-col>
 			</b-row>
 			<b-row>
-				<b-col cols='2' sm='3' md='4' lg='7' xl='8'></b-col>
-				<b-col cols="3" v-if='lastTask == 3'>
+      			<b-col cols='2' sm='2' md='4' lg='7' xl='8'/>
+				<b-col cols="6" sm="6" md="6" lg="4" xl="3" v-if='lastTask == 3'>
 			        <b-form-select 
                      	:value="null"
                      	:options="choices"
                      	v-model="selected"
                      	id="inlineFormCustomSelectPref"/><!-- this shows a drop down with choices for the third task -->
       			</b-col>
-				<b-col cols="8" sm="7" md="6" lg="4" xl="3" v-else><!-- this renders a form for the insertion of the result -->
+				<b-col cols="6" sm="6" md="6" lg="4" xl="3" v-else><!-- this renders a form for the insertion of the result -->
 					<b-form-input
 			                type="text"
 			                placeholder="Výsledek"

@@ -4,19 +4,24 @@
 			<heading head='Sčítání a odčítání do 100'></heading>
 		</b-row>
 		<b-row style='margin-top: 5px;'>
-			<b-col cols="8">
+			<b-col cols="12" sm='12' md='10' lg='8' xl='8'>
 				<vue-mathjax :formula="task"></vue-mathjax><!-- this shows the task -->
 			</b-col>
-			<b-col cols="3">
+		</b-row>
+		<b-row>
+	        <b-col cols='2' sm='2' md='4' lg='7' xl='8'/>
+			<b-col cols="6" sm="6" md="6" lg="4" xl="3"><!-- this renders a form for the insertion of the result -->
 				<b-form-input
 		                type="text"
 		                placeholder="Výsledek"
 		                v-model="usersResult"
 		                @keyup.native.enter='check'
-		                id="inputForm"/> <!-- this renders a form for the insertion of the result -->
+		                id="inputForm"
+		                style='margin: 5px 0px 5px 0px;'>                   	
+		        </b-form-input>
 		    </b-col>
-	        <b-col cols="1">
-	        	<b-button @click="check">✔</b-button>
+	        <b-col cols="4" sm="4" md="2" lg="1" xl="1"><!-- this renders a button for the submission of the result -->
+	        	<b-button @click="check" style='margin: 5px 0px 5px 0px;'>✔</b-button>
 	        </b-col>
 		</b-row>
 		<ch-alerts :checked='checked' :result='result'/><!-- this calls the ch-alerts component that shows the user the correct answer for the task or congratulates him for computing the correct result-->

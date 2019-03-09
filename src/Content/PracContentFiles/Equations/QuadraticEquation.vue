@@ -15,12 +15,13 @@
 				<p>Vše na levou stranu:</p>
 			</b-row>
 			<b-row>
-				<b-col cols='10'>
+				<b-col cols='12' sm='10' md='10' lg='8' xl='8'>
 					<vue-mathjax :formula="unmodtask"/>
 				</b-col>
 				<b-col
-					offset='6' offset-sm='8' offset-md='9'
-					cols='6' sm='4' md='3' lg='2' xl='2'
+					offset='10' offset-sm='10' offset-md='10'
+					cols='2' sm='2' md='2' lg='2' xl='2'
+					style='margin-bottom: 5px;'
 					v-if='hint2 == false' 
 					@click='hint2 = true' 
 					class='hintstyle'>
@@ -32,11 +33,11 @@
 			<span v-if='mode == "disc"'> <!-- if the quadratic equation have all terms (a, b, c) the discriminant is used and shown to user-->
 				<b-row><h6>Diskriminant:</h6></b-row>
 				<b-row v-if='ok == false'>
-					<b-col cols='12' sm='12' md='10' lg='8' xl='8'>
+					<b-col cols='10' sm='10' md='10' lg='8' xl='8' style='margin-bottom: 5px;'>
 						<vue-mathjax :formula="disc"/><!-- shows user the discriminant formula -->
-					</b-col>			
+					</b-col>		
 					<b-col 
-						cols='6' sm='4' md='3' lg='2' xl='2'
+						cols='2' sm='2' md='2' lg='2' xl='2'
 						v-if='ok == false'  
 						@click='discrime' 
 						class='hintstyle'>
@@ -73,7 +74,8 @@
 					<b-row>
 						<b-col cols='4'></b-col>
 						<b-col>
-							<b-form-input 
+							<b-form-input
+								style='margin-bottom: 5px;' 
 								class='minb' 
 								v-model='ainval' 
 								placeholder='2a' 
@@ -102,8 +104,8 @@
 			</span>
 		</span>		
 		<b-row> <!-- following inputs are the result inputs, there are two of them, because it is quadratic equation combined from two result -->
-			<b-col cols='1' sm='3' md='4' lg='7' xl='7'></b-col>
-			<b-col cols='8' sm='7' md='6' lg='4' xl='4'>
+			<b-col cols='4' sm='5' md='5' lg='7' xl='8'></b-col>
+			<b-col cols='5' sm='5' md='5' lg='4' xl='3'>
 				<b-form-input
 	                type="text"
 	                placeholder="x1"
@@ -114,8 +116,8 @@
 		    </b-col>
 		</b-row>
 		<b-row>
-			<b-col cols='1' sm='3' md='4' lg='7' xl='7'></b-col>
-			<b-col cols='8' sm='7' md='6' lg='4' xl='4'>
+			<b-col cols='4' sm='5' md='5' lg='7' xl='8'></b-col>
+			<b-col cols='5' sm='5' md='5' lg='4' xl='3'>
 		        <b-form-input
 	                type="text"
 	                placeholder="x2"

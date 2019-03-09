@@ -75,6 +75,7 @@
 		margin: 0px 5px 0px 5px;
 		text-decoration: none;
 		color: white;
+		font-size: 1.25rem;
 	}
 	.backandnext:hover {
 		text-decoration: underline;

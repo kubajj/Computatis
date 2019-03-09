@@ -39,11 +39,13 @@
 						<span><!-- this shows the last line of the hint inputs -->
 							<hr v-if='maxSpaces == 4' class='secondLine4'><!-- horizontal line -->
 							<hr v-else class='secondLine5'>
-							<span v-for='(correct,index) in correctResultSpaces'>
+							<span v-for='(correct,index) in correctResultNumbers'>
 								<hint-form 
 									style='width: 12px; height: 24px;'
 									v-model='resultsOfResInputs[index]'
-								  	:correctResult='correct'/>
+								  	:correctResult='correct'
+								  	@keyup.native='checkHint'
+		                			@keyup.native.enter='check'/>
 							</span>
 						</span>
 					</div>				
@@ -51,8 +53,8 @@
 			</b-row>
 		</span>
 		<b-row>
-			<b-col cols='1' sm='1' md='4' lg='7' xl='8' />
-			<b-col cols="7" sm="7" md="6" lg="4" xl="3"><!-- this renders a form for the insertion of the result -->
+			<b-col cols='2' sm='2' md='4' lg='7' xl='8'/>
+			<b-col cols="6" sm="6" md="6" lg="4" xl="3"><!-- this renders a form for the insertion of the result -->
 				<b-form-input
 		                type="text"
 		                placeholder="Výsledek"
@@ -128,6 +130,18 @@
 				}
 				this.$data.usersResult = '';
 			}, 
+			checkHint() {
+				var allCorrect = true;
+				var index = 0;
+				for (let i = 0; i < this.maxSpaces; i++) {
+					if (this.correctResultNumbers[i] != this.resultsOfResInputs[i]) {
+						allCorrect = false;
+					}
+				}
+				if (allCorrect == true) {
+					this.checked = 'right';
+				}
+			},
 			giveHint() {//shows the inputs
 				this.begin = true;
 				for (let i = 0; i < this.resultsOfResInputs.length; i++) {					
@@ -171,14 +185,14 @@
 				arr = dec.split("");
 				return arr;
 			},
-			correctResultSpaces() {//digits of the result
+			correctResultNumbers() {//digits of the result
 				var res = this.number * this.multiplier;
 				res = '' + res;
 				var arr = res.split("");
 				return arr;
 			},
 			maxSpaces() {//number of digits of the result
-				return this.correctResultSpaces.length;
+				return this.correctResultNumbers.length;
 			},
 		},
 		beforeMount() {//generates the task when the component loads
@@ -189,7 +203,7 @@
 		    //resets all three input arrays
 		    this.resultsOfUnitInputs = this.correctUnit.map(() => '')
 			this.resultsOfDecInputs = this.correctDec.map(() => '')
-			this.resultsOfResInputs = this.correctResultSpaces.map(() => '')
+			this.resultsOfResInputs = this.correctResultNumbers.map(() => '')
 		},  
 	}
 </script>
