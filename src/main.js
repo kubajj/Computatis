@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import BootstrapVue from 'bootstrap-vue'
 import App from './App.vue'
 import Navigation from './Navigation.vue'
-import Content from './Content.vue'
 import AppFooter from './AppFooter.vue'
 import Routes from './routes'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -21,7 +20,6 @@ const router = new VueRouter({
 });
 
 Vue.component('app-navigation', Navigation);
-Vue.component('app-content', Content);
 Vue.component('app-footer', AppFooter);
 
 new Vue({
