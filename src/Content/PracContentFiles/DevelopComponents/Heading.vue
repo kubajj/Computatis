@@ -1,17 +1,12 @@
 <template>
-	<b-col cols='4'>
-		<vue-mathjax :formula="heading" class="heading"></vue-mathjax>
-	</b-col>
+	<b-row>
+		<h3>{{head}}</h3>
+	</b-row>
 </template>
 
 <script>
 	export default {
 		props: ['head'],
-		data() {
-			return {
-				heading: '$$\\text{' + this.head + '}$$',
-			}
-		}
 	}
 </script>
 

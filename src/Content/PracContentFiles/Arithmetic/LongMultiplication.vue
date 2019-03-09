@@ -21,6 +21,7 @@
 							<nbsp :num='maxSpaces - correctUnit.length'></nbsp><!-- spaces -->
 							<span v-for='(correct, index) in correctUnit'>
 								<hint-form 
+									style='width: 12px; height: 24px;'
 									v-model='resultsOfUnitInputs[index]'
 								  	:correctResult='correct'/>
 							</span>
@@ -29,6 +30,7 @@
 							<nbsp :num='maxSpaces - (correctDec.length + 1)'/><!-- spaces -->
 							<span v-for='(correct, index) in correctDec'>
 								<hint-form 
+									style='width: 12px; height: 24px;'
 									v-model='resultsOfDecInputs[index]'
 									:correctResult='correct'/>
 							</span>
@@ -39,6 +41,7 @@
 							<hr v-else class='secondLine5'>
 							<span v-for='(correct,index) in correctResultSpaces'>
 								<hint-form 
+									style='width: 12px; height: 24px;'
 									v-model='resultsOfResInputs[index]'
 								  	:correctResult='correct'/>
 							</span>
@@ -75,7 +78,7 @@
 	import Heading from './../DevelopComponents/Heading.vue'
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
 	import Nbsp from './../DevelopComponents/Nbsp.vue'	
-	import HintFormBorder from '../DevelopComponents/HintFormBorder.vue'
+	import HintFormBorder from '../DevelopComponents/HintFormBorderSmall.vue'
 
 	export default {
 		data() {
@@ -219,7 +222,7 @@
 		display: flex;
 		flex-direction: row;
 	}
-	.inputWithBorder {
+	.inputWithBorderSmall {
 		max-height: 24px;
 		max-width: 12px !important;
 		padding: 0 0 0 0;

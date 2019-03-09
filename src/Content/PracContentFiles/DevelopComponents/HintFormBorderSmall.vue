@@ -3,7 +3,8 @@
 		@input.native="onInput"
 		type="text"
 		:placeholder=placeHolder
-        class="inputWithBorder"
+        class="inputWithBorderSmall"
+        style="max-width: 12px !important;"
         v-model="inputValue"
         :state="status"/>    
 </template>
