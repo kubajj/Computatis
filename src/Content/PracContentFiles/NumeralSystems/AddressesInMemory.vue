@@ -2,34 +2,34 @@
 	<div>
 		<heading head='Adresy v paměti'></heading>
 		<b-row>
-			<b-col cols='8'>
+			<b-col cols='12' sm='12' md='12' lg='10' xl='8'>
 				<p>{{ intro }}</p><!-- this shows the intro of the task -->
 			</b-col>
 		</b-row>
 		<b-row><p> </p></b-row>
 		<b-row>
-			<b-col cols='1'>
+			<b-col cols='1' sm='1' md='1' lg='1' xl='1'>
 				<b-col></b-col>
 				<b-col><p>Adresa</p></b-col><!-- this shows the first part of the heading -->
 				<b-col></b-col>
 			</b-col>
-			<b-col cols='1'></b-col>
-			<b-col cols='3'><p>Obsah paměti</p></b-col><!-- this shows the second part of the heading -->
+			<b-col cols='2' sm='2' md='2' lg='2' xl='1'></b-col>
+			<b-col cols='5' sm='5' md='4' lg='4' xl='4'><p>Obsah paměti</p></b-col><!-- this shows the second part of the heading -->
 		</b-row>
-		<b-row v-for='line in table'>
-			<b-col cols='8'>
+		<b-row v-for='line in table' style='font-family: monospace;'>
+			<b-col cols='12' sm='12' md='12' lg='10' xl='8'>
 			<p>{{ line }}</p><!-- this renders all three lines of the addresses -->
 			</b-col>
 		</b-row>
 		<b-row><p> </p></b-row><!-- this skips a line -->
 		<div>
 			<b-row>
-				<b-col cols='8'>
+				<b-col cols='12' sm='12' md='12' lg='10' xl='8'>
 				<p>{{ task }}</p><!-- this shows the current task -->
 				</b-col>
 			</b-row>
 			<b-row>
-				<b-col cols='8'></b-col>
+				<b-col cols='2' sm='3' md='4' lg='7' xl='8'></b-col>
 				<b-col cols="3" v-if='lastTask == 3'>
 			        <b-form-select 
                      	:value="null"
@@ -37,15 +37,17 @@
                      	v-model="selected"
                      	id="inlineFormCustomSelectPref"/><!-- this shows a drop down with choices for the third task -->
       			</b-col>
-      			<b-col cols="3" v-else><!-- this renders a form for the insertion of the result -->
+				<b-col cols="8" sm="7" md="6" lg="4" xl="3" v-else><!-- this renders a form for the insertion of the result -->
 					<b-form-input
-		                type="text"
-		                placeholder="Výsledek"
-		                v-model="usersResult"
-		                @keyup.native.enter='check'
-		                id="inputForm"/> 
+			                type="text"
+			                placeholder="Výsledek"
+			                v-model="usersResult"
+			                @keyup.native.enter='check'
+			                id="inputForm"
+			                style='margin-bottom: 5px;'>                   	
+			        </b-form-input>
 			    </b-col>
-		        <b-col cols="1">
+		        <b-col cols="2" sm="2" md="2" lg="1" xl="1">
 		        	<b-button @click="check">✔</b-button>
 		        </b-col>
 			</b-row>	

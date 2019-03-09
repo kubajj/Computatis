@@ -1,47 +1,38 @@
 <template>
 	<div>
 	<b-row>
-		<b-col cols='2'></b-col>
-		<b-col cols='8'>
+		<b-col cols='0' sm='0' md='1' lg='2' xl='2'></b-col>
+		<b-col cols='12' sm='12' md='10' lg='8' xl='8'>
 	  		<b-jumbotron class='content'>
 				<div>
 					<b-row>
 						<b-col>
 							<div class='dropdiv'>
-								<b-dropdown id="ddown1" text="Rovnice" class="m-md-2">
-								    <b-dropdown-item><router-link to='/procvicovani/linearnirovnice'>Lineární rovnice</router-link></b-dropdown-item>
-								    <b-dropdown-item><router-link to='/procvicovani/kvadratickarovnice'>Kvadratické rovnice</router-link></b-dropdown-item>
-								    <!--b-dropdown-item @click="rovnice(3)">Rovnice s odmocninou</b-dropdown-item-->
-								    <b-dropdown-divider></b-dropdown-divider>
-								</b-dropdown>
-							</div>
-							<!--div class='dropdiv'>
-								<b-dropdown id="ddown1" text="Funkce" class="m-md-2">
-								    <b-dropdown-item @click="funkce(1)">Lineární funkce</b-dropdown-item>
-								    <b-dropdown-item @click="funkce(2)">Kvadratické funkce</b-dropdown-item>
-								    <b-dropdown-item @click="funkce(3)">Exponenciální funkce</b-dropdown-item>
-								    <b-dropdown-divider></b-dropdown-divider>
-								</b-dropdown>
-							</div-->
-							<div class='dropdiv'>
-								<b-dropdown id="ddown1" text="Aritmetika" class="m-md-2">
-								    <b-dropdown-item><router-link to='/procvicovani/scitaniaodcitanido100'>Sčítání a odčítání do 100</router-link></b-dropdown-item>
-								    <!--b-dropdown-item @click="aritmetika(2)">Aritmetika do 1000</b-dropdown-item>
-								    <b-dropdown-item @click="aritmetika(3)">Aritmetika reálného oboru čísel</b-dropdown-item-->
-								    <b-dropdown-item><router-link to='/procvicovani/nasobeni'>Násobení</router-link></b-dropdown-item>
+								<b-dropdown size="lg" id="ddown1" text="Rovnice">
+								    <b-dropdown-item><router-link to='/procvicovani/linearnirovnice' class='routerbutton'>Lineární rovnice</router-link></b-dropdown-item>
+								    <b-dropdown-item><router-link to='/procvicovani/kvadratickarovnice' class='routerbutton'>Kvadratické rovnice</router-link></b-dropdown-item>
 								    <b-dropdown-divider></b-dropdown-divider>
 								</b-dropdown>
 							</div>
 							<div class='dropdiv'>
-								<b-dropdown id="ddown1" text="Číselné soustavy" class="m-md-2">
-								    <b-dropdown-item><router-link to='/procvicovani/prevodymezisoustavami'>Převody mezi soustavami</router-link></b-dropdown-item>
-								    <b-dropdown-item><router-link to='/procvicovani/adresyvpameti'>Adresy v paměti</router-link></b-dropdown-item>
-								    <!--b-dropdown-item @click="rovnice(3)">Rovnice s odmocninou</b-dropdown-item-->
+								<b-dropdown size="lg" id="ddown1" text="Aritmetika">
+								    <b-dropdown-item><router-link to='/procvicovani/scitaniaodcitanido100' class='routerbutton'>Sčítání a odčítání do 100</router-link></b-dropdown-item>
+								    <b-dropdown-item><router-link to='/procvicovani/nasobeni' class='routerbutton'>Násobení</router-link></b-dropdown-item>
+								    <b-dropdown-divider></b-dropdown-divider>
+								</b-dropdown>
+							</div>
+							<div class='dropdiv'>
+								<b-dropdown size="lg" id="ddown1" text="Číselné soustavy">
+								    <b-dropdown-item><router-link to='/procvicovani/prevodymezisoustavami' class='routerbutton'>Převody mezi soustavami</router-link></b-dropdown-item>
+								    <b-dropdown-item><router-link to='/procvicovani/adresyvpameti' class='routerbutton'>Adresy v paměti</router-link></b-dropdown-item>
 								    <b-dropdown-divider></b-dropdown-divider>
 								</b-dropdown>
 							</div>
 						</b-col>
-						<b-col cols="8">
+						<b-col cols="12" sm='12' md='10' lg='9' xl='8'>
+							<b-col cols="12">
+								<hr>
+							</b-col>
 							<router-view/>
 						</b-col>
 					</b-row>
@@ -52,7 +43,7 @@
 				</div>
 			</b-jumbotron>
 		</b-col>
-		<b-col cols='2'></b-col>
+		<b-col cols='0' sm='0' md='1' lg='2' xl='2'></b-col>
 	</b-row>
   </div>
 </template>
@@ -95,9 +86,12 @@
 		background-color: red;
 	}
 	.dropdiv {
-		margin-top: 5px;
+		margin-bottom: 5px;
 	}
 	.hintstyle {
 		color: #aaa;
+	}
+	.routerbutton {
+		font-size: 1.25rem;
 	}
 </style>

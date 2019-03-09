@@ -1,7 +1,7 @@
 
 import HomeContent from './Content/HomeContent.vue'
-import TheoryContent from './Content/TheoryContent.vue'
 import PracContent from './Content/PracContent.vue'
+import About from './Content/About.vue'
 import UvodKProcvicovani from './Content/PracContentFiles/UvodKProcvicovani.vue'
 import LongMultiplication from './Content/PracContentFiles/Arithmetic/LongMultiplication.vue'
 import AddSubTo100 from './Content/PracContentFiles/Arithmetic/AddSubTo100.vue'
@@ -13,7 +13,6 @@ import AddressesInMemory from './Content/PracContentFiles/NumeralSystems/Address
 
 export default [
 	{ path: '/', component: HomeContent},
-	{ path: '/teorie', component: TheoryContent},
 	{ path: '/procvicovani', component: PracContent,
 		children: [
 		{ path: '/procvicovani/', component: UvodKProcvicovani },
@@ -26,4 +25,5 @@ export default [
 		//{ path: '/procvicovani/newone', component: NewOne },
 		]
 	},
+	{ path: '/webinfo', component: About},
 ]

@@ -5,8 +5,8 @@
 			<vue-mathjax :formula="task"></vue-mathjax>
 		</b-row>		
 		<b-row v-if='hint1 == false'>
-			<b-col cols='8'></b-col>
-			<b-col cols='3'>
+			<b-col cols='2' sm='4' md='6' lg='8' xl='8'></b-col>
+			<b-col cols='10' sm='8' md='6' lg='4' xl='4'>
 				<p @click='hint1 = true;' class='hintstyle'>Nápovědu prosím</p>
 			</b-col>
 		</b-row>
@@ -18,8 +18,9 @@
 				<b-col cols='10'>
 					<vue-mathjax :formula="unmodtask"/>
 				</b-col>
-				<b-col 
-					cols='2'
+				<b-col
+					offset='6' offset-sm='8' offset-md='9'
+					cols='6' sm='4' md='3' lg='2' xl='2'
 					v-if='hint2 == false' 
 					@click='hint2 = true' 
 					class='hintstyle'>
@@ -31,11 +32,11 @@
 			<span v-if='mode == "disc"'> <!-- if the quadratic equation have all terms (a, b, c) the discriminant is used and shown to user-->
 				<b-row><h6>Diskriminant:</h6></b-row>
 				<b-row v-if='ok == false'>
-					<b-col cols='8'>
+					<b-col cols='12' sm='12' md='10' lg='8' xl='8'>
 						<vue-mathjax :formula="disc"/><!-- shows user the discriminant formula -->
 					</b-col>			
 					<b-col 
-						cols='2'
+						cols='6' sm='4' md='3' lg='2' xl='2'
 						v-if='ok == false'  
 						@click='discrime' 
 						class='hintstyle'>
@@ -101,8 +102,8 @@
 			</span>
 		</span>		
 		<b-row> <!-- following inputs are the result inputs, there are two of them, because it is quadratic equation combined from two result -->
-			<b-col cols='8'></b-col>
-			<b-col cols="3">
+			<b-col cols='1' sm='3' md='4' lg='7' xl='7'></b-col>
+			<b-col cols='8' sm='7' md='6' lg='4' xl='4'>
 				<b-form-input
 	                type="text"
 	                placeholder="x1"
@@ -113,17 +114,18 @@
 		    </b-col>
 		</b-row>
 		<b-row>
-			<b-col cols='8'></b-col>
-			<b-col cols='3'>
+			<b-col cols='1' sm='3' md='4' lg='7' xl='7'></b-col>
+			<b-col cols='8' sm='7' md='6' lg='4' xl='4'>
 		        <b-form-input
 	                type="text"
 	                placeholder="x2"
 	                v-model.trim="usersX2"
 	                @keyup.native.enter='check'
-	                id="inputForm2">                   	
+	                id="inputForm2"		                
+	                style='margin-bottom: 5px;'>                   	
 		        </b-form-input>
 		    </b-col>
-	        <b-col cols="1">
+	        <b-col cols='3' sm='2' md='2' lg='1' xl='1'>
 	        	<b-button @click="check">✔</b-button>
 	        </b-col>
 		</b-row>

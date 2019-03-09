@@ -51,17 +51,19 @@
 			</b-row>
 		</span>
 		<b-row>
-			<b-col cols="8"></b-col>
-			<b-col cols="3">
-				<b-form-input						
+			<b-col cols='1' sm='1' md='4' lg='7' xl='8' />
+			<b-col cols="7" sm="7" md="6" lg="4" xl="3"><!-- this renders a form for the insertion of the result -->
+				<b-form-input
 		                type="text"
 		                placeholder="Výsledek"
 		                v-model="usersResult"
 		                @keyup.native.enter='check'
-		                id="inputRes"/><!-- this renders a form for the insertion of the result -->
+		                id="inputRes"
+		                style='margin: 5px 0px 5px 0px;'>                   	
+		        </b-form-input>
 		    </b-col>
-	        <b-col cols="1">
-	        	<b-button @click="check">✔</b-button>
+	        <b-col cols="4" sm="4" md="2" lg="1" xl="1"><!-- this renders a button for the submission of the result -->
+	        	<b-button @click="check" style='margin: 5px 0px 5px 0px;'>✔</b-button>
 	        </b-col>
 		</b-row>
 		<b-row>
@@ -246,6 +248,7 @@
 	}
 	.zero {
 		font-size: 20px;
+		font-family: monospace;
 	}
 </style>
 

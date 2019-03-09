@@ -11,7 +11,7 @@
 </script>
 
 <style scoped>
-	.heading {
-		font-size: 150%;
+	h3 {
+		margin-top: 5px;
 	}
 </style>
