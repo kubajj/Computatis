@@ -379,13 +379,13 @@
 	.minb {
 		max-height: 24px;
 		max-width: 36px !important;
-		padding: 0 0 0 0;
+		padding: 0 0 0 0 !important;
 		display: inline !important;
 	}
 	.disco {
 		max-height: 24px;
 		max-width: 68px !important;
-		padding: 0 0 0 0;
+		padding: 0 0 0 0 !important;
 		display: inline !important;	
 		border-top: 1px solid black !important;
 	}
