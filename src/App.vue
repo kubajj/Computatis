@@ -20,7 +20,7 @@
 	body { 
 		background-color:#202020;  
 	    color: white;
-	    font-family: monospace;
+	    font-family: callibri;
 	}
 
 	.btn.btn-secondary {
