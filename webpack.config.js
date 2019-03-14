@@ -62,12 +62,6 @@ module.exports = {
       template: 'index.html'
       // doplnit další podle
       // https://github.com/jantimon/html-webpack-plugin#options
-    }),
-    new HtmlWebpackPlugin({
-      title: "Computatis",
-      template: '404.html'
-      // doplnit další podle
-      // https://github.com/jantimon/html-webpack-plugin#options
     })
   ]
 }
