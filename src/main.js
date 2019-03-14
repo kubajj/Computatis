@@ -16,29 +16,14 @@ Vue.use(VueRouter);
 export const bus = new Vue();
 const router = new VueRouter({
 	routes: Routes,
-	mode: 'history'
+	/*mode: 'history'*/
 });
 
 Vue.component('app-navigation', Navigation);
 Vue.component('app-footer', AppFooter);
 
-/*new Vue({
+new Vue({
   el: '#app',
   router,
   render: h => h(App)
-})*/
-
-const app = new Vue({
-  router,
-  store,
-  render: h => h(App),
-  created () {
-    if (sessionStorage.redirect) {
-      const redirect = sessionStorage.redirect
-      delete sessionStorage.redirect
-      this.$router.push(redirect)
-    }
-  }
 })
-
-app.$mount('#app')
