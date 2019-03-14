@@ -37,8 +37,8 @@
 						</b-col>
 					</b-row>
 					<b-row v-if='$route.path != "/procvicovani"'>
-						<b-button><router-link to='/procvicovani' class='backandnext'><strong>⮈</strong> Zpět</router-link></b-button>				
-						<b-button @click="next" class='backandnext'>Další <strong>⮊</strong></b-button>
+						<b-button><router-link to='/procvicovani' class='backandnext'><strong>&#11144;</strong> Zpět</router-link></b-button>				
+						<b-button @click="next" class='backandnext'>Další <strong>&#11146;</strong></b-button>
 					</b-row>
 				</div>
 			</b-jumbotron>
