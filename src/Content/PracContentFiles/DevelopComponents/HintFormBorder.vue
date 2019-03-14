@@ -45,3 +45,11 @@
 		},
 	}
 </script>
+
+<style type="text/css">	
+	.form-control.is-invalid, .was-validated .form-control:invalid, .form-control.is-valid, .was-validated .form-control:valid {
+		background-image: none !important;
+		background: none !important;	
+		padding: 0 0 0 0;	
+	}
+</style>

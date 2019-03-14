@@ -36,23 +36,25 @@
 		</div>
 		<div class="result">
 			<b-row v-if='hinted == false'><!-- this shows the hint button and describes its function -->
-				<b-col cols='8'/>
-				<b-col v-if='end == false' cols='3'>
+				<b-col cols='4' sm='4' md='6' lg='7' xl='8'/>
+				<b-col v-if='end == false' cols='8' sm='8' md='6' lg='5' xl='4'>
 					<p @click='hints' class='hintstyle'>Nápovědu prosím</p>
 				</b-col>
 			</b-row>
 			<b-row>
-				<b-col cols="8"/>
-				<b-col cols="3"><!-- this renders a form for the insertion of the result -->
+				<b-col cols='4' sm='4' md='6' lg='7' xl='8'/>
+				<b-col cols="4" sm="4" md="4" lg="4" xl="3"><!-- this renders a form for the insertion of the result -->
 					<b-form-input
 			                type="text"
 			                placeholder="Výsledek"
 			                v-model="usersResult"
 			                @keyup.native.enter='check'
-			                id="inputForm"/>
+			                id="inputForm"
+			                style='margin: 5px 0px 5px 0px;'>                   	
+			        </b-form-input>
 			    </b-col>
-		        <b-col cols="1">
-		        	<b-button @click="check">✔</b-button>
+		        <b-col cols="4" sm="4" md="2" lg="1" xl="1"><!-- this renders a button for the submission of the result -->
+		        	<b-button @click="check" style='margin: 5px 0px 5px 0px;'>✔</b-button>
 		        </b-col>
 			</b-row>	
 		</div>
@@ -222,7 +224,12 @@
 					}
 				}
 				var current = this.currentArray[this.lineNumber];
-				var conversion = current + ' -> ' + this.to;
+				var conversion = '';
+				if (this.from == 2) {
+					conversion = current + ' ve dvojkové soustavě do šestnáctkové soustavy';
+				} else {
+					conversion = current + ' v šestnáctkové soustavě do dvojkové soustavy';
+				}
 				this.currentLineHint = conversion;
 				var equals = this.convertNumber(current, this.from, this.to).toUpperCase();
 				console.log(equals + '  ' + this.numberForHints);
@@ -231,7 +238,7 @@
 					if (equals.length == 1) {
 						equals = "000" + equals;
 					}
-					if (equals.length == 1) {
+					if (equals.length == 2) {
 						equals = "00" + equals;
 					}
 					if (equals.length == 3) {
@@ -255,7 +262,12 @@
 
 					var current = decValHex;
 				}
-				var conversion = current + ' -> ' + 10;
+				var conversion = '';
+				if (this.from == 2) {
+					conversion = current + ' ve dvojkové soustavě do desítkové soustavy';
+				} else {
+					conversion = current + ' v šestnáctkové soustavě do desítkové soustavy';
+				}
 				this.currentLineHint = conversion;
 				var equals = this.convertNumber(current, this.from, this.to);
 				this.correctLinesInputs[0] = "" + equals;

@@ -34,5 +34,5 @@
 	}
 	.textContent {
 		text-align: center;
-	}
+	}	
 </style>
