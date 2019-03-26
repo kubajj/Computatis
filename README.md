@@ -1,76 +1,68 @@
 Computatis
 ==========
 
-Toto je můj maturitní projekt.
+This is my high school final exams project.
 
-## Instalace
+## Installation
 
 ```bash
-# git clone této složky
-git clone https://github.com/kubajj/Computatis.git
+# git clone of this folder
+git clone https://github.com/kubajj/ComputatisDevelopmentProject.git
 
-# přesun do složky
+# go to the folder
 cd Computatis
 
-# instalace projektu
+# installation of dependencies
 npm install
 
-# spuštění lokálně
+# start development server on localhost
 npm run dev
 ```
 
-## Vývoj
-Aplikace je psána ve Vue.js. Předpokladem pro úspěšný vývoj rozšíření je ale pouze znalost javascriptu a HTML.
+## Development
+This application is using Vue.js, but the only knowledge needed for the development is of knowledge of javascript and HTML.
 
 [Vue](https://vuejs.org/v2/guide/) [JS](https://www.w3schools.com/js/) [HTML](https://www.w3schools.com/html/)
 
-Jděte na [Computatis Development Project](https://github.com/kubajj/ComputatisDevelopmentProject), kde naleznete projekt pro snažší vývoj.
+Go to [Computatis Development Project](https://github.com/kubajj/ComputatisDevelopmentProject), where is functional development project for you to test your plugins and mods.
 
-Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vrstva, která se nachází ve složce PracContentFiles, kde se nacházejí jednotlivé složky s příklady.
-Úkolem vývojáře je nezasahovat do ničeho jiného, než do jednotlivých komponentů nebo složek s komponenty (můžete si vytvořit vaši vlastní).
+Application has many layers, but the only important one for you is the lowest one. It is in the PracContentFiles (Practice Content Files) directory, where are the individual task generators in their branch folders. You do not have to take care of anything else than about this folder.
 
-<!--Zde můžete vidět náhled kódu jednoho z funkčních komponentů:
-![Code](doc-images/AdditionTo100Code.jpg "Kód")-->
 ```html
 <template>
 	<div>
 		<heading head='Lineární rovnice'></heading>
 		<b-row>
-			<b-col cols='8'>
-				<vue-mathjax :formula="task"/> <!-- tato značka umožňuje zobrazit uživateli 
-				zadání v Latexu -->
+			<b-col cols='12' sm="10" md="9" lg="8" xl="8">
+				<vue-mathjax :formula="task"/> <!-- this shows the task in the mathjax format -->
 			</b-col>
 		</b-row>
 		<b-row>&nbsp</b-row>
 		<b-row>
-			<b-col cols='8'><!-- následující značka ukáže tlačítko pro spuštění nápovědy 
-			a popíše jeho funkci -->
+			<b-col v-if='same' cols='12' sm="10" md="9" lg="8" xl="8"/>
+			<b-col v-else cols='12' sm="10" md="9" lg="7" xl="8"><!-- this shows the hint button and describes its function -->
 				<span v-if='!hinted' @click='hint' class='hintstyle'>Nápovědu prosím</span>
-				<span v-else><vue-mathjax :formula="hintValue1"/></span>
+				<span v-else><vue-mathjax :formula="hintValue"/></span>
 			</b-col>
-			<b-col cols="3"><!--následující část vygeneruje fomrulář pro zapsání a kontrolu 
-			výsledku -->
+			<b-col cols="8" sm="7" md="6" lg="4" xl="3"><!-- this renders a form for the insertion of the result -->
 				<b-form-input
 		                type="text"
 		                placeholder="Výsledek"
 		                v-model="usersResult"
 		                @keyup.native.enter='check'
-		                id="inputForm">                   	
+		                id="inputForm"
+		                style='margin-bottom: 5px;'>                   	
 		        </b-form-input>
 		    </b-col>
-	        <b-col cols="1"><!-- tato značka vygeneruje tlačítko pro potvrzení výsledku -->
+	        <b-col cols="4" sm="3" md="2" lg="1" xl="1"><!-- this renders a button for the submission of the result -->
 	        	<b-button @click="check">✔</b-button>
 	        </b-col>
 		</b-row>	
-		<ch-alerts :checked='checked' :result='result'></ch-alerts><!-- tato značka volá 
-		ch-alerts komponent, 
-		který buď uživateli oznámí chybu a ukáže správný výsledek, nebo ukáže hlášku: 
-		"Správně" -->
+		<ch-alerts :checked='checked' :result='result'></ch-alerts><!-- this calls the ch-alerts component that shows the user the correct answer for the task or congratulates him for computing the correct result-->
 	</div>
 </template>
 
-<script>/*následující řádky uvádí, které komponenty se musí naimportovat, tyto komponenty 
-		musí být upřesněny ještě v sekci components*/
+<script>//the following lines of code import the necessary components, which are later specified in the components section and used in the template part
 	import { bus } from './../../../main.js'
 	import { VueMathjax } from 'vue-mathjax'
 	import Heading from './../DevelopComponents/Heading.vue'
@@ -84,9 +76,8 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				checked: '',
 				result: '',
 				hinted: false,
-				hintValue1: '',/*tato proměnná ukládá string, který je tvořen počtem 
-				neznámých (x), znaménkem "=" a hodnotě, které daný počet neznámých 
-				odpovídá*/
+				hintValue: '',//this variable consists of number of xs = number of values
+				theSame: '',//this boolean stores true if the task and hintValue are completely same
 			}
 		}, 
 		components: {
@@ -94,55 +85,47 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 			'ch-alerts': CheckAlerts,
 		},
 		methods: {
-			randomNumber(min, max) { /*tato metoda generuje náhodné číslo (celé) z intervalu, 
-				který je specifikován v závorkách*/
+			randomNumber(min, max) { //this method generates a random number in the interval that was specified in the parentheses
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
-			sign() { /*tato metoda je schopna na požádání vrátit 1 nebo -1, usnadňuje tím 
-						prevenci toho, aby nebyly generovány proměnné s hodnotou 0*/
+			sign() { //this method simplifies the process of having numbers with negative value while not including 0
 				var arr = [1, -1];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd]; //it returns 1 or -1
 			},
-			variants() { /*tato metoda rozhoduje, zda bude k následujícímu náhodnému číslu 
-							přiřazeno 'x', nebo ne*/
+			variants() { //this method decide whether the number, which was generated will be number of xs or just number
 				var arr = ['x', 'n'];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			position() {	//b == před (anglicky => before) "=", a == po "=" (anglicky => after)		
+			position() {	//b == before "=", a == after "="			
 				var arr = ['b', 'a'];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			resetAll() { /*tato metoda změní hodnotu proměnných, které před každým zavoláním 
-				metody genTask musí mít původní hodnotu, na hodnotu, která je jim přidělena 
-				v sekci data*/
+			resetAll() { //this method resets all variables that have been changed and will be used in the next call of genTask
 				this.checked = '';
 				this.usersResult = '';				
 				this.task = '';
 				this.result = '';
 				this.hinted = false;
+				this.same = false;
 			},
-			hint() { //ukáže nápovědu
+			hint() { //shows hint
 				this.hinted = true;
 			},
-			genTask() { //tato metoda generuje zadání
+			genTask() { //this method generates the task
 				this.resetAll();
 				var quantity = this.randomNumber(1, 5);
-				var rationalResult = false; /*výsledek musí být číslo, které lze zapsat 
-				zlomkem, který má ve jmenovateli čísla: 1, 2, 4 -> usnadňuje zadávání 
-				výsledků uživatelem do formuláře*/
-				while (!rationalResult) { /*pokud výsledek neodpovídá výše zmíněné podmínce, 
-					je vygenerována nová rovnice*/
+				var rationalResult = false; //the result should be only k, k/2 or k/4, so it is easier to be inserted in the result input
+				while (!rationalResult) { //if the final result is not rational it renders again with different number
 					var xs = this.randomNumber(1, 50)*this.sign();
 					var firstx = this.controlX(xs);
 					var firstnum = this.randomNumber(1, 50)*this.sign();
-					var tmpstringb = '$$' + firstx + 'x'; 
+					var tmpstringb = '$$' + firstx + 'x'; //assigning two variables for before = and after it
 					var tmpstringa = '=' + firstnum;
 					var numbers = firstnum;
-					for (let i = 1; i < quantity; i++) { /*generuje náhodná čísla 
-						a přidává je do dočasných (tmp) stringů*/
+					for (let i = 1; i < quantity; i++) { //generates random numbers and includes them to tmp string
 						var tmpnumber = this.randomNumber(1, 50)*this.sign();
 						var tmpvalue = '';
 						var variant = this.variants()
@@ -176,7 +159,7 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 							tmpstringa += tmpvalue;
 						}
 					}
-					var x = (numbers / xs); //spočítá hodnotu výsledku
+					var x = (numbers / xs); //counts the ratio of the result if it is not whole number, half or a quarter, it has to be computed again
 					if ((x % 1 == 0 || x % 1 == 0.5 || x % 1 == 0.25) && numbers != 0) {
 						rationalResult = true;
 						this.task = tmpstringb + tmpstringa + '$$'
@@ -190,7 +173,10 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 						if (xs == -1) {
 							xs = '-';
 						}
-						this.hintValue1 = '$$' + xs + 'x = ' + numbers + '$$';
+						this.hintValue = '$$' + xs + 'x=' + numbers + '$$';
+						if (this.task == this.hintValue) {
+							this.same = true;
+						}
 						break;
 					} else {
 						continue;
@@ -198,8 +184,7 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				}
 				this.result = x;
 			},
-			controlX(x) { /*tato metoda zamezí zobrazení +1 nebo -1 před neznámou -> má pouze 
-				estetickou funkci*/
+			controlX(x) { //this method handles the avoidance of having 1x and -1x, which are substituted by only x and -x
 				if (x == 1) {
 					return '';
 				} else if (x == -1) {
@@ -208,25 +193,23 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				return x;
 			},
 			check() {
-				if (this.checked == 'right') { /*pokud je výsledek, který uživatel odeslal 
-					správný, a uživatel znovu stlačí klávesu enter (nebo znovu potvrdí 
-					výsledek pomocí tlačítka), ukáže uživateli další příklad*/
+				if (this.checked == 'right') { //if the user result is right and user press enter 2 times, it generates next task
 					this.genTask();
 					return;
 				}
-				if (this.usersResult == this.result) { /*zkrontroluje, jestli je výsledek, 
-					který uživatel zadal, správný*/
+				if (this.usersResult == this.result) { //checks if the user result (inserted to input) is right
 					this.checked = 'right';
+					this.same = true; //if the hint was not used and user answered correctly, the hint button hides
 				} else {
 					this.checked = 'wrong';
 				}
 				document.getElementById("inputForm").value = '';
 			}, 
 		},
-		beforeMount() { //vygeneruje první zadání, když se komponent načte
+		beforeMount() { //generates the task when the component loads
 			this.genTask();
 		},
-		mounted() { //umožní komponentu PracContent.vue zavolat metodu genTask
+		mounted() { //enables the usage of next method in PracContent.vue
 		    bus.$on('next', this.genTask);
 		},  
 	}
@@ -240,22 +223,23 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 </style>
 ```
 
-V následující části dokumentace bude podrobně rozebrán.
-## HTML
-První část definuje uspořádání stránky. Tedy spíše následujícího bílého boxu na stránce:
-![White box](doc-images/WhiteBox.png "Bílý box")
+The example above will be described in the following part of the documentation.
 
-Tato část je ohraničena dvěmi značkami:
+## HTML
+In the first part, there is the html template of the component part of the page. It is the right side of the white box.
+![White box](doc-images/WhiteBox.png "White box")
+
+It is between the template tags.
 ```html
 <template>
 	...
 </template>
 ```
 
-V aplikaci je použit [bootstrap-vue](https://bootstrap-vue.js.org/docs). Prosím, zachovejte tento framework.
-Nejdůležitější značky jsou:
+[Bootstrap-vue](https://bootstrap-vue.js.org/docs) is used in the application. Please, use this framework.
+Most important tags are:
 ```html
-<!-- v sekci Layout and Grid System* -->
+<!-- in the section Layout and Grid System* -->
 <b-row>
 	...
 </b-row>
@@ -264,7 +248,7 @@ Nejdůležitější značky jsou:
 	...
 </b-col>
 
-<!-- v sekci Form** -->
+<!-- in the section Form** -->
 <b-form-input>
 	...
 </b-form-input>
@@ -273,26 +257,26 @@ Nejdůležitější značky jsou:
 \*\*[Form](https://bootstrap-vue.js.org/docs/components/form)
 
 ## Mathjax
-Veškeré texty, které chcete vypsat v LATEXu musíte [nabindovat](#Bind) do tohoto komponentu:
+All texts that are supposed to be rendered in LATEX style have to be [binded](#Bind) to this component:
 ```html
 <vue-mathjax :formula="var*"/>
 ```
 
-\*vámi zvolená proměnná - specifikujete ji v sekci [data](#data)\
-Proměnná musí být v platném LATEXovém tvaru.\
-Začne '$$ a skončí $$'.\
-Všechna zpětná lomítka `\` musí být zdvojena.\
-Příklad takovéto proměnné:
+\*the name of your variable - it is specified in the [data](#data) section\
+The variable has to be in correct LATEX form.\
+It has to begin with '$$ and end with $$'.\
+All backslashes have to be doubled `\\`.\
+Example of this kind of variable:
 ```javascript
 discriminant: '$$x_{1;2} = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$',
 ```
 
-Bindovala by se tedy takto:
+The binding will look like this:
 ```html
 <vue-mathjax :formula="discriminant"/>
 ```
 
-Můžete ale také používat i tzv. [vývojářské komponenty](#vývojářské-komponenty):
+You can also use "[development components](#development-components)":
 ```html
 <nbsp>
 	...
@@ -302,46 +286,46 @@ Můžete ale také používat i tzv. [vývojářské komponenty](#vývojářské
 	...
 </hint-form>
 
-<!-- A v neposlední řadě velmi důležitý komponent, který sjednocuje nadpisy jednotlivých příkladů. -->
+<!-- The next component is used to unify the style of headings of all the tasks. -->
 <heading>
 	...
 </heading>
 ```
 
-**Pozor! Je důležité všechny vývojařské komponenty správně naimportovat (bude vysvětleno následovně).** 
+**It is necessary to correctly import all used development components (it will be explained in the following part).**
 
 ## Import
-Část komponentu, která mu říká, které další komponenty a soubory si musí naimportovat je vkládána přímo za tuto značku:
+This part of the components is importing all external components that are specified there. It is right under this tag:
 ```html
 <script>
 ```
 
-Pokud nepoužíváte [vývojářský projekt](https://github.com/kubajj/ComputatisDevelopmentProject), tak naimportujte následující:
+If you are not using [the development project](https://github.com/kubajj/ComputatisDevelopmentProject), please import these files:
 ```javascript
 	import { bus } from './../../../main.js'
 	import { VueMathjax } from 'vue-mathjax'
 	import Heading from './../DevelopComponents/Heading.vue'
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
 ```
-Jsou to soubory nezbytné pro správný chod příkladu.
+They are necessary for the functioning of all components.
 
-Obecně import probíhá následovně:
+Generally, the process of import is done as follows:
 ``` javascript
 import name* from 'path**'
 ```
-\* název, který budete používat - *ideálně stejný nebo podobný názvu souboru, používá se CamelCase*\
-\*\*relativní cesta k souboru
+\* name that you will use - *CamelCase is used*\
+\*\*relative path to the file
 
 
 ## Vue
-Tato část je vkládána přímo za importy. Po jejím ukončení ukončete i script část pomocí `</script>`\
+This part follows right after the import part. After you close it, close the `</script>` tag.\
 
-Začíná takto:
+It begins like this:
 ```javascript
 	export default {
 ```
 
-Dále můžete specifikovat tyto části:
+And then you can specify these parts:
 ```javascript
 	data() {
 		return {
@@ -358,83 +342,82 @@ Dále můžete specifikovat tyto části:
 		...
 	},	
 ```
-Funkce těchto jednotlivých částí nyní rozeberu.\
 
-**Každou část ukončete složenou závorkou a čárkou.** `},`
+**Each of them has to be closed with curly brace and a comma.** `},`
 
 ## Data
-V části data můžete specifikovat jednotlivé proměnné.
-Používá se javascriptový zápis pro objekty:
+In the data part, you can specify your variables
+There is used the same syntax as in JS:
 ``` javascript
 name*: value**,
 ``` 
-\*name = jméno proměnné\
-\*\*value = hodnota proměnné
-*Všechny řádky ukončujte čárkou.*\
-Více o javascriptových objektech naleznete [zde](https://www.w3schools.com/js/js_objects.asp).
+\*name = name of the variable\
+\*\*value = value of the variable
+*Each line has to be closed with a comma.*\
+More about JS syntax is [here](https://www.w3schools.com/js/js_objects.asp).
 
-Na takto definované proměnné můžete odkazovat dvěma způsoby:
+These variable can be used in two different ways:
 1. `this.var*`
 2. `this.$data.var*`\
-\*var = název proměnné\
-Pokud na ně odkazujete z HTML části, prefix `this.` se nepřidává (ani `$data.`).
+\*var = name of the variable\
+If you use them in the template part, neither prefix `this.`, nor `$data.` are used. Only `{{ ... }}`.
 
-## Komponenty
-V této části můžete (*je to nutné pro jejich používání*) specifikovat názvy naimportovaných komponentů.
-Zápis takovéto specifikace:
+## Components
+In this part, the imported external components are used and specified.
+They are specified like this:
 ```javascript
 'heading': Heading,
-//tedy:
+//generally:
 'var-name*': ImportedVarName**,
 ```
-\* var-name -> název komponentu, který chcete používat v HTML části\
-př.`'heading'` používá tzv. kebab-case.
+\* var-name -> name of the component that you want to use in the template part\
+f.e.`'heading'`
+'kebab-case' is used for this specification.
 
-\*\* ImportedVarName -> Název, kterým jste ho popsal v Importu\
+\*\* ImportedVarName -> name that was given to it in the import part\
 
-*Všechny řádky ukončujte čárkou.*
+*All lines have to end with a comma.*
 
-## Vývojářské komponenty
-U každého komponentu zde specifikuji tzv. [props](https://vuejs.org/v2/guide/components-props.html) a funkci.
-Props (*properties*) jsou data, které nadřazený komponent (*parent*) posílá podřadným komponentům (*child*).
+## Development components
+Each of them has its [props](https://vuejs.org/v2/guide/components-props.html) and a specification of the functioning.
+Props (*properties*) are data, which the parent component sends to its children.
 
-## **Heading.vue**
+### Heading.vue
 Props:	
 - head (`String`)
 ```javascript
 props: ['head'],
 ```
-Funkce: Upraví vámi nabindovaný nadpis do LATEXového tvaru a tím z něj vytvoří stylový nadpis, který vypadá jako všechno ostatní. \
-*Používejte prosím značku `\\text {}` pro zachování mezer*
+Functioning: It unifies the styling of each components headings.
 
-## **CheckAlerts.vue**
+### CheckAlerts.vue
 Props: 	
 - checked (`String`) 
-	- možné hodnoty:
+	- possible values:
 		- 'right'
 		- 'wrong'
-- result (převážně `Integer`, ale lze i `String`)
+- result (mostly `Integer`, but `String` is also an option)
 ```javascript
 props: ['checked', 'result'],
 ```
-Funkce: Zobrazí rámeček s hláškou `Správně` nebo `Špatně`, která ukáže i vámi specifikovaný správný výsledek (*proto je nutné ho uvést*). 
+Functioning: It show an alert with `Správně` or `Špatně`, which shows your correct result (so it has to be defined). 
 
-## **Nbsp.vue**
+### Nbsp.vue
 Props: 	
 - num (`Integer`) 
-	- v intervalu *<1; 5>*
+	- between *1* and *5*
 ```javascript
 props: ['num'],
 ```
-Funkce: Zobrazí vámi předepsaný počet `&nbsp` (*non-breaking space*).
+Functioning: It prints `&nbsp` (*non-breaking space*) in specified number of times. 
 
-## **HintFormBorder.vue**
+### HintFormBorder.vue
 Props: 	
 - value (`String`) 
 - correctResult (`String`) 
-	- správný výsledek jednotlivých inputů
+	- correct result of individual inputs
 - placeHolder (`String`)
-	- placeholder jednotlivých inputů
+	- placeholder of each input
 ```javascript
 props: {
 	value: {
@@ -448,78 +431,77 @@ props: {
 	},
 },
 ```
-Funkce: Umožní vám vytvořit několik stejných inputformů. Mají tu vlastnost, že když se rovná correctResult a input uživatele, tak jejich okraj zezelená. V jiném případě je okraj červený.
-Jejich class pro stylování je `class="inputWithBorder"`.
-Klasicky u nich funguje zapisování do proměnných pomocí `v-model`.
+Functioning: It enables you to show multiple inputs with red borders. When the user inputs the correct result, the border sẃitches its color to green. 
+Their css class is `class="inputWithBorder"`.
+You can also use `v-model`.
 
-V případě touhy po vytvoření vlastního vývojářského komponentu není žádný problém. Vytvořte ho a následně pošlete pull-request.
-*Prosím, o specifikování názvu a přiložení části dokumentace v syntaxu markdown.*
+If you need any other component and you think that others might also you it, you can code it and then make a pull-request.
+*Please for a short description in markdown*
 
-## Metody
-V této části můžete vytvořit jednotlivé metody, které lze volat v reakci na akce uživatele.
-Zápis je dvojí podoby:
+## Methods
+There are specified all the methods which reacts to the behavior of the user.
+You can specify the in two ways:
 ```javascript 
 genTask() {	
 	
 genTask: function() {
 ```
 ```javascript
-	//po složené závorce následuje obsah metody
+	//after '{' is
 	this.task = '$$ 1234 $$';
 	},
 },
 ```
 
-Pokud je vaše metoda dlouhá, snažte se ji rozdělit na kratší metody. Snadno je mezi sebou můžete volat pomocí prefixu `this.` společně s názvem metody. *Nezapomeňte na závorky.*
-př. `this.number = this.randomNumber(1, 999);`
+If your method is too long, you can separate it to more smaller ones and then refer to themselves via `this.` and *parentheses*.
+f.e. `this.number = this.randomNumber(1, 999);`
 
-Pro vytvoření dočasných proměnných používejte `var`.\
-př. `var number = this.randomNumber(1,999);`\
-Jejich nevýhodou je, že je nelze volat z jiných metod.\
-Nemusíte je ale specifikovat v sekci [data](#data).
+For temporary variables use `var`.\
+f.e. `var number = this.randomNumber(1,999);`\
+You cannot refer to them from other methods.\
+You do not have to specify them in [data](#data) section.
 
-**V metodách a v computed ukončujete řádky středníkem "`;`".**
+**In methods and in computed section each line has to end with "`;`".**
 
-## Užitečné metody
-## **Random Number**
-Metoda, která vám vygeneruje náhodné číslo v uzavřeném intervalu mezi čísly v závorce:
+## Useful methods
+### Random Number
+It generates a random number from interval in parentheses:
 ```javascript
-randomNumber(min, max) {//tato metoda generuje náhodné číslo (celé) z intervalu, který je specifikován v závorkách
+randomNumber(min, max) {//this method generates a random number in the interval that was specified in the parentheses
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 },
 ```
-## **Check**
-Umožní vám zkontrolovat výsledek uživatele:
+### Check
+It enables you to check the correctness of the user result:
 ```javascript
 check() {
-	if (this.checked == 'right') { /*pokud je výsledek, který uživatel odeslal správný, 
-		a uživatel znovu stlačí klávesu enter (nebo znovu potvrdí výsledek pomocí tlačítka), 
-		ukáže uživateli další příklad*/
+	if (this.checked == 'right') { //if the user result is right and user press enter 2 times, it generates next task
 		this.genTask();
 		return;
 	}
-	if (this.usersResult == this.result) { /*zkrontroluje, jestli je výsledek, 
-		který uživatel zadal, správný*/
+	if (this.usersResult == this.result) { //checks if the user result (inserted to input) is right
 		this.checked = 'right';
+		this.same = true; //if the hint was not used and user answered correctly, the hint button hides
 	} else {
 		this.checked = 'wrong';
 	}
 	document.getElementById("inputForm").value = '';
-},
+}, 
 ```
-Pokud nepoužívate [vývojářský projekt](https://github.com/kubajj/ComputatisDevelopmentProject), kde je již naimplementována, je nutné ji implementovat.
-## **Grade**
-Umožní vám zjistit nejvyšší řád čísla:
+
+### Grade
+It shows the highest grade of a number:
 ```javascript
 grade(givenNum) {
 	return Math.ceil(Math.log10(givenNum));
 },
 ```
-(*Zaměnitelná s `*.length`.*)
+(*Can be replaced with `*.length`.*)
 
-## **Reset All**
-Metoda, kterou doporučuji vytvořit, pokud potřebujete vymazat hodnotu více proměnných naráz.
-př. užití:
+### Reset All
+It is a method that resets all variables that are specified in it to specified value.
+It is easier to do it there than to do it in the genTask method.
+example of usage:
 ```javascript
 resetAll() {
 	this.hinted = false;
@@ -527,15 +509,15 @@ resetAll() {
 	this.hint = '';
 	this.comment = '';
 	this.correctCalculation = [];
-	for (let i = 0; i < this.resultsInputs.length; i++) {	//vymaže hodnotu každého prvku pole				
+	for (let i = 0; i < this.resultsInputs.length; i++) {	//resets whole array		
 		this.$data.resultsInputs[i] = '';
 	}
 	this.specialHint = false;
 	this.placeHolders = [];
 },
 ```
-## **Convert Number**
-Umí převádět čísla mezi jednotlivými číselnými soustavami:
+### Convert Number
+It converts numbers from one system to another - (number, from, to):
 ```javascript
 convertNumber(n, fromBase, toBase) {
   	if (fromBase === void 0) {
@@ -549,9 +531,9 @@ convertNumber(n, fromBase, toBase) {
 ```
 
 ## Computed
-Tato část vám umožňuje vytvářet proměnné, které budou výsledkem metody.\
-**Je nutné ukončit je příkazem `return`.**\
-Zápis je stejný jako u metod, jen je v jiné části:
+You can specify here variables that have to be computed.\
+**The have to end with `return`.**\
+In syntax, they are identical to methods:
 ```javascript
 computed: {
 	onePlusOne() {
@@ -559,19 +541,21 @@ computed: {
 	},
 },
 ```
-Lze z nich i klasicky volat jiné metody a také jiné computed properties.\
-Více o [computed properties](https://vuejs.org/v2/guide/computed.html).
+
+More about [computed properties](https://vuejs.org/v2/guide/computed.html).
 
 ## Bind
-Bindování znamená to, že z html části odkazujeme na nějakou proměnnou z javascriptové/vue části.
-Děláme to pomocí dvou značek:
+Dynamically bind one or more attributes, or a component prop to an expression.
+We can do that via two tags:
 1. `v-bind:var*`\
 2. `:var*`\
-\* značkou var je míněn název proměnné, kterou chcete bindovat
+\* name of the binded variable
+
+More about [binding](https://vuejs.org/v2/api/#v-bind).
 
 ## Lifecycle Hooks
-Toto je poslední druh, který lze použít v `export default {}`.
-Jedná se o tyto značky:
+This is the last type of tags in `export default {}`.
+They are the following:
 ```javascript
 beforeCreate() {
 	...
@@ -587,12 +571,12 @@ mounted() {
 },
 ...
 ```
-Všechny je můžete najít v tomto [diagramu](https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram).
-Umožňují vám specifikovat, které metody se kdy spustí.
+You can find them in thus [diagram](https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram).
+They can call methods in a specified time.
 
-př. užití:
+example of usage:
 ```javascript
-//Následující kód prosím zaimplementujte do svého hlavního komponentu. Bez něj je nepoužitelný.
+//The following code has to be in every task component.
 beforeMount() {
 	this.genTask();
 },
@@ -600,7 +584,7 @@ mounted() {
     bus.$on('next', this.genTask);
 },
 
-//Příklad jiného použítí:
+//Different usage:
 mounted() {
 	this.resultsOfUnitInputs = this.correctUnit.map(() => '');
 	this.resultsOfDecInputs = this.correctDec.map(() => '');
@@ -608,20 +592,19 @@ mounted() {
 }, 
 ```
 
-**Vue část se uzavírá značkou `</script>`.**
+**Vue part is closed via `</script>` tag.**
 
 ## CSS
-Pro úpravu vzhledu se nepoužívají žádné externí soubory.\
-Použijte kaskádové styly mezi značkami `<style>` a `</style>`.
+CSS is inserted between `<style>` and `</style>` tags.
 
-## Zveřejnění vašeho komponentu
-Vytvořte pull-request, ve kterém popíšete vámi vytvořený příklad a pojmenujete ho.\
-Název i kód zkontrolován, proto prosím o stručný popis toho, co váš kód dělá.\
-Následně bude zařazen do příslušné tématické složky a zveřejněn.
+## Publication of your component
+Create a pull-request, in which you push your task and its name.\
+Please comment your code and send a short description of its functioning.\
+It it is not defective, it will be published.\
 
 ## FAQ
-*Nemáte nějaký videotutoriál na Vue.js?*\
+*Do you have any Vue.js video tutorial?*\
 [![The Net Ninja - Vue.js tutorial](http://img.youtube.com/vi/5LYrN_cAJoA&list=PL4cUxeGkcC9gQcYgjhBoeQH7wiAyZNrYa/0.jpg)](https://www.youtube.com/watch?v=5LYrN_cAJoA&list=PL4cUxeGkcC9gQcYgjhBoeQH7wiAyZNrYa)
 
-*Jak posílat data z child komponent na parent?*\
-Pomocí [`$emit`](https://vuejs.org/v2/guide/components.html#Listening-to-Child-Components-Events).
+*How can I send data from child to parent component?*\
+Via [`$emit`](https://vuejs.org/v2/guide/components.html#Listening-to-Child-Components-Events).
