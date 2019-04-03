@@ -238,7 +238,7 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 </style>
 ```
 
-V následující části dokumentace bude podrobně rozebrán.
+V následující části dokumentace bude podrobně rozebrán.\
 
 ## HTML
 První část definuje uspořádání stránky. Tedy spíše následujícího bílého boxu na stránce:
@@ -397,7 +397,7 @@ př.`'heading'` používá tzv. kebab-case.
 U každého komponentu zde specifikuji tzv. [props](https://vuejs.org/v2/guide/components-props.html) a funkci.
 Props (*properties*) jsou data, které nadřazený komponent (*parent*) posílá podřadným komponentům (*child*).
 
-## **Heading.vue**
+## Heading.vue
 Props:	
 - head (`String`)
 ```javascript
@@ -406,7 +406,7 @@ props: ['head'],
 Funkce: Upraví vámi nabindovaný nadpis do LATEXového tvaru a tím z něj vytvoří stylový nadpis, který vypadá jako všechno ostatní. \
 *Používejte prosím značku `\\text {}` pro zachování mezer*
 
-## **CheckAlerts.vue**
+## CheckAlerts.vue
 Props: 	
 - checked (`String`) 
 	- možné hodnoty:
@@ -418,7 +418,7 @@ props: ['checked', 'result'],
 ```
 Funkce: Zobrazí rámeček s hláškou `Správně` nebo `Špatně`, která ukáže i vámi specifikovaný správný výsledek (*proto je nutné ho uvést*). 
 
-## **Nbsp.vue**
+## Nbsp.vue
 Props: 	
 - num (`Integer`) 
 	- v intervalu *<1; 5>*
@@ -427,7 +427,7 @@ props: ['num'],
 ```
 Funkce: Zobrazí vámi předepsaný počet `&nbsp` (*non-breaking space*).
 
-## **HintFormBorder.vue**
+## HintFormBorder.vue
 Props: 	
 - value (`String`) 
 - correctResult (`String`) 
@@ -480,14 +480,14 @@ Nemusíte je ale specifikovat v sekci [data](#data).
 **V metodách a v computed ukončujete řádky středníkem "`;`".**
 
 ## Užitečné metody
-## **Random Number**
+## Random Number
 Metoda, která vám vygeneruje náhodné číslo v uzavřeném intervalu mezi čísly v závorce:
 ```javascript
 randomNumber(min, max) {//tato metoda generuje náhodné číslo (celé) z intervalu, který je specifikován v závorkách
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 },
 ```
-## **Check**
+## Check
 Umožní vám zkontrolovat výsledek uživatele:
 ```javascript
 check() {
@@ -507,7 +507,7 @@ check() {
 },
 ```
 Pokud nepoužívate [vývojářský projekt](https://github.com/kubajj/ComputatisDevelopmentProject), kde je již naimplementována, je nutné ji implementovat.
-## **Grade**
+## Grade
 Umožní vám zjistit nejvyšší řád čísla:
 ```javascript
 grade(givenNum) {
@@ -516,7 +516,7 @@ grade(givenNum) {
 ```
 (*Zaměnitelná s `*.length`.*)
 
-## **Reset All**
+## Reset All
 Metoda, kterou doporučuji vytvořit, pokud potřebujete vymazat hodnotu více proměnných naráz.
 př. užití:
 ```javascript
@@ -533,7 +533,7 @@ resetAll() {
 	this.placeHolders = [];
 },
 ```
-## **Convert Number**
+## Convert Number
 Umí převádět čísla mezi jednotlivými číselnými soustavami:
 ```javascript
 convertNumber(n, fromBase, toBase) {
