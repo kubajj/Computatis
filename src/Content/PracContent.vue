@@ -1,51 +1,51 @@
 <template>
 	<div>
-	<b-row>
-		<b-col cols='0' sm='0' md='1' lg='2' xl='2'></b-col>
-		<b-col cols='12' sm='12' md='10' lg='8' xl='8'>
-	  		<b-jumbotron class='content'>
-				<div>
-					<b-row>
-						<b-col>
-							<div class='dropdiv'>
-								<b-dropdown size="lg" id="ddown1" text="Rovnice">
-								    <b-dropdown-item><router-link to='/procvicovani/linearnirovnice' class='routerbutton'>Lineární rovnice</router-link></b-dropdown-item>
-								    <b-dropdown-item><router-link to='/procvicovani/kvadratickarovnice' class='routerbutton'>Kvadratické rovnice</router-link></b-dropdown-item>
-								    <b-dropdown-divider></b-dropdown-divider>
-								</b-dropdown>
-							</div>
-							<div class='dropdiv'>
-								<b-dropdown size="lg" id="ddown1" text="Aritmetika">
-								    <b-dropdown-item><router-link to='/procvicovani/scitaniaodcitanido100' class='routerbutton'>Sčítání a odčítání do 100</router-link></b-dropdown-item>
-								    <b-dropdown-item><router-link to='/procvicovani/nasobeni' class='routerbutton'>Násobení</router-link></b-dropdown-item>
-								    <b-dropdown-divider></b-dropdown-divider>
-								</b-dropdown>
-							</div>
-							<div class='dropdiv'>
-								<b-dropdown size="lg" id="ddown1" text="Číselné soustavy">
-								    <b-dropdown-item><router-link to='/procvicovani/prevodymezisoustavami' class='routerbutton'>Převody mezi soustavami</router-link></b-dropdown-item>
-								    <b-dropdown-item><router-link to='/procvicovani/adresyvpameti' class='routerbutton'>Adresy v paměti</router-link></b-dropdown-item>
-								    <b-dropdown-divider></b-dropdown-divider>
-								</b-dropdown>
-							</div>
-						</b-col>
-						<b-col cols="12" sm='12' md='10' lg='9' xl='8'>
-							<b-col cols="12">
-								<hr>
+		<b-row>
+			<b-col cols='0' sm='0' md='1' lg='2' xl='2'></b-col>
+			<b-col cols='12' sm='12' md='10' lg='8' xl='8'>
+		  		<b-jumbotron class='content'>
+					<div>
+						<b-row>
+							<b-col>
+								<div class='dropdiv'>
+									<b-dropdown size="lg" id="ddown1" text="Rovnice">
+									    <b-dropdown-item><router-link to='/procvicovani/linearnirovnice' class='routerbutton'>Lineární rovnice</router-link></b-dropdown-item>
+									    <b-dropdown-item><router-link to='/procvicovani/kvadratickarovnice' class='routerbutton'>Kvadratické rovnice</router-link></b-dropdown-item>
+									    <b-dropdown-divider></b-dropdown-divider>
+									</b-dropdown>
+								</div>
+								<div class='dropdiv'>
+									<b-dropdown size="lg" id="ddown1" text="Aritmetika">
+									    <b-dropdown-item><router-link to='/procvicovani/scitaniaodcitanido100' class='routerbutton'>Sčítání a odčítání do 100</router-link></b-dropdown-item>
+									    <b-dropdown-item><router-link to='/procvicovani/nasobeni' class='routerbutton'>Násobení</router-link></b-dropdown-item>
+									    <b-dropdown-divider></b-dropdown-divider>
+									</b-dropdown>
+								</div>
+								<div class='dropdiv'>
+									<b-dropdown size="lg" id="ddown1" text="Číselné soustavy">
+									    <b-dropdown-item><router-link to='/procvicovani/prevodymezisoustavami' class='routerbutton'>Převody mezi soustavami</router-link></b-dropdown-item>
+									    <b-dropdown-item><router-link to='/procvicovani/adresyvpameti' class='routerbutton'>Adresy v paměti</router-link></b-dropdown-item>
+									    <b-dropdown-divider></b-dropdown-divider>
+									</b-dropdown>
+								</div>
 							</b-col>
-							<router-view/>
-						</b-col>
-					</b-row>
-					<b-row v-if='$route.path != "/procvicovani"'>
-						<b-button><router-link to='/procvicovani' class='backandnext'><strong>&#129080;</strong> Zpět</router-link></b-button>				
-						<b-button @click="next" class='backandnext'>Další <strong>&#129082;</strong></b-button>
-					</b-row>
-				</div>
-			</b-jumbotron>
-		</b-col>
-		<b-col cols='0' sm='0' md='1' lg='2' xl='2'></b-col>
-	</b-row>
-  </div>
+							<b-col cols="12" sm='12' md='10' lg='9' xl='8'>
+								<b-col cols="12">
+									<hr>
+								</b-col>
+								<router-view/>
+							</b-col>
+						</b-row>
+						<b-row v-if='$route.path != "/procvicovani"'>
+							<b-button><router-link to='/procvicovani' class='backandnext'><strong><</strong> Zpět</router-link></b-button>				
+							<b-button @click="next" class='backandnext'>Další <strong>></strong></b-button>
+						</b-row>
+					</div>
+				</b-jumbotron>
+			</b-col>
+			<b-col cols='0' sm='0' md='1' lg='2' xl='2'></b-col>
+		</b-row>
+	</div>
 </template>
 
 

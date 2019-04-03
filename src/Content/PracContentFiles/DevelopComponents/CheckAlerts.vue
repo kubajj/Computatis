@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<b-alert v-if="checked == 'right'" show variant="success">Správně <b-button @click='next' class='right'>⮊</b-button></b-alert>
-	    <b-alert v-else-if="checked == 'wrong'" show variant="danger" >Špatně. Správný výsledek je {{ result }}. <b-button @click='next' class='wrong'>⮊</b-button></b-alert>
+	    <b-alert v-else-if="checked == 'wrong'" show variant="danger" >Špatně. Správný výsledek je {{ result }}. <b-button @click='next' class='wrong'><strong>></strong></strong></b-button></b-alert>
 	</div>
 </template>
 
