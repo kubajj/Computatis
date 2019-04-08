@@ -59,6 +59,8 @@ c) určení endianity<br>
 Vzhledem k povaze příkladu nebyly implementovány nápovědy.<br>
 <h3>Převod mezi soustavami</h3>
 Příklad zadává jednoduché převody mezi soustavami (2;10;16).<br>
-Uživatel může stlačit tlačítko nápovědy, které nejdříve slovně popíše postup, jak číslo převést,<br>
-ale po opětovném kliknutí na tlačítko ukáže formulář, který proces převodu rozdělí do jednotlivých<br>
- kroků s kontrolou mezivýsledků.<br>
+Uživatel může stlačit tlačítko nápovědy, které nejdříve slovně popíše postup, jak číslo převést.<br>
+![Slovni](doc-images/slovni.png "Slovní nápověda")<br>
+Po opětovném kliknutí na tlačítko ukáže formulář, který proces převodu rozdělí do jednotlivých<br>
+kroků s kontrolou mezivýsledků.<br>
+![Formulare](doc-images/formularova.png "Nápověda s formuláři")<br>
