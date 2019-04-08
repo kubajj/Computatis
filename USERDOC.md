@@ -14,9 +14,9 @@ Pokud si nejste jist/a s postupem řešení, je možné kliknout na tlačítko n
 <img src="doc-images/input1.png" style='width: 15%;'/><img src="doc-images/sipka.png" style='width: 15%;'/><img src="doc-images/input2.png" style='width: 15%;'/><br>
 V dolní levé části bílého boxu se nacházejí tlačítka Zpět a Další.<br>
 
-##Nápovědy
+<h2>Nápovědy</h2>
 Př.: <h3>Nápovědy v příkladu Kvadratická rovnice</h3>
-První nápověda vám ukáže rovnici uplavenou do obvyklého tvaru: ax<sup>2</sup> + bx + c = 0.
+První nápověda vám ukáže rovnici uplavenou do obvyklého tvaru: ax<sup>2</sup> + bx + c = 0.<br>
 ![Zakladni tvar](doc-images/zakladnitvar.png "Základní tvar")<br>
 Další nápovědy se liší v závislosti na tom, jak rovnice vyšla.<br>
 a) Diskriminant<br>
