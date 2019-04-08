@@ -24,7 +24,7 @@ a) Diskriminant<br>
 	![Zakladni tvar](doc-images/zakladnitvar.png "Základní tvar")<br>
 	Následuje ukázání vzorce pro diskriminant.<br>
 	![Diskriminant](doc-images/diskriminant1.png "Diskriminant")<br>
-	Po stlačení tlačítka OK se źobrazí vzorec pro diskriminant s formuláři, které kontrolují mezivýpočty.<br>
+	Po stlačení tlačítka OK se zobrazí vzorec pro diskriminant s formuláři, které kontrolují mezivýpočty.<br>
 	![Diskriminantsformulari](doc-images/diskriminant2.png "Diskriminant s formuláři")<br>
 	Pokud jsou správně vyplněny, okraj jim zezelená.<br>
 	![Diskriminantzeleny](doc-images/diskriminant3.png "Diskriminant se zeleným okrajem")<br>
