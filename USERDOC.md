@@ -46,9 +46,19 @@ Nápovědy u tohoto příkladu vzhledem k jeho povaze nejsou implementovány.<br
 <h3>Násobení pod sebou</h3>
 Příklad na násobení trojciferného čísla dvojciferným.<br>
 Po stlačení nápisu "Chci násobit pod sebou" se zobrazí formuláře s červeným okrajem. Po zapsání odpovídajícího čísla okraj zezelená.<br>
+![Prazdne](doc-images/multiblank.png "Prázdné a červené")<br>
 Pokud uživatel vyplnil poslední řádek formulářů správně, je to považováno za výsledek a může postoupit k dalšímu příkladu.<br>
+![Plne](doc-images/multifull.png "Plné a zelené")<br>
 <h3>Lineární rovnice</h3>
 Zobrazí linerání rovnici. Po stisknutí tlačítka nápovědy jsou všechny lineární členy převedeny vlevo a absolutní vpravo. Uživatel už pouze udělá podíl dvou čísel, která vycházejí buď jako celé číslo nebo zlomek s číslem 2 nebo 4 ve jmenovateli.<br>
 <h3>Adresy v paměti</h3>
-
+Tento příklad generuje náhodných 24 bajtů paměti. Uživatel je musí analyzovat a splnit postupně 3 úkoly, které se vážou k jedné tabulce.<br>
+a) dvojkový doplněk<br>
+b) znaménkové rozšíření na daný počet bitů<br>
+c) určení endianity<br>
+Vzhledem k povaze příkladu nebyly implementovány nápovědy.<br>
 <h3>Převod mezi soustavami</h3>
+Příklad zadává jednoduché převody mezi soustavami (2;10;16).<br>
+Uživatel může stlačit tlačítko nápovědy, které nejdříve slovně popíše postup, jak číslo převést,<br>
+ale po opětovném kliknutí na tlačítko ukáže formulář, který proces převodu rozdělí do jednotlivých<br>
+ kroků s kontrolou mezivýsledků.<br>
