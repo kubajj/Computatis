@@ -1,7 +1,6 @@
 
 import HomeContent from './Content/HomeContent.vue'
 import PracContent from './Content/PracContent.vue'
-import About from './Content/About.vue'
 import UvodKProcvicovani from './Content/PracContentFiles/UvodKProcvicovani.vue'
 import LongMultiplication from './Content/PracContentFiles/Arithmetic/LongMultiplication.vue'
 import AddSubTo100 from './Content/PracContentFiles/Arithmetic/AddSubTo100.vue'
