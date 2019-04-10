@@ -35,7 +35,7 @@ b) Rozklad<br>
 	![Zakladnitvarrozklad](doc-images/rozklad1.png "Základní tvar u rozkladu")<br>
 	Tento typ nápovědy vytkne x před závorku. Jeden výsledek bude tedy 0 a druhý vyjde, pokud je hodnota závorky rovna 0.<br>
 	![Rozklad](doc-images/rozklad2.png "Rozklad")<br><br>
-c) Odmocnení<br>
+c) Odmocnění<br>
 	Tyto nápovědy se zobrazí, pokud základní tvar rovnice nemá lineární člen.<br>
 	![Zakladnitvarodmocneni](doc-images/odmocneni1.png "Základní tvar u odmocnění")<br>
 	Tento typ nápovědy převede absolutní člen na druhou stranu rovnice. Výsledek vyjde po odmocnění absolutního členu (výsledky budou 2 s opačným znaménkem).<br>
