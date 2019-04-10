@@ -6,9 +6,6 @@
 		<b-navbar-nav>
 			<b-nav-item><router-link to='/procvicovani' class='menu'>Procvičování</router-link></b-nav-item>	
 		</b-navbar-nav>
-		<!--b-navbar-nav class="ml-auto">		
-			<b-nav-item><router-link to='/webinfo' class='menu'>O webu</router-link></b-nav-item>
-		</b-navbar-nav-->
 		</b-collapse>
 	</b-navbar>
 </template>

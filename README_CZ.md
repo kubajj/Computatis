@@ -92,8 +92,8 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 			'ch-alerts': CheckAlerts,
 		},
 		methods: {
-			randomNumber(min, max) { /*tato metoda generuje náhodné číslo (celé) z intervalu, 
-				který je specifikován v závorkách*/
+			randomNumber(min, max) { /*tato metoda generuje náhodné číslo (celé) 
+				z intervalu, který je specifikován v závorkách*/
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
 			sign() { /*tato metoda je schopna na požádání vrátit 1 nebo -1, usnadňuje tím 
@@ -108,14 +108,15 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			position() {	//b == před (anglicky => before) "=", a == po "=" (anglicky => after)		
+			position() {	/*b == před (anglicky => before) "=", a == po "=" 
+				(anglicky => after)*/	
 				var arr = ['b', 'a'];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			resetAll() { /*tato metoda změní hodnotu proměnných, které před každým zavoláním 
-				metody genTask musí mít původní hodnotu, na hodnotu, která je jim přidělena 
-				v sekci data*/
+			resetAll() { /*tato metoda změní hodnotu proměnných, které před každým 
+				zavoláním metody genTask musí mít původní hodnotu, na hodnotu, která je jim 
+				přidělena v sekci data*/
 				this.checked = '';
 				this.usersResult = '';				
 				this.task = '';
@@ -131,8 +132,8 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				var rationalResult = false; /*výsledek musí být číslo, které lze zapsat 
 				zlomkem, který má ve jmenovateli čísla: 1, 2, 4 -> usnadňuje zadávání 
 				výsledků uživatelem do formuláře*/
-				while (!rationalResult) { /*pokud výsledek neodpovídá výše zmíněné podmínce, 
-					je vygenerována nová rovnice*/
+				while (!rationalResult) { /*pokud výsledek neodpovídá výše zmíněné 
+					podmínce, je vygenerována nová rovnice*/
 					var xs = this.randomNumber(1, 50)*this.sign();
 					var firstx = this.controlX(xs);
 					var firstnum = this.randomNumber(1, 50)*this.sign();
@@ -196,8 +197,8 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				}
 				this.result = x;
 			},
-			controlX(x) { /*tato metoda zamezí zobrazení +1 nebo -1 před neznámou -> má pouze 
-				estetickou funkci*/
+			controlX(x) { /*tato metoda zamezí zobrazení +1 nebo -1 před neznámou -> má 
+				pouze estetickou funkci*/
 				if (x == 1) {
 					return '';
 				} else if (x == -1) {
@@ -241,7 +242,7 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 V následující části dokumentace bude podrobně rozebrán.\
 
 ## HTML
-První část definuje uspořádání stránky. Tedy spíše následujícího bílého boxu na stránce:
+První část definuje uspořádání stránky. Tedy spíše následujícího bílého boxu na stránce:\\
 ![White box](doc-images/WhiteBox.png "Bílý box")
 
 Tato část je ohraničena dvěmi značkami:
@@ -301,7 +302,8 @@ Můžete ale také používat i tzv. [vývojářské komponenty](#vývojářské
 	...
 </hint-form>
 
-<!-- A v neposlední řadě velmi důležitý komponent, který sjednocuje nadpisy jednotlivých příkladů. -->
+<!-- A v neposlední řadě velmi důležitý komponent, který sjednocuje nadpisy
+jednotlivých příkladů. -->
 <heading>
 	...
 </heading>
@@ -483,7 +485,8 @@ Nemusíte je ale specifikovat v sekci [data](#data).
 ## Random Number
 Metoda, která vám vygeneruje náhodné číslo v uzavřeném intervalu mezi čísly v závorce:
 ```javascript
-randomNumber(min, max) {//tato metoda generuje náhodné číslo (celé) z intervalu, který je specifikován v závorkách
+randomNumber(min, max) {/*tato metoda generuje náhodné číslo (celé) z intervalu, 
+						který je specifikován v závorkách*/
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 },
 ```
@@ -491,9 +494,9 @@ randomNumber(min, max) {//tato metoda generuje náhodné číslo (celé) z inter
 Umožní vám zkontrolovat výsledek uživatele:
 ```javascript
 check() {
-	if (this.checked == 'right') { /*pokud je výsledek, který uživatel odeslal správný, 
-		a uživatel znovu stlačí klávesu enter (nebo znovu potvrdí výsledek pomocí tlačítka), 
-		ukáže uživateli další příklad*/
+	if (this.checked == 'right') { /*pokud je výsledek, který uživatel odeslal 
+		správný, a uživatel znovu stlačí klávesu enter (nebo znovu potvrdí 
+		výsledek pomocí tlačítka), ukáže uživateli další příklad*/
 		this.genTask();
 		return;
 	}
@@ -507,6 +510,7 @@ check() {
 },
 ```
 Pokud nepoužívate [vývojářský projekt](https://github.com/kubajj/ComputatisDevelopmentProject), kde je již naimplementována, je nutné ji implementovat.
+
 ## Grade
 Umožní vám zjistit nejvyšší řád čísla:
 ```javascript
@@ -526,7 +530,7 @@ resetAll() {
 	this.hint = '';
 	this.comment = '';
 	this.correctCalculation = [];
-	for (let i = 0; i < this.resultsInputs.length; i++) {	//vymaže hodnotu každého prvku pole				
+	for (let i = 0; i < this.resultsInputs.length; i++) {//vymaže hodnotu každého prvku pole				
 		this.$data.resultsInputs[i] = '';
 	}
 	this.specialHint = false;

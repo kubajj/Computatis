@@ -25,5 +25,4 @@ export default [
 		//{ path: '/procvicovani/newone', component: NewOne },
 		]
 	},
-	{ path: '/webinfo', component: About},
 ]
