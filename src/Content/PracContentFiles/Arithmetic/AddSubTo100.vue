@@ -89,7 +89,7 @@
 					this.checked = 'wrong';
 				}
 				document.getElementById("inputForm").value = '';
-				this.userResult = '';
+				this.$data.usersResult = '';
 			}, 
 		},
 		beforeMount() {//generates the task when the component loads
