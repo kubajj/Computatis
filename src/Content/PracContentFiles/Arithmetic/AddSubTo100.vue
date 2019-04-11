@@ -60,7 +60,8 @@
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			genTask() {	//this method generates the task	
+			genTask() {	//this method generates the task					
+				this.$data.usersResult = '';
 			    this.checked = ''
 			    var quantity = this.randomNumber(3, this.maxQuantity);	
 			    var first = this.randomNumber(1, this.max)*this.sign();
