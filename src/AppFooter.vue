@@ -1,7 +1,7 @@
 <template>
-	<footer class="paticka">
+	<footer class="paticka"><!-- This defines the footer of the page -->
 		<p class='autor'>&copy; Jakub Jelínek</p>
-		<a href='https://www.alej.cz' target='_blank'>
+		<a href='https://www.alej.cz' target='_blank'><!-- Defines the link in logo of my school -->
 			<img src="./assets/gna.png" alt="GNA" class="gna"/>
 		</a>
 	</footer>

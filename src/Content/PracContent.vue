@@ -6,7 +6,7 @@
 		  		<b-jumbotron class='content'>
 					<div>
 						<b-row>
-							<b-col>
+							<b-col><!-- Menu dropdowns -->
 								<div class='dropdiv'>
 									<b-dropdown size="lg" id="ddown1" text="Rovnice">
 									    <b-dropdown-item><router-link to='/procvicovani/linearnirovnice' class='routerbutton'>Lineární rovnice</router-link></b-dropdown-item>
@@ -29,14 +29,14 @@
 									</b-dropdown>
 								</div>
 							</b-col>
-							<b-col cols="12" sm='12' md='10' lg='9' xl='8'>
+							<b-col cols="12" sm='12' md='10' lg='9' xl='8'><!-- Horrizontal line -->
 								<b-col cols="12">
 									<hr>
 								</b-col>
-								<router-view/>
+								<router-view/><!-- Content rendering part -->
 							</b-col>
 						</b-row>
-						<b-row v-if='$route.path != "/procvicovani"'>
+						<b-row v-if='$route.path != "/procvicovani"'><!-- Buttons "Back" and "Next" -->
 							<b-button><router-link to='/procvicovani' class='backandnext'><strong><</strong> Zpět</router-link></b-button>				
 							<b-button @click="next" class='backandnext'>Další <strong>></strong></b-button>
 						</b-row>
@@ -55,7 +55,7 @@
 	export default {
 		methods: { 
 			next() {
-				bus.$emit('next');
+				bus.$emit('next');//genTask on demand in children components
 			}
 		}
 	}

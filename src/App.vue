@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<app-navigation></app-navigation>	
-		<router-view></router-view>
-		<app-footer></app-footer>
+		<app-navigation></app-navigation><!-- Import navigation bar -->
+		<router-view></router-view><!-- Import main content via router -->
+		<app-footer></app-footer><!-- Import footer -->
 	</div>
 </template>
 

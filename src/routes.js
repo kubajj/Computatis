@@ -1,4 +1,4 @@
-
+//This file defines the routes
 import HomeContent from './Content/HomeContent.vue'
 import PracContent from './Content/PracContent.vue'
 import IntroToPractice from './Content/PracContentFiles/IntroToPractice.vue'
