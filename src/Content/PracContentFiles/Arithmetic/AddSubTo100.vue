@@ -72,6 +72,8 @@
 			    	currentValue += newNumber;
 			    	if (newNumber > 0) {
 			    		this.task += '+' + newNumber;
+			    	} else if (newNumber == 0) {
+			    		//skip
 			    	} else {
 				    	this.task += newNumber; 
 				    }
