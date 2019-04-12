@@ -56,7 +56,7 @@ Tento příklad generuje náhodných 24 bajtů paměti. Uživatel je musí analy
 a) dvojkový doplněk<br>
 b) znaménkové rozšíření na daný počet bitů<br>
 c) určení endianity<br>
-Nápovědy u tohoto příkladu červeně zvýrazňují adresu/y, kterých se zadání týká.<br>
+Nápovědy u tohoto příkladu červeně zvýrazňují adresy, kterých se zadání týká.<br>
 <h3>Převod mezi soustavami</h3>
 Příklad zadává jednoduché převody mezi soustavami (2;10;16).<br>
 Uživatel může stlačit tlačítko nápovědy, které nejdříve slovně popíše postup, jak číslo převést.<br>
