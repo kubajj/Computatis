@@ -97,15 +97,15 @@
 				checked: '',
 				correctResult: '',
 				values: [],//array with all 24 bytes
-				firstvalues: [],
-				secondvalues: [],
-				thirdvalues: [],
-				firsthint: false,
+				firstvalues: [],//array with first 8 bytes
+				secondvalues: [],//array with second line of bytes
+				thirdvalues: [],//array with third line of bytes
+				firsthint: false, //booleans used for hints
 				secondhint: false,
 				thirdhint: false,
 				lasthint: false,
-				firstlinestyling: [],
-				firsthintadress: '',
+				firstlinestyling: [],//arrays used for binding the style of hinted adress
+				firsthintadress: '',//adress that is supposed to be hinted
 				secondlinestyling: [],
 				secondhintadress: '',
 				thirdlinestyling: [],
@@ -253,7 +253,7 @@
 				this.taskGiven = true;
 				this.lastTask++;
 			},
-			giveHint() {
+			giveHint() {//give hints in the form of making the current adress red and bold
 				if (this.lastTask == 1) {
 					this.firstlinestyling[this.firsthintadress] = 'font-weight: bold; color: red;';
 					this.firsthint = true;

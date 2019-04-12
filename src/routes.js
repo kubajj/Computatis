@@ -1,7 +1,7 @@
 
 import HomeContent from './Content/HomeContent.vue'
 import PracContent from './Content/PracContent.vue'
-import UvodKProcvicovani from './Content/PracContentFiles/UvodKProcvicovani.vue'
+import IntroToPractice from './Content/PracContentFiles/IntroToPractice.vue'
 import LongMultiplication from './Content/PracContentFiles/Arithmetic/LongMultiplication.vue'
 import AddSubTo100 from './Content/PracContentFiles/Arithmetic/AddSubTo100.vue'
 import LinearEquation from './Content/PracContentFiles/Equations/LinearEquation.vue'
@@ -14,7 +14,7 @@ export default [
 	{ path: '/', component: HomeContent},
 	{ path: '/procvicovani', component: PracContent,
 		children: [
-		{ path: '/procvicovani/', component: UvodKProcvicovani },
+		{ path: '/procvicovani/', component: IntroToPractice },
 		{ path: '/procvicovani/nasobeni', component: LongMultiplication },
 		{ path: '/procvicovani/scitaniaodcitanido100', component: AddSubTo100 },
 		{ path: '/procvicovani/linearnirovnice', component: LinearEquation },
