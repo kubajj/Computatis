@@ -50,7 +50,10 @@
 				</b-col>
 			</b-row>
 			<b-row>
-				<b-col cols='4' sm='4' md='6' lg='7' xl='8'/>
+				<b-col v-if='verbalHint == false' cols='4' sm='4' md='6' lg='7' xl='8'/>
+				<b-col v-else cols='4' sm='4' md='6' lg='7' xl='8'>
+					Nápovědy tohoto příkladu zvýrazní bajty, kterých se týká zadání.
+				</b-col>
 				<b-col cols='8' sm='8' md='6' lg='5' xl='4'>
 					<p v-if='lastHint == false' @click='giveHint' class='hintstyle'>Nápovědu prosím</p>
 				</b-col>
@@ -110,6 +113,7 @@
 				secondHint: false,
 				thirdHint: false,
 				lastHint: false,
+				verbalHint: false,
 				firstLineStyling: [],//arrays used for binding the style of hinted adress
 				firstHintAdress: '',//adress that is supposed to be hinted
 				secondLineStyling: [],
@@ -260,6 +264,9 @@
 				this.lastTask++;
 			},
 			giveHint() {//give hints in the form of making the current adress red and bold
+				if (this.verbalHint == false) {
+					this.verbalHint = true;
+				}
 				if (this.lastTask == 1) {
 					this.firstLineStyling[this.firstHintAdress] = 'font-weight: bold; color: red;';
 					this.firstHint = true;
