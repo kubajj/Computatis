@@ -242,7 +242,7 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 V následující části dokumentace bude podrobně rozebrán.\
 
 ## HTML
-První část definuje uspořádání stránky. Tedy spíše následujícího bílého boxu na stránce:\\
+První část definuje uspořádání stránky. Tedy spíše následujícího bílého boxu na stránce:\
 ![White box](doc-images/WhiteBox.png "Bílý box")
 
 Tato část je ohraničena dvěmi značkami:
