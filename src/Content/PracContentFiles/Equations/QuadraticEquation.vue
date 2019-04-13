@@ -147,6 +147,12 @@
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
 
 	export default {
+		name: 'quadratic-equation',
+		introduction: 'Quadratic equation component',
+		description: `
+			Task to practice the solution of quadratic equations.
+		`,
+		token: "<quadratic-equation/>",
 		data() {
 			return {
 				task: '',

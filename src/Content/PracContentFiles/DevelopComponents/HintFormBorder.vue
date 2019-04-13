@@ -11,15 +11,27 @@
 <script>
 	import {bus} from './../../../main.js'
 	export default {
+		name: 'hint-form',
+		introduction: 'Form input for hints',
+		description: `
+			Renders input form whose border changes between red and green according to what it contains.
+		`,
+		token: "<hint-form style='width: 12px; height: 24px;' v-model='resultsOfUnitInputs[index]' :correctResult='correct'/>",
 		props: {
 			value: {
-				type: String
+				type: String,
+				default: '',
+				note: 'Watches the changes in the user input'
 			},
 			correctResult: {
-				type: String
+				type: String,
+				default: '',
+				note: 'Value of the correct result - the one that has green border'
 			},
 			placeHolder: {
-				type: String
+				type: String,
+				default: '',
+				note: 'Stores the placeholder of the form'
 			},
 		},
 		data() {

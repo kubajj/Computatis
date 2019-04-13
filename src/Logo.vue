@@ -4,6 +4,17 @@
 	</div>
 </template>
 
+<script type="text/javascript">
+	export default {
+		name: 'logo',
+		introduction: 'Page logo',
+		description: `
+			Renders button in logo of apllication.
+		`,
+		token: "<logo/>",
+	}
+</script>
+
 <style>
 	.logo {
 		height: 35px;

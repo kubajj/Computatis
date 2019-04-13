@@ -85,6 +85,12 @@
 	import HintFormBorder from '../DevelopComponents/HintFormBorderSmall.vue'
 
 	export default {
+		name: 'long-multicplication',
+		introduction: 'Long multiplication component',
+		description: `
+			Task to practice multicplication.
+		`,
+		token: "<long-multiplication/>",
 		data() {
 			return {
 				result: 0,

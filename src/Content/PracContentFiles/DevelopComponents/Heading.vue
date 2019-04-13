@@ -6,7 +6,19 @@
 
 <script>
 	export default {
-		props: ['head'],
+		name: 'heading',
+		introduction: 'United heading',
+		description: `
+			Renders a heading of a component with the same styling for all.
+		`,
+		token: "<heading head='Lineární rovnice'/>",
+		props: {
+			head: {
+				type: String,
+				default: '',
+				note: 'Heading of the component'
+			},
+		},
 	}
 </script>
 

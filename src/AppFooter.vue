@@ -7,6 +7,17 @@
 	</footer>
 </template> 
 
+<script type="text/javascript">
+	export default {
+		name: 'app-footer',
+		introduction: 'Page footer',
+		description: `
+			Renders footer of the apllication with a link to my schools webpage.
+		`,
+		token: "<app-footer/>",
+	}
+</script>
+
 <style>
 	.gna {
 		border-radius: 50%;

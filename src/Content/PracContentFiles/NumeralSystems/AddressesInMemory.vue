@@ -90,6 +90,12 @@
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
 
 	export default {
+		name: 'adresses-in-memory',
+		introduction: 'Adresses in memory component',
+		description: `
+			Task to practice computing, twos complement, sign extension and endianity.
+		`,
+		token: "<adresses-in-memory/>",
 		data() {
 			return {
 				intro: '', //introduction to the task

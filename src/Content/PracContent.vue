@@ -53,6 +53,10 @@
 	import {bus} from './../main.js';
 
 	export default {
+		name: "prac-content",
+		introduction: "Component that defines the layout of practice part.",
+		description: "This component renders dropdowns on the left side of the white content box and enables router-view to render components of unique tasks.",
+		token: "<router-link to='/procvicovani'>Procvicovani</router-link>",
 		methods: { 
 			next() {
 				bus.$emit('next');//genTask on demand in children components

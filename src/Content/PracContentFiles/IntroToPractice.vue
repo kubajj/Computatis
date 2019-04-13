@@ -12,3 +12,14 @@
 		</b-row>		
 	</div>
 </template>
+
+<script type="text/javascript">
+	export default {
+		name: 'intro-to-practice',
+		introduction: 'Practice introductory text',
+		description: `
+			Renders introduction to practice component with link to git repositories.
+		`,
+		token: "<intro-to-practice/>",
+	}
+</script>

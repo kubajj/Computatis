@@ -9,8 +9,20 @@
 </template>
 
 <script>
-	export default {
-		props: ['num'],
+	export default {		
+		name: 'nbsp',
+		introduction: 'Renders one to five times nbsp',
+		description: `
+			Renders non-breakable spaces.
+		`,
+		token: "<nbsp :num='maxSpaces - correctUnit.length'/>",
+		props: {
+			num: {
+				type: Number,
+				default: '',
+				note: 'Number that says how many times &nbsp should be rendered'
+			},
+		},
 	}
 </script>
 

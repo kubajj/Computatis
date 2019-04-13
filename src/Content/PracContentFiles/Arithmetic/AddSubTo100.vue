@@ -35,6 +35,12 @@
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
 
 	export default {
+		name: 'addition-subtraction',
+		introduction: 'Addition and substraction to 100 component',
+		description: `
+			Task to practice addition and subtraction with relatively small numbers.
+		`,
+		token: "<addition-subtraction/>",
 		data() {
 			return {
 				result: 0,

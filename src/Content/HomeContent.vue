@@ -12,3 +12,14 @@
 	</b-row>
   </div>
 </template>
+
+<script type="text/javascript">
+	export default {
+		name: 'home-content',
+		introduction: 'Content of the homepage',
+		description: `
+			Renders introductory text at the homepage.
+		`,
+		token: "<home-content/>",
+	}
+</script>

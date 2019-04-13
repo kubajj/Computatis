@@ -74,6 +74,12 @@
 	import HinForm from './../DevelopComponents/HintFormBorder.vue'
 	
 	export default {
+		name: 'base-conversion',
+		introduction: 'Base conversion component',
+		description: `
+			Task to practice conversion between numeral systems. Binary, decimal and hexadecimal system was implmented.
+		`,
+		token: "<base-conversion/>",
 		data() {
 			return {
 				task: '',

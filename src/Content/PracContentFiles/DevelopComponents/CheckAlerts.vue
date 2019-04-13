@@ -9,7 +9,24 @@
 	import {bus} from './../../../main.js'
 
 	export default {
-		props: ['checked', 'result'],
+		name: 'ch-alerts',
+		introduction: 'Alert that shows user whether his result is correct or not',
+		description: `
+			Shows an alert green alert with 'Správně' when users result is right and red alert with 'Špatně' when it is not.
+		`,
+		token: "<ch-alerts :checked='checked' :result='result'/>",
+		props: {
+			checked: {
+				type: String,
+				default: '',
+				note: 'Whether users result is right or wrong'
+			},
+			result: {
+				type: String,
+				default: '',
+				note: 'Correct result'
+			}
+		},
 		methods: {			
 			next() {
 				bus.$emit('next');

@@ -14,6 +14,12 @@
 	import Logo from './Logo.vue'
 
 	export default {
+		name: 'app-navigation',
+  		introduction: 'Navbar',
+  		description: `
+  			This component renders the page navbar.
+  		`,
+  		token: "<app-navigation/>",
 		components: {
 			'logo': Logo,
 		}

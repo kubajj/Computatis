@@ -38,6 +38,12 @@
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
 
 	export default {
+		name: 'linear-equation',
+		introduction: 'Linear equation component',
+		description: `
+			Task to practice the solution of liear equations.
+		`,
+		token: "<linear-equation/>",
 		data() {
 			return {
 				task: '',
