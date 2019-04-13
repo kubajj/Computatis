@@ -18,27 +18,27 @@
 		</b-row>
 		<div style='font-family: monospace'>
 			<b-row>
-				<b-col v-if='firsthint == false' cols='12' sm='12' md='12' lg='10' xl='8'>
-					{{ firstlineadress }} | <span v-for='byte in firstvalues'>{{byte}} </span>
+				<b-col v-if='firstHint == false' cols='12' sm='12' md='12' lg='10' xl='8'>
+					{{ firstLineAdress }} | <span v-for='byte in firstValues'>{{byte}} </span>
 				</b-col>
 				<b-col v-else cols='12' sm='12' md='12' lg='10' xl='8'>
-					{{ firstlineadress }} | <span v-for='(byte, index) in firstvalues'><span :style='firstlinestyling[index]'>{{byte}} </span></span>
+					{{ firstLineAdress }} | <span v-for='(byte, index) in firstValues'><span :style='firstLineStyling[index]'>{{byte}} </span></span>
 				</b-col>
 			</b-row>
 			<b-row>
-				<b-col v-if='secondhint == false' cols='12' sm='12' md='12' lg='10' xl='8'>
-					{{ secondlineadress }} | <span v-for='byte in secondvalues'><span>{{byte}} </span></span>
+				<b-col v-if='secondHint == false' cols='12' sm='12' md='12' lg='10' xl='8'>
+					{{ secondLineAdress }} | <span v-for='byte in secondValues'><span>{{byte}} </span></span>
 				</b-col>
 				<b-col v-else cols='12' sm='12' md='12' lg='10' xl='8'>
-					{{ secondlineadress }} | <span v-for='(byte, index) in secondvalues'><span :style='secondlinestyling[index]'>{{byte}} </span></span>
+					{{ secondLineAdress }} | <span v-for='(byte, index) in secondValues'><span :style='secondLineStyling[index]'>{{byte}} </span></span>
 				</b-col>
 			</b-row>
 			<b-row>
-				<b-col v-if='thirdhint == false' cols='12' sm='12' md='12' lg='10' xl='8'>
-					{{ thirdlineadress }} | <span v-for='byte in thirdvalues'><span>{{byte}} </span></span>
+				<b-col v-if='thirdHint == false' cols='12' sm='12' md='12' lg='10' xl='8'>
+					{{ thirdLineAdress }} | <span v-for='byte in thirdValues'><span>{{byte}} </span></span>
 				</b-col>
 				<b-col v-else cols='12' sm='12' md='12' lg='10' xl='8'>
-					{{ thirdlineadress }} | <span v-for='(byte, index) in thirdvalues'><span :style='thirdlinestyling[index]'>{{byte}} </span></span>
+					{{ thirdLineAdress }} | <span v-for='(byte, index) in thirdValues'><span :style='thirdLineStyling[index]'>{{byte}} </span></span>
 				</b-col>
 			</b-row>
 		</div>
@@ -52,7 +52,7 @@
 			<b-row>
 				<b-col cols='4' sm='4' md='6' lg='7' xl='8'/>
 				<b-col cols='8' sm='8' md='6' lg='5' xl='4'>
-					<p v-if='lasthint == false' @click='giveHint' class='hintstyle'>Nápovědu prosím</p>
+					<p v-if='lastHint == false' @click='giveHint' class='hintstyle'>Nápovědu prosím</p>
 				</b-col>
 			</b-row>
 			<b-row>
@@ -97,18 +97,18 @@
 				checked: '',
 				correctResult: '',
 				values: [],//array with all 24 bytes
-				firstvalues: [],//array with first 8 bytes
-				secondvalues: [],//array with second line of bytes
-				thirdvalues: [],//array with third line of bytes
-				firsthint: false, //booleans used for hints
-				secondhint: false,
-				thirdhint: false,
-				lasthint: false,
-				firstlinestyling: [],//arrays used for binding the style of hinted adress
-				firsthintadress: '',//adress that is supposed to be hinted
-				secondlinestyling: [],
-				secondhintadress: '',
-				thirdlinestyling: [],
+				firstValues: [],//array with first 8 bytes
+				secondValues: [],//array with second line of bytes
+				thirdValues: [],//array with third line of bytes
+				firstHint: false, //booleans used for hints
+				secondHint: false,
+				thirdHint: false,
+				lastHint: false,
+				firstLineStyling: [],//arrays used for binding the style of hinted adress
+				firstHintAdress: '',//adress that is supposed to be hinted
+				secondLineStyling: [],
+				secondHintAdress: '',
+				thirdLineStyling: [],
 				task: '',
 				lastTask: 0,//stores number of last task, so the application knows, which is going to be next
 				firstAdress: '',//address that is in the first task				
@@ -120,9 +120,9 @@
 				thirdVal: '',
 				bits: '',//stores number of bits that the number in the third task has
 				choices: [],//stores possible answers for he third task - they show as options in the drop down
-				firstlineadress: "",
-				secondlineadress: "",
-				thirdlineadress: "",
+				firstLineAdress: "",
+				secondLineAdress: "",
+				thirdLineAdress: "",
 			}
 		}, 
 		components: {
@@ -156,33 +156,33 @@
 				this.$data.usersResult = '';
 				this.thirdVal = '';
 				this.selected = '';
-				this.firstlinestyling = [];
-				this.secondlinestyling = [];
-				this.thirdlinestyling = [];
-				this.firsthint = false;
-				this.secondhint = false;
-				this.thirdhint = false;
-				this.lasthint = false;
+				this.firstLineStyling = [];
+				this.secondLineStyling = [];
+				this.thirdLineStyling = [];
+				this.firstHint = false;
+				this.secondHint = false;
+				this.thirdHint = false;
+				this.lastHint = false;
 			},			
 			genTask() {//this method generates the task
 				this.resetAll();
 				var beginning = this.randomNumber(2097152,33554431)*8;
-				this.firstlineadress = "0" + this.convertNumber(beginning, 10, 16).toUpperCase();
-				this.intro = 'Pomocí nějakého ladícího nástroje jsme zíkali másledující text výpis obsahu 24 bajtů paměti od adresy 0x' + this.firstlineadress +':'
-				this.secondlineadress = "0" + this.convertNumber(beginning + 8, 10, 16).toUpperCase();
-				this.thirdlineadress = "0" + this.convertNumber(beginning + 16, 10, 16).toUpperCase();
+				this.firstLineAdress = "0" + this.convertNumber(beginning, 10, 16).toUpperCase();
+				this.intro = 'Pomocí nějakého ladícího nástroje jsme zíkali másledující text výpis obsahu 24 bajtů paměti od adresy 0x' + this.firstLineAdress +':'
+				this.secondLineAdress = "0" + this.convertNumber(beginning + 8, 10, 16).toUpperCase();
+				this.thirdLineAdress = "0" + this.convertNumber(beginning + 16, 10, 16).toUpperCase();
 
 				var firstPos = this.randomNumber(0, 7);
-				this.firsthintadress = firstPos; //index of the hint in firstlinestyling
+				this.firstHintAdress = firstPos; //index of the hint in firstLineStyling
 				var secondPos = this.randomNumber(8, 15);
-				this.secondhintadress = secondPos - 8; //index of the hint in secondlinestyling
+				this.secondHintAdress = secondPos - 8; //index of the hint in secondLineStyling
 				
 				this.firstAdress = "0" + this.convertNumber(beginning + firstPos, 10, 16).toUpperCase();
 				this.secondAdress = "0" + this.convertNumber(beginning + secondPos, 10, 16).toUpperCase();//generate addresses that are used in tasks				
 
-				var firstline = this.firstlineadress + " | ";
-				var secondline = this.secondlineadress + " | ";
-				var thirdline = this.thirdlineadress + " | ";
+				var firstline = this.firstLineAdress + " | ";
+				var secondline = this.secondLineAdress + " | ";
+				var thirdline = this.thirdLineAdress + " | ";
 
 				for (let i = 0; i < 24; i++) {
 					this.values[i] = this.convertNumber(this.randomNumber(0, 255), 10, 16).toUpperCase();
@@ -215,9 +215,9 @@
 				}
 
 				for (let i = 0; i < 8; i++) {
-					this.firstvalues[i] = this.values[i];
-					this.secondvalues[i] = this.values[i + 8];
-					this.thirdvalues[i] = this.values[i + 16];
+					this.firstValues[i] = this.values[i];
+					this.secondValues[i] = this.values[i + 8];
+					this.thirdValues[i] = this.values[i + 16];
 				}
 				this.giveTask();
 			},
@@ -241,12 +241,12 @@
 				if (this.lastTask == 0) {
 					this.task = '8-bitové číslo uložené na adrese 0x' + this.firstAdress + ' interpretujte jako celé číslo ve dvojkovém doplňku a napište jeho hodnotu v desítkové soustavě.';
 				} else if (this.lastTask == 1) {
-					this.firstlinestyling = [];
-					this.firsthint = false;
+					this.firstLineStyling = [];
+					this.firstHint = false;
 					this.task = '8-bitové číslo uložené na adrese 0x' + this.secondAdress + ' považujte za celé číslo ve dvojkovém doplňku a v šestnáctkové soustavě napište hodnotu, která vznikne jeho znaménkovým rozšířením na 16 bitů.';
 				} else if (this.lastTask == 2) {
-					this.secondlinestyling = [];
-					this.secondhint = false;
+					this.secondLineStyling = [];
+					this.secondHint = false;
 					var choices = this.bits == 16 ? "(little-endian nebo big-endian)" : "(little-endian, big-endian nebo pdp-endian)";
 					this.task = 'V jakém uspořádání ' + choices + ' bylo do paměti na adresu 0x' + this.thirdAdress + ' uloženo ' + this.bits +'-bitové číslo 0x' + this.thirdVal + '?'
 				}
@@ -255,63 +255,63 @@
 			},
 			giveHint() {//give hints in the form of making the current adress red and bold
 				if (this.lastTask == 1) {
-					this.firstlinestyling[this.firsthintadress] = 'font-weight: bold; color: red;';
-					this.firsthint = true;
+					this.firstLineStyling[this.firstHintAdress] = 'font-weight: bold; color: red;';
+					this.firstHint = true;
 				} else if (this.lastTask == 2) {
-					this.secondlinestyling[this.secondhintadress] = 'font-weight: bold; color: red;';
-					this.secondhint = true;	
+					this.secondLineStyling[this.secondHintAdress] = 'font-weight: bold; color: red;';
+					this.secondHint = true;	
 				} else if (this.lastTask == 3) {
-					this.lasthint = true;
+					this.lastHint = true;
 					var quantity = this.bits / 8;
 					var position = this.thirdhintadress;
 					if (this.thirdhintadress < 8) {
 						console.log('Prvni')
 						for (let i = this.thirdhintadress; i < 8; i++) {
-							this.firstlinestyling[i] = 'font-weight: bold; color: red;';
+							this.firstLineStyling[i] = 'font-weight: bold; color: red;';
 							position++;
 							quantity--;
 							if (quantity == 0) {
 								break;
 							}
 						}
-						this.firsthint = true;
+						this.firstHint = true;
 						if (quantity > 0) {
 							for (let i = position; i < 16; i++) {
-							this.secondlinestyling[i - 8] = 'font-weight: bold; color: red;';
+							this.secondLineStyling[i - 8] = 'font-weight: bold; color: red;';
 							quantity--;
 								if (quantity == 0) {
 									break;
 								}
 							}
-							this.secondhint = true;
+							this.secondHint = true;
 						}
 					} else if (this.thirdhintadress < 16) {
 						console.log('druhy')
 						for (let i = this.thirdhintadress; i < 16; i++) {
-							this.secondlinestyling[i - 8] = 'font-weight: bold; color: red;';
+							this.secondLineStyling[i - 8] = 'font-weight: bold; color: red;';
 							position++;
 							quantity--;
 							if (quantity == 0) {
 								break;
 							}
 						}
-						this.secondhint = true;
+						this.secondHint = true;
 						if (quantity > 0) {
 							while (quantity != 0) {
-								this.thirdlinestyling[position - 16] = 'font-weight: bold; color: red;';
+								this.thirdLineStyling[position - 16] = 'font-weight: bold; color: red;';
 								position++;
 								quantity--;
 							}
-							this.thirdhint = true;
+							this.thirdHint = true;
 						}
 					} else {
 						console.log('treti')
 						while (quantity != 0) {
-							this.thirdlinestyling[position - 16] = 'font-weight: bold; color: red;';
+							this.thirdLineStyling[position - 16] = 'font-weight: bold; color: red;';
 							position++;
 							quantity--;
 						}
-						this.thirdhint = true;
+						this.thirdHint = true;
 					}
 				}
 			},
