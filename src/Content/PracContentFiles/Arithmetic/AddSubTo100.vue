@@ -33,7 +33,8 @@
 	import { VueMathjax } from 'vue-mathjax'
 	import Heading from './../DevelopComponents/Heading.vue'
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
-
+	//Task to practice addition and subtraction with relatively small numbers.
+	//@group Tasks
 	export default {
 		name: 'addition-subtraction',
 		introduction: 'Addition and substraction to 100 component',
@@ -58,15 +59,23 @@
 			'ch-alerts': CheckAlerts,
 		},
 		methods: {
-			randomNumber(min, max) {//this method generates a random number in the interval that was specified in the parentheses
+			//@vuese
+			//this method generates a random number in the interval that was specified in the parentheses
+			//@arg minimal value;&nbsp;
+			//@arg maximal value
+			randomNumber(min, max) {
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
-			sign() {//this method simplifies the process of having numbers with negative value while not including 0
+			//@vuese
+			//this method simplifies the process of having numbers with negative value while not including 0
+			sign() {
 				var arr = [1, -1];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			genTask() {	//this method generates the task					
+			//@vuese
+			//this method generates the task
+			genTask() {						
 				this.$data.usersResult = '';
 			    this.checked = ''
 			    var quantity = this.randomNumber(3, this.maxQuantity);	
@@ -87,6 +96,8 @@
 			    this.result = currentValue;
 			    this.task += ' = $$';
 			},
+			//@vuese
+			//this method handles results submitted by user and their evaluation and correction
 			check() {
 				if (this.checked == 'right') {//if the user result is right and user presses enter 2 times, it generates next task
 					this.genTask();

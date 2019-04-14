@@ -5,6 +5,8 @@
 </template>
 
 <script>
+	// @group Development components
+	// Renders a heading of a component with the same styling for all.
 	export default {
 		name: 'heading',
 		introduction: 'United heading',

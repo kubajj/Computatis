@@ -15,6 +15,9 @@
 </template>
 
 <script type="text/javascript">
+	//@vuese
+	//@group Home
+	//Renders introductory text at the homepage.
 	export default {
 		name: 'home-content',
 		introduction: 'Content of the homepage',

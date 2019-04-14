@@ -51,7 +51,8 @@
 
 <script>
 	import {bus} from './../main.js';
-
+	//@group Practice
+	//This component renders dropdowns on the left side of the white content box and enables router-view to render components of unique tasks.
 	export default {
 		name: "prac-content",
 		introduction: "Component that defines the layout of practice part.",

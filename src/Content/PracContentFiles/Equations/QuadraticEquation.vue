@@ -145,7 +145,8 @@
 	import { VueMathjax } from 'vue-mathjax'
 	import Heading from './../DevelopComponents/Heading.vue'
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
-
+	//Task to practice the solution of quadratic equations.
+	//@group Tasks
 	export default {
 		name: 'quadratic-equation',
 		introduction: 'Quadratic equation component',
@@ -187,22 +188,32 @@
 			'heading': Heading,
 		},		
 		methods: {
-			randomNumber(min, max) { //this method generates a random number in the interval that was specified in the parentheses
+			//@vuese
+			//this method generates a random number in the interval that was specified in the parentheses
+			//@arg minimal value;&nbsp;
+			//@arg maximal value
+			randomNumber(min, max) {
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
-			sign() { //this method simplifies the process of having numbers with negative value while not including 0
+			//@vuese
+			//this method simplifies the process of having numbers with negative value while not including 0
+			sign() { 
 				var arr = [1, -1];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			resetAll() { //this method resets all variables that have been changed and will be used in the next call of genTask
+			//@vuese
+			//this method resets all variables that have been changed and will be used in the next call of genTask
+			resetAll() { 
 				this.onlyone = false;
 				this.usersX1 = '';
 				this.usersX2 = '';
 				this.mode = 'disc';
 				this.disc = '$$x_{1;2} = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$';
 			},
-			genTask() { //this method generates the task	
+			//@vuese
+			//this method generates the task
+			genTask() { 	
 				this.resetAll();			
 				var x1 = this.randomNumber(-19, 19);
 				var x2 = this.randomNumber(-19, 19);
@@ -228,7 +239,9 @@
 				this.$data.usersX1 = '';
 				this.$data.usersX2 = '';
 			},
-			controlA(a, mode) { //this method handles special values before x^2
+			//@vuese
+			//this method handles special values before x^2
+			controlA(a, mode) { 
 				var ax = a;
 				var add = '';
 				if (mode != 3) {
@@ -245,7 +258,9 @@
 				}
 				return ax;
 			},
-			controlB(b, mode) {//this method handles special values before x
+			//@vuese
+			//this method handles special values before x
+			controlB(b, mode) {
 				var bx = '';
 				if (b > 0) {
 					if (mode == 3) {
@@ -265,7 +280,9 @@
 				}
 				return bx;
 			},
-			controlC(c, mode) {//this method adds + operand where it is needed before c and also handles special values of c term
+			//@vuese
+			//this method adds + operand where it is needed before c and also handles special values of c term
+			controlC(c, mode) {
 				var cx = c;
 				if (c > 0) {
 					cx = '+' + c;
@@ -277,7 +294,9 @@
 				}	
 				return cx;
 			},
-			unmodTaskGenerator(a, b, c, ax, bx, cx) { //this method generates basic unmodified task
+			//@vuese
+			//this method generates basic unmodified task
+			unmodTaskGenerator(a, b, c, ax, bx, cx) { 
 				if (this.mode == 'sqrt') {	
 					if (c > 0)	{
 						this.sqrt = '$$' + ax + '=' + '-' + c + '$$';
@@ -312,7 +331,9 @@
 				var string = '$$' + ax + bx + cx + '= 0$$';
 				this.unmodtask = string;
 			},
-			modTaskGenerator(a, b, c) {		//this method changes the unmodtask to be more complicated by adding right part (after =)		
+			//@vuese
+			//this method changes the unmodtask to be more complicated by adding right part (after =)
+			modTaskGenerator(a, b, c) {				
 				var amod = this.randomNumber(-99, 99);
 				var bmod = this.randomNumber(-99, 99);
 				var cmod = this.randomNumber(-99, 99);
@@ -332,6 +353,8 @@
 				var modstring = '$$' + ax2 + bx2 + cx2 + '= ' + amod + bmod + cmod + '$$';
 				this.task = modstring;
 			},
+			//@vuese			
+			//this method handles results submitted by user and their evaluation and correction
 			check() {
 				if (this.checked == 'right') { //if the user result is right and user press enter 2 times, it generates next task
 					this.genTask();
@@ -349,8 +372,12 @@
 					this.onlyone = false;
 				}
 			},
-			checkOfTheDiscForm(inputvalue, right, state) {//this mathod handles the correction of inputs in discriminant formula
-				console.log('checking' + inputvalue + " " + right + " " + state);
+			//@vuese
+			//this mathod handles the correction of inputs in discriminant formula
+			//@arg inputValue = user input;&nbsp;
+			//@arg right = correct value;&nbsp;
+			//@arg state = variable that is supposed to be changed
+			checkOfTheDiscForm(inputvalue, right, state) {
 				var value = false;
 				if (inputvalue == right) {
 					value = true;
@@ -366,11 +393,15 @@
 					this.hint3 = true;
 				}
 			},
-			discrime() {//simplify the change from whole disc formula to disc with inputs
+			//@vuese
+			//simplify the change from whole disc formula to disc with inputs
+			discrime() {
 				this.disc = '$$x_{1;2} = $$';
 				this.ok = true;
 			},
-			hideOK() { //hides OK button
+			//@vuese
+			//hides OK button
+			hideOK() { 
 				this.hint3 = true;
 				this.ok = true;
 			},

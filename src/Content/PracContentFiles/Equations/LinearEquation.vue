@@ -37,6 +37,8 @@
 	import Heading from './../DevelopComponents/Heading.vue'
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
 
+	// Task to practice the solution of liear equations.
+	// @group Tasks
 	export default {
 		name: 'linear-equation',
 		introduction: 'Linear equation component',
@@ -60,25 +62,37 @@
 			'ch-alerts': CheckAlerts,
 		},
 		methods: {
-			randomNumber(min, max) { //this method generates a random number in the interval that was specified in the parentheses
+			//@vuese
+			//this method generates a random number in the interval that was specified in the parentheses
+			//@arg minimal value;
+			//@arg maximal value
+			randomNumber(min, max) { 
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
-			sign() { //this method simplifies the process of having numbers with negative value while not including 0
+			//@vuese
+			//this method simplifies the process of having numbers with negative value while not including 0
+			sign() { 
 				var arr = [1, -1];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd]; //it returns 1 or -1
 			},
-			variants() { //this method decide whether the number, which was generated will be number of xs or just number
+			//@vuese
+			//this method decide whether the number, which was generated will be number of xs or just number
+			variants() { 
 				var arr = ['x', 'n'];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			position() {	//b == before "=", a == after "="			
+			//@vuese
+			//b == before "=", a == after "="
+			position() {				
 				var arr = ['b', 'a'];
 				var rnd = this.randomNumber(0,1);
 				return arr[rnd];
 			},
-			resetAll() { //this method resets all variables that have been changed and will be used in the next call of genTask
+			//@vuese
+			//this method resets all variables that have been changed and will be used in the next call of genTask
+			resetAll() { 
 				this.checked = '';
 				this.usersResult = '';				
 				this.task = '';
@@ -86,10 +100,14 @@
 				this.hinted = false;
 				this.same = false;
 			},
-			hint() { //shows hint
+			//@vuese
+			//shows hint
+			hint() { 
 				this.hinted = true;
 			},
-			genTask() { //this method generates the task
+			//@vuese
+			//this method generates the task
+			genTask() { 
 				this.resetAll();
 				var quantity = this.randomNumber(1, 5);
 				var rationalResult = false; //the result should be only k, k/2 or k/4, so it is easier to be inserted in the result input
@@ -159,7 +177,9 @@
 				}
 				this.result = x;
 			},
-			controlX(x) { //this method handles the avoidance of having 1x and -1x, which are substituted by only x and -x
+			//@vuese
+			//this method handles the avoidance of having 1x and -1x, which are substituted by only x and -x
+			controlX(x) { 
 				if (x == 1) {
 					return '';
 				} else if (x == -1) {
@@ -167,6 +187,8 @@
 				} 
 				return x;
 			},
+			//@vuese
+			//this method handles results submitted by user and their evaluation and correction
 			check() {
 				if (this.checked == 'right') { //if the user result is right and user press enter 2 times, it generates next task
 					this.genTask();

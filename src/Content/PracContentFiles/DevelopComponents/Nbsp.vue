@@ -9,6 +9,8 @@
 </template>
 
 <script>
+	// @group Development components
+	//Renders non-breakable spaces.
 	export default {		
 		name: 'nbsp',
 		introduction: 'Renders one to five times nbsp',
@@ -17,10 +19,10 @@
 		`,
 		token: "<nbsp :num='maxSpaces - correctUnit.length'/>",
 		props: {
+			//Number that says how many times a non-breakable space should be rendered
 			num: {
 				type: Number,
 				default: '',
-				note: 'Number that says how many times &nbsp should be rendered'
 			},
 		},
 	}

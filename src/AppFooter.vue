@@ -8,6 +8,9 @@
 </template> 
 
 <script type="text/javascript">
+	//@vuese
+	//@group Layout
+	//Renders footer of the apllication with a link to my schools webpage.
 	export default {
 		name: 'app-footer',
 		introduction: 'Page footer',

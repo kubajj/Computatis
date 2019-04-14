@@ -83,7 +83,8 @@
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
 	import Nbsp from './../DevelopComponents/Nbsp.vue'	
 	import HintFormBorder from '../DevelopComponents/HintFormBorderSmall.vue'
-
+	//@group Tasks
+	//Task to practice multicplication.
 	export default {
 		name: 'long-multicplication',
 		introduction: 'Long multiplication component',
@@ -113,10 +114,16 @@
 			'nbsp': Nbsp,
 		},
 		methods: {
-			randomNumber(min, max) {//this method generates a random number in the interval that was specified in the parentheses
+			//@vuese
+			//this method generates a random number in the interval that was specified in the parentheses
+			//@arg minimal value;&nbsp;
+			//@arg maximal value
+			randomNumber(min, max) {
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
-			genTask() {	//this method generates the task (more of a resetAll method)
+			//@vuese
+			//this method generates the task (more of a resetAll method)
+			genTask() {	
 				this.begin = false;
 				this.multiplier = this.randomNumber(11, 99);
 				this.number = this.randomNumber(101, 999);
@@ -124,6 +131,8 @@
 				this.checked = '';
 				this.$data.usersResult = '';				
 			},
+			//@vuese
+			//this method handles results submitted by user and their evaluation and correction
 			check() {
 				if (this.checked == 'right') {//if the user result is right and user presses enter 2 times, it generates next task
 					this.genTask();
@@ -136,6 +145,8 @@
 				}
 				this.$data.usersResult = '';
 			}, 
+			//@vuese
+			//checks whether all of the inputs in the third row are correct
 			checkHint() {
 				var allCorrect = true;
 				var index = 0;
@@ -148,7 +159,9 @@
 					this.checked = 'right';
 				}
 			},
-			giveHint() {//shows the inputs
+			//@vuese
+			//shows the inputs
+			giveHint() {
 				this.begin = true;
 				for (let i = 0; i < this.resultsOfResInputs.length; i++) {					
 					this.$data.resultsOfResInputs[i] = '';
@@ -156,27 +169,40 @@
 					this.$data.resultsOfDecInputs[i] = '';
 				} 
 			},
-			grade(givenNum) {//shows the maximal grade of the number
+			//@vuese
+			//shows the maximal grade of the number
+			//@arg givenNum = number whose grade you want to know
+			grade(givenNum) {
 				return Math.ceil(Math.log10(givenNum));
 			},
 		},
 		computed: {
-			decimal() {//the decimal part of multiplier
+			//@vuese
+			//the decimal part of multiplier
+			decimal() {
 				var dec = (this.multiplier - (this.multiplier % 10)) / 10;
 				return dec;
 			},
-			decRes() {//the result of the multiplication between number and decimal
+			//@vuese
+			//the result of the multiplication between number and decimal
+			decRes() {
 				return this.decimal * this.number;
 			},
-			unit() {//the unit part of multiplier
+			//@vuese
+			//the unit part of multiplier
+			unit() {
 				var uni = this.multiplier % 10;
 				return uni;
 			},
-			unitRes() {//the result of the multiplication between number and unit
+			//@vuese
+			//the result of the multiplication between number and unit
+			unitRes() {
 				var ur = this.unit * this.number;
 				return ur;
 			},
-			correctUnit() {//an array of numbers of the unitRes
+			//@vuese
+			//an array of numbers of the unitRes
+			correctUnit() {
 				var arr= [];
 				var unit = '' + this.unitRes;
 				arr = unit.split("");
@@ -185,19 +211,25 @@
 				}
 				return arr;
 			},
-			correctDec() {//an array of numbers of the decRes
+			//@vuese
+			//an array of numbers of the decRes
+			correctDec() {
 				var arr= [];
 				var dec = '' + this.decRes;
 				arr = dec.split("");
 				return arr;
 			},
-			correctResultNumbers() {//digits of the result
+			//@vuese
+			//digits of the result
+			correctResultNumbers() {
 				var res = this.number * this.multiplier;
 				res = '' + res;
 				var arr = res.split("");
 				return arr;
 			},
-			maxSpaces() {//number of digits of the result
+			//@vuese
+			//number of digits of the result
+			maxSpaces() {
 				return this.correctResultNumbers.length;
 			},
 		},

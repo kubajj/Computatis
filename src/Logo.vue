@@ -4,7 +4,10 @@
 	</div>
 </template>
 
-<script type="text/javascript">
+<script type="text/javascript">	
+	//@vuese
+	//@group Layout
+	//Renders button in logo of apllication.
 	export default {
 		name: 'logo',
 		introduction: 'Page logo',

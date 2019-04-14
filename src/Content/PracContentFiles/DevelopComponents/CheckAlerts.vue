@@ -7,7 +7,8 @@
 
 <script>
 	import {bus} from './../../../main.js'
-
+	// @group Development components
+	// Shows an alert green alert with 'Správně' when users result is right and red alert with 'Špatně' when it is not.
 	export default {
 		name: 'ch-alerts',
 		introduction: 'Alert that shows user whether his result is correct or not',
@@ -16,18 +17,20 @@
 		`,
 		token: "<ch-alerts :checked='checked' :result='result'/>",
 		props: {
+			//Whether users result is right or wrong
 			checked: {
+				//'right' / 'wrong'
 				type: String,
 				default: '',
-				note: 'Whether users result is right or wrong'
 			},
+			//Correct result
 			result: {
 				type: String,
-				default: '',
-				note: 'Correct result'
+				default: '',			
 			}
 		},
-		methods: {			
+		methods: {	
+			//runs genTask in parent component		
 			next() {
 				bus.$emit('next');
 			}

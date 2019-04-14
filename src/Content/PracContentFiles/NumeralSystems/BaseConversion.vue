@@ -73,6 +73,8 @@
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
 	import HinForm from './../DevelopComponents/HintFormBorder.vue'
 	
+	// Task to practice conversion between numeral systems. Binary, decimal and hexadecimal system was implmented.
+	// @group Tasks
 	export default {
 		name: 'base-conversion',
 		introduction: 'Base conversion component',
@@ -117,11 +119,17 @@
 			'ch-alerts': CheckAlerts,
 			'hint-form': HinForm,
 		},
-		methods: {
-			randomNumber(min, max) {//this method generates a random number in the interval that was specified in the parentheses
+		methods: {			
+			//@vuese
+			//this method generates a random number in the interval that was specified in the parentheses
+			//@arg minimal value;&nbsp;
+			//@arg maximal value
+			randomNumber(min, max) {
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
-			convertNumber(n, fromBase, toBase) {//this method converts numbers from one system to another - (number, from, to)
+			// @vuese
+			//this method converts numbers from one system to another - (number, from, to)
+			convertNumber(n, fromBase, toBase) {
 			  	if (fromBase === void 0) {
 			  	  fromBase = 10;
 			 	}
@@ -130,14 +138,18 @@
 				}
 			 	return parseInt(n.toString(), fromBase).toString(toBase);
 			},
-			preposition(mode) {//this method returns correct preposition ("v/ve" equals to the preposition "in" in English)
+			// @vuese
+			//this method returns correct preposition ("v/ve" equals to the preposition "in" in English)
+			preposition(mode) {
 				if (mode == 0) {
 					return "ve";
 				} else {
 					return "v";
 				}
 			},
-			resetAll() { //this method resets all variables that have been changed and will be used in the next call of genTask
+			// @vuese
+			//this method resets all variables that have been changed and will be used in the next call of genTask
+			resetAll() { 
 				this.hinted = false;
 				this.checked = '';
 				this.task = "Převeďte číslo ";
@@ -169,7 +181,9 @@
 				this.showFirstHint = false;
 				this.hintConversion = false;
 			},
-			genTask() {//this method generates the task
+			// @vuese
+			//this method generates the task
+			genTask() {
 				this.resetAll();//calls resetAll method
 				var ArrayOfModes = [2, 10, 16];
 				var ArrayOfTexts = ["dvojkové", "desítkové", "šestnáctkové"];
@@ -186,7 +200,9 @@
 				this.task += this.number + " " + this.preposition(from) + " " + ArrayOfTexts[from] + " soustavě do " + ArrayOfTexts[to] + " soustavy."//finishes the task
 				this.result = this.convertNumber(this.number, modeFrom, modeTo).toUpperCase();//the assign correct result to this.result
 			},
-			hints() { //this method chooses the proper method fro the hint and set variable to correct values, so everything works properly
+			// @vuese
+			//this method chooses the proper method fro the hint and set variable to correct values, so everything works properly
+			hints() { 
 				if (!this.showFirstHint) {
 					var hintMode = '' + this.from + this.to;
 					console.log(hintMode);
@@ -227,7 +243,9 @@
 					}					
 				}
 			},
-			fromTen() {		//shows the user inputs and lets him divide numbers and fill in the rest of the divisions - user is then supposed to read them bottom-up and fill this in the result input
+			// @vuese
+			//shows the user inputs and lets him divide numbers and fill in the rest of the divisions - user is then supposed to read them bottom-up and fill this in the result input
+			fromTen() {		
 				var division = this.number + ' / ' + this.to;
 				this.currentLineHint = division;
 				var times = Math.floor(this.number / this.to);
@@ -242,7 +260,9 @@
 					this.currentLineValues = division + ' = ' + times + ' zb.: ' + modulo; 
 				}
 			},
-			hexBin() { //either 4 numbers in bin equals 1 in hex or one in hex equals 4 in bin
+			// @vuese
+			//either 4 numbers in bin equals 1 in hex or one in hex equals 4 in bin
+			hexBin() { 
 				if (this.lineNumber == 0 && this.to == 2) {
 					this.currentString = "" + this.number;
 					this.currentArray = this.currentString.split(""); //this command makes an array of chars from the number
@@ -279,7 +299,9 @@
 				}
 				this.currentLineValues =  current + ' -> ' + equals;; 
 			},
-			toTen() { //this method lets the user convert each number independently and then compute the result
+			// @vuese
+			//this method lets the user convert each number independently and then compute the result
+			toTen() {
 				if (this.lineNumber == 0) {
 					this.currentString = "" + this.number;
 					this.currentArray = this.currentString.split(""); //this command makes an array of chars from the number
@@ -301,6 +323,8 @@
 				this.correctLinesInputs[1] = "" + this.added;
 				this.currentLineValues =  current + ' -> ' + equals + ' ∑ = ' + this.added; 
 			},
+			// @vuese			
+			//this method handles results submitted by user and their evaluation and correction
 			checkHint() { //this method checks whether the correctResults of the inputs are at least similar (upper/lower case does not matter) and reacts to this information
 				if (this.currentLinesInputs[0].toUpperCase() == this.correctLinesInputs[0]) {		
 					if (this.number == 0 || this.from != 10 && this.currentArray.length == this.lineNumber || this.from != 10 && this.currentArray[this.lineNumber+1] == undefined) {
@@ -325,6 +349,8 @@
 					this.currentLinesInputs[1] = '';			
 				}
 			},
+			// @vuese
+			//this method handles results submitted by user and their evaluation and correction
 			check() {
 				if (this.checked == 'right') {//if the user result is right and user presses enter 2 times, it generates next task
 					this.genTask();

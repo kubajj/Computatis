@@ -12,7 +12,9 @@
 
 <script>
 	import Logo from './Logo.vue'
-
+	//@vuese
+	//@group Layout
+	//This component renders the page navbar.
 	export default {
 		name: 'app-navigation',
   		introduction: 'Navbar',

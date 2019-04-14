@@ -11,30 +11,32 @@
 
 <script>
 	import {bus} from './../../../main.js'
+
+	// Renders input form (with 12px width) whose border changes between red and green according to what it contains.
+	// @group Development components
 	export default {
-		name: 'hint-form',
+		name: 'hint-form-small',
 		introduction: 'Form input for hints with smaller size',
 		description: `
 			Renders input form (with 12px width) whose border changes between red and green according to what it contains.
 		`,
 		token: "<hint-form style='width: 12px; height: 24px;' v-model='resultsOfUnitInputs[index]' :correctResult='correct'/>",
 		props: {
+			//Watches the changes in the user input
 			value: {
 				type: String,
 				default: '',
-				note: 'Watches the changes in the user input'
 			},
+			//Value of the correct result - the one that has green border
 			correctResult: {
 				type: String,
 				default: '',
-				note: 'Value of the correct result - the one that has green border'
 			},
+			//Stores the placeholder of the form
 			placeHolder: {
 				type: String,
 				default: '',
-				note: 'Stores the placeholder of the form'
 			},
-
 		},
 		data() {
 			return {
@@ -48,7 +50,10 @@
 			},
 		},
 		methods: {
+			//@vuese
+			//enables v-modelling of user inputs
 			onInput() {
+				//emits input to v-model in parent component
 				this.$emit('input', this.inputValue);			
 				if (this.inputValue == this.correctResult) {
 					this.status = true;

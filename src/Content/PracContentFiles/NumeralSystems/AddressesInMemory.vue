@@ -67,7 +67,8 @@
                      	v-model="selected"
                      	id="inlineFormCustomSelectPref"/><!-- this shows a drop down with choices for the third task -->
       			</b-col>
-				<b-col cols="8" sm="8" md="7" lg="5" xl="4" v-else><!-- this renders a form for the insertion of the result -->
+				<b-col cols="8" sm="8" md="7" lg="5" xl="4" v-else>
+					<!-- this renders a form for the insertion of the result -->
 					<b-form-input
 			                type="text"
 			                placeholder="Výsledek"
@@ -91,7 +92,8 @@
 	import { VueMathjax } from 'vue-mathjax'
 	import Heading from './../DevelopComponents/Heading.vue'
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
-
+	// This  task was coded to practice computing, twos complement, sign extension and endianity.
+	// @group Tasks
 	export default {
 		name: 'adresses-in-memory',
 		introduction: 'Adresses in memory component',
@@ -140,10 +142,16 @@
 			'ch-alerts': CheckAlerts,
 		},
 		methods: {
-			randomNumber(min, max) {//this method generates a random number in the interval that was specified in the parentheses
+			//@vuese
+			//this method generates a random number in the interval that was specified in the parentheses
+			//@arg minimal value;&nbsp;
+			//@arg maximal value
+			randomNumber(min, max) {
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			},
-			convertNumber(n, fromBase, toBase) {//this method converts numbers from one system to another - (number, from, to)
+			// @vuese
+			//this method converts numbers from one system to another - (number, from, to)
+			convertNumber(n, fromBase, toBase) {
 			  	if (fromBase === void 0) {
 			  	  fromBase = 10;
 			 	}
@@ -157,8 +165,10 @@
 					ret = parseInt(n.toString(), fromBase).toString(toBase);
 			 	}
 			 	return ret;
-			},
-			resetAll() {//this method resets all variables that have been changed and will be used in the next call of genTask
+			},			
+			// @vuese
+			//this method resets all variables that have been changed and will be used in the next call of genTask
+			resetAll() {
 				this.hinted = false;
 				this.checked = '';
 				this.intro = '';
@@ -174,7 +184,9 @@
 				this.thirdHint = false;
 				this.lastHint = false;
 			},			
-			genTask() {//this method generates the task
+			// @vuese		
+			//this method generates the task
+			genTask() {
 				this.resetAll();
 				var beginning = this.randomNumber(2097152,33554431)*8;
 				this.firstLineAdress = "0" + this.convertNumber(beginning, 10, 16).toUpperCase();
@@ -230,8 +242,10 @@
 					this.thirdValues[i] = this.values[i + 16];
 				}
 				this.giveTask();
-			},
-			firstResult(firstVal) {//this method computes the number in two's complement in decimal
+			},			
+			// @vuese	
+			//this method computes the number in two's complement in decimal
+			firstResult(firstVal) {
 				var val = this.convertNumber(firstVal, 16, 10);
 				if (val <= 127) {
 					return val;
@@ -239,7 +253,9 @@
 					return val - 256;
 				}
 			},
-			secondResult(secondVal) {//this method extends the number to 16 bits with sign extension
+			// @vuese
+			//this method extends the number to 16 bits with sign extension
+			secondResult(secondVal) {
 				var val = this.convertNumber(secondVal, 16, 10);
 				if (val <= 127) {
 					return "00" + secondVal;
@@ -247,7 +263,9 @@
 					return "ff" + secondVal;
 				}
 			},
-			giveTask() { //this method changes the value of the task variable for the next task
+			// @vuese
+			//this method changes the value of the task variable for the next task
+			giveTask() { 
 				if (this.lastTask == 0) {
 					this.task = '8-bitové číslo uložené na adrese 0x' + this.firstAdress + ' interpretujte jako celé číslo ve dvojkovém doplňku a napište jeho hodnotu v desítkové soustavě.';
 				} else if (this.lastTask == 1) {
@@ -263,7 +281,9 @@
 				this.taskGiven = true;
 				this.lastTask++;
 			},
-			giveHint() {//give hints in the form of making the current adress red and bold
+			// @vuese
+			//give hints in the form of making the current adress red and bold
+			giveHint() {
 				if (this.verbalHint == false) {
 					this.verbalHint = true;
 				}
@@ -328,6 +348,8 @@
 					}
 				}
 			},
+			// @vuese
+			//this method handles results submitted by user and their evaluation and correction
 			check() {
 				if (this.checked == 'right' && this.lastTask == 3) {//if the user result is right, the last task was given and user presses enter 2 times, it generates next task
 					this.genTask();
