@@ -92,15 +92,15 @@
 	import { VueMathjax } from 'vue-mathjax'
 	import Heading from './../DevelopComponents/Heading.vue'
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
-	// This  task was coded to practice computing, twos complement, sign extension and endianity.
+	// This  task was coded to practice computing, twos complement, sign extension and endianness.
 	// @group Tasks
 	export default {
-		name: 'adresses-in-memory',
-		introduction: 'Adresses in memory component',
+		name: 'addresses-in-memory',
+		introduction: 'Addresses in memory component',
 		description: `
 			Task to practice computing, twos complement, sign extension and endianity.
 		`,
-		token: "<adresses-in-memory/>",
+		token: "<addresses-in-memory/>",
 		data() {
 			return {
 				intro: '', //introduction to the task
@@ -116,8 +116,8 @@
 				thirdHint: false,
 				lastHint: false,
 				verbalHint: false,
-				firstLineStyling: [],//arrays used for binding the style of hinted adress
-				firstHintAdress: '',//adress that is supposed to be hinted
+				firstLineStyling: [],//arrays used for binding the style of hinted address
+				firstHintAdress: '',//address that is supposed to be hinted
 				secondLineStyling: [],
 				secondHintAdress: '',
 				thirdLineStyling: [],
@@ -282,7 +282,7 @@
 				this.lastTask++;
 			},
 			// @vuese
-			//give hints in the form of making the current adress red and bold
+			//give hints in the form of making the current address red and bold
 			giveHint() {
 				if (this.verbalHint == false) {
 					this.verbalHint = true;

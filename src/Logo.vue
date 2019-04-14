@@ -7,7 +7,7 @@
 <script type="text/javascript">	
 	//@vuese
 	//@group Layout
-	//Renders button in logo of apllication.
+	//Renders button in logo of application.
 	export default {
 		name: 'logo',
 		introduction: 'Page logo',

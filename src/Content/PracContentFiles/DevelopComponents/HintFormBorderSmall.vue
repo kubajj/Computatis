@@ -51,7 +51,7 @@
 		},
 		methods: {
 			//@vuese
-			//enables v-modelling of user inputs
+			//enables v-modeling of user inputs
 			onInput() {
 				//emits input to v-model in parent component
 				this.$emit('input', this.inputValue);			

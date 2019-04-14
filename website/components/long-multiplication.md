@@ -1,10 +1,10 @@
-# long-multicplication
+# long-multiplication
 
-Task to practice multicplication.
+Task to practice multiplication.
 
 ## Methods
 
-<!-- @vuese:long-multicplication:methods:start -->
+<!-- @vuese:long-multiplication:methods:start -->
 |Method|Description|Parameters|
 |---|---|---|
 |randomNumber|this method generates a random number in the interval that was specified in the parentheses|minimal value;&nbsp;maximal value|
@@ -14,12 +14,12 @@ Task to practice multicplication.
 |giveHint|shows the inputs|-|
 |grade|shows the maximal grade of the number|givenNum = number whose grade you want to know|
 
-<!-- @vuese:long-multicplication:methods:end -->
+<!-- @vuese:long-multiplication:methods:end -->
 
 
 ## Computed
 
-<!-- @vuese:long-multicplication:computed:start -->
+<!-- @vuese:long-multiplication:computed:start -->
 |Computed|Description|
 |---|---|
 |decimal|the decimal part of multiplier|
@@ -31,6 +31,6 @@ Task to practice multicplication.
 |correctResultNumbers|digits of the result|
 |maxSpaces|number of digits of the result|
 
-<!-- @vuese:long-multicplication:computed:end -->
+<!-- @vuese:long-multiplication:computed:end -->
 
 

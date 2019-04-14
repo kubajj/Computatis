@@ -73,7 +73,7 @@
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
 	import HinForm from './../DevelopComponents/HintFormBorder.vue'
 	
-	// Task to practice conversion between numeral systems. Binary, decimal and hexadecimal system was implmented.
+	// Task to practice conversion between numeral systems. Binary, decimal and hexadecimal system was implemented.
 	// @group Tasks
 	export default {
 		name: 'base-conversion',

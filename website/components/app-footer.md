@@ -1,6 +1,6 @@
 # app-footer
 
-Renders footer of the apllication with a link to my schools webpage.
+Renders footer of the application with a link to my schools webpage.
 
 ## Code
 
@@ -18,12 +18,12 @@ Renders footer of the apllication with a link to my schools webpage.
 ```js
 //@vuese
 //@group Layout
-//Renders footer of the apllication with a link to my schools webpage.
+//Renders footer of the application with a link to my schools webpage.
 export default {
 	name: 'app-footer',
 	introduction: 'Page footer',
 	description: `
-		Renders footer of the apllication with a link to my schools webpage.
+		Renders footer of the application with a link to my schools webpage.
 	`,
 	token: "<app-footer/>",
 }
@@ -45,5 +45,3 @@ footer {
 	margin-top: 5px;
 }
 ```
-
-

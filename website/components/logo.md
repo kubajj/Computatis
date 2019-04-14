@@ -1,6 +1,7 @@
 # logo
 
-Renders button in logo of apllication.
+Renders button in logo of application.
+
 
 ## Code
 
@@ -15,12 +16,12 @@ Renders button in logo of apllication.
 ```js
 //@vuese
 //@group Layout
-//Renders button in logo of apllication.
+//Renders button in logo of application.
 export default {
 	name: 'logo',
 	introduction: 'Page logo',
 	description: `
-		Renders button in logo of apllication.
+		Renders button in logo of application.
 	`,
 	token: "<logo/>",
 }
@@ -31,7 +32,3 @@ export default {
 	height: 35px;
 }
 ```
-
-
-
-

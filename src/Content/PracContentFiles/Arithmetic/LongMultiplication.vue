@@ -84,9 +84,9 @@
 	import Nbsp from './../DevelopComponents/Nbsp.vue'	
 	import HintFormBorder from '../DevelopComponents/HintFormBorderSmall.vue'
 	//@group Tasks
-	//Task to practice multicplication.
+	//Task to practice multiplication.
 	export default {
-		name: 'long-multicplication',
+		name: 'long-multiplication',
 		introduction: 'Long multiplication component',
 		description: `
 			Task to practice multicplication.

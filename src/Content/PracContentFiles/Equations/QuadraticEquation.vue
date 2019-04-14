@@ -373,7 +373,7 @@
 				}
 			},
 			//@vuese
-			//this mathod handles the correction of inputs in discriminant formula
+			//this method handles the correction of inputs in discriminant formula
 			//@arg inputValue = user input;&nbsp;
 			//@arg right = correct value;&nbsp;
 			//@arg state = variable that is supposed to be changed
@@ -406,7 +406,7 @@
 				this.ok = true;
 			},
 		},
-		beforeMount() {//genereates the task when the component loads
+		beforeMount() {//generates the task when the component loads
 			this.genTask();
 		},
 		mounted() { //enables the usage of next method in PracContent.vue

@@ -37,7 +37,7 @@
 	//@group Tasks
 	export default {
 		name: 'addition-subtraction',
-		introduction: 'Addition and substraction to 100 component',
+		introduction: 'Addition and subtraction to 100 component',
 		description: `
 			Task to practice addition and subtraction with relatively small numbers.
 		`,

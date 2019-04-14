@@ -17,7 +17,7 @@ Task to practice the solution of quadratic equations.
 |unmodTaskGenerator|this method generates basic unmodified task|-|
 |modTaskGenerator|this method changes the unmodtask to be more complicated by adding right part (after =)|-|
 |check|this method handles results submitted by user and their evaluation and correction|-|
-|checkOfTheDiscForm|this mathod handles the correction of inputs in discriminant formula|inputValue = user input;&nbsp;right = correct value;&nbsp;state = variable that is supposed to be changed|
+|checkOfTheDiscForm|this method handles the correction of inputs in discriminant formula|inputValue = user input;&nbsp;right = correct value;&nbsp;state = variable that is supposed to be changed|
 |discrime|simplify the change from whole disc formula to disc with inputs|-|
 |hideOK|hides OK button|-|
 

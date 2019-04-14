@@ -46,5 +46,3 @@ export default {
 		text-decoration: none;
 	}
 ```
-
-

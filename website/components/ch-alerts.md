@@ -1,6 +1,6 @@
 # ch-alerts
 
-Shows an alert green alert with 'Správně' when users result is right and red alert with 'Špatně' when it is not.
+Shows a green alert with 'Správně' when users result is right and red alert with 'Špatně' when it is not.
 
 ## Props
 
@@ -21,6 +21,7 @@ Shows an alert green alert with 'Správně' when users result is right and red a
 |next|-|-|
 
 <!-- @vuese:ch-alerts:events:end -->
+
 
 ## Code
 
@@ -79,5 +80,3 @@ export default {
 	background-color: #ed5c5c;
 }
 ```
-
-

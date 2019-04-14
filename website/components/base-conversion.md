@@ -1,6 +1,6 @@
 # base-conversion
 
-Task to practice conversion between numeral systems. Binary, decimal and hexadecimal system was implmented.
+Task to practice conversion between numeral systems. Binary, decimal and hexadecimal system was implemented.
 
 ## Methods
 

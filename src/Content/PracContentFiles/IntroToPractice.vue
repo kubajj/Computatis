@@ -14,6 +14,7 @@
 </template>
 
 <script type="text/javascript">
+	//@vuese
 	//@group Practice
 	//Renders introduction to practice component with link to git repositories.
 	export default {

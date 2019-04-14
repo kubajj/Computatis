@@ -29,9 +29,10 @@ Renders input form (with 12px width) whose border changes between red and green 
 <!-- @vuese:hint-form-small:methods:start -->
 |Method|Description|Parameters|
 |---|---|---|
-|onInput|enables v-modelling of user inputs|-|
+|onInput|enables v-modeling of user inputs|-|
 
 <!-- @vuese:hint-form-small:methods:end -->
+
 
 ## Code
 
@@ -90,7 +91,7 @@ export default {
 	},
 	methods: {
 		//@vuese
-		//enables v-modelling of user inputs
+		//enables v-modeling of user inputs
 		onInput() {
 			//emits input to v-model in parent component
 			this.$emit('input', this.inputValue);			
@@ -111,7 +112,3 @@ export default {
 	padding: 0 0 0 0;	
 }
 ```
-
-
-
-

@@ -11,6 +11,7 @@ Renders non-breakable spaces.
 
 <!-- @vuese:nbsp:props:end -->
 
+
 ## Code
 
 ```html
@@ -50,8 +51,3 @@ export default {
 	font-size: 20px;
 }
 ```
-
-
-
-
-

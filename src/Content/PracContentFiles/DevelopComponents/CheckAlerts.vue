@@ -8,7 +8,7 @@
 <script>
 	import {bus} from './../../../main.js'
 	// @group Development components
-	// Shows an alert green alert with 'Správně' when users result is right and red alert with 'Špatně' when it is not.
+	// Shows a green alert with 'Správně' when users result is right and red alert with 'Špatně' when it is not.
 	export default {
 		name: 'ch-alerts',
 		introduction: 'Alert that shows user whether his result is correct or not',

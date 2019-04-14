@@ -37,7 +37,7 @@
 	import Heading from './../DevelopComponents/Heading.vue'
 	import CheckAlerts from './../DevelopComponents/CheckAlerts.vue'
 
-	// Task to practice the solution of liear equations.
+	// Task to practice the solution of linear equations.
 	// @group Tasks
 	export default {
 		name: 'linear-equation',

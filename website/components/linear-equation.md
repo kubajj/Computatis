@@ -1,6 +1,6 @@
 # linear-equation
 
-Task to practice the solution of liear equations.
+Task to practice the solution of linear equations.
 
 ## Methods
 
