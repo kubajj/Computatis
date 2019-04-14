@@ -7,7 +7,7 @@ This component renders dropdowns on the left side of the white content box and e
 <!-- @vuese:prac-content:events:start -->
 |Event Name|Description|Parameters|
 |---|---|---|
-|next|-|-|
+|next|Runs genTask in child components|-|
 
 <!-- @vuese:prac-content:events:end -->
 

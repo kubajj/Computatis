@@ -11,6 +11,3 @@ and
 <router-view></router-view>
 ```
 
-
-
-
