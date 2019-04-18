@@ -190,7 +190,7 @@
 				this.resetAll();
 				var beginning = this.randomNumber(2097152,33554431)*8;
 				this.firstLineAdress = "0" + this.convertNumber(beginning, 10, 16).toUpperCase();
-				this.intro = 'Pomocí nějakého ladícího nástroje jsme zíkali másledující text výpis obsahu 24 bajtů paměti od adresy 0x' + this.firstLineAdress +':'
+				this.intro = 'Pomocí nějakého ladícího nástroje jsme zíkali následující text výpis obsahu 24 bajtů paměti od adresy 0x' + this.firstLineAdress +':'
 				this.secondLineAdress = "0" + this.convertNumber(beginning + 8, 10, 16).toUpperCase();
 				this.thirdLineAdress = "0" + this.convertNumber(beginning + 16, 10, 16).toUpperCase();
 
