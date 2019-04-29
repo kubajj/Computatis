@@ -19,26 +19,26 @@
 		<div style='font-family: monospace'>
 			<b-row>
 				<b-col v-if='firstHint == false' cols='12' sm='12' md='12' lg='10' xl='8'>
-					{{ firstLineAdress }} | <span v-for='byte in firstValues'>{{byte}} </span>
+					{{ firstLineAddress }} | <span v-for='byte in firstValues'>{{byte}} </span>
 				</b-col>
 				<b-col v-else cols='12' sm='12' md='12' lg='10' xl='8'>
-					{{ firstLineAdress }} | <span v-for='(byte, index) in firstValues'><span :style='firstLineStyling[index]'>{{byte}} </span></span>
+					{{ firstLineAddress }} | <span v-for='(byte, index) in firstValues'><span :style='firstLineStyling[index]'>{{byte}} </span></span>
 				</b-col>
 			</b-row>
 			<b-row>
 				<b-col v-if='secondHint == false' cols='12' sm='12' md='12' lg='10' xl='8'>
-					{{ secondLineAdress }} | <span v-for='byte in secondValues'><span>{{byte}} </span></span>
+					{{ secondLineAddress }} | <span v-for='byte in secondValues'><span>{{byte}} </span></span>
 				</b-col>
 				<b-col v-else cols='12' sm='12' md='12' lg='10' xl='8'>
-					{{ secondLineAdress }} | <span v-for='(byte, index) in secondValues'><span :style='secondLineStyling[index]'>{{byte}} </span></span>
+					{{ secondLineAddress }} | <span v-for='(byte, index) in secondValues'><span :style='secondLineStyling[index]'>{{byte}} </span></span>
 				</b-col>
 			</b-row>
 			<b-row>
 				<b-col v-if='thirdHint == false' cols='12' sm='12' md='12' lg='10' xl='8'>
-					{{ thirdLineAdress }} | <span v-for='byte in thirdValues'><span>{{byte}} </span></span>
+					{{ thirdLineAddress }} | <span v-for='byte in thirdValues'><span>{{byte}} </span></span>
 				</b-col>
 				<b-col v-else cols='12' sm='12' md='12' lg='10' xl='8'>
-					{{ thirdLineAdress }} | <span v-for='(byte, index) in thirdValues'><span :style='thirdLineStyling[index]'>{{byte}} </span></span>
+					{{ thirdLineAddress }} | <span v-for='(byte, index) in thirdValues'><span :style='thirdLineStyling[index]'>{{byte}} </span></span>
 				</b-col>
 			</b-row>
 		</div>
@@ -98,7 +98,7 @@
 		name: 'addresses-in-memory',
 		introduction: 'Addresses in memory component',
 		description: `
-			Task to practice computing, twos complement, sign extension and endianity.
+			Task to practice computing, twos complement, sign extension and endianness.
 		`,
 		token: "<addresses-in-memory/>",
 		data() {
@@ -117,24 +117,25 @@
 				lastHint: false,
 				verbalHint: false,
 				firstLineStyling: [],//arrays used for binding the style of hinted address
-				firstHintAdress: '',//address that is supposed to be hinted
+				firstHintAddress: '',//address that is supposed to be hinted
 				secondLineStyling: [],
-				secondHintAdress: '',
+				secondHintAddress: '',
 				thirdLineStyling: [],
 				task: '',
 				lastTask: 0,//stores number of last task, so the application knows, which is going to be next
-				firstAdress: '',//address that is in the first task				
-				secondAdress: '',//address that is in the second task	
-				thirdAdress: '',//address that is in the third task	
+				firstAddress: '',//address that is in the first task				
+				secondAddress: '',//address that is in the second task	
+				thirdAddress: '',//address that is in the third task	
 				correctFirst: '',//correct result for the first task
 				correctSecond: '',//correct result for the second task
 				correctThird: '',//correct result for third the task
 				thirdVal: '',
 				bits: '',//stores number of bits that the number in the third task has
 				choices: [],//stores possible answers for he third task - they show as options in the drop down
-				firstLineAdress: "",
-				secondLineAdress: "",
-				thirdLineAdress: "",
+				firstLineAddress: "",
+				secondLineAddress: "",
+				thirdLineAddress: "",
+				thirdHintAddress: "",
 			}
 		}, 
 		components: {
@@ -183,28 +184,29 @@
 				this.secondHint = false;
 				this.thirdHint = false;
 				this.lastHint = false;
+				this.thirdHintAddress = '';
 			},			
 			// @vuese		
 			//this method generates the task
 			genTask() {
 				this.resetAll();
 				var beginning = this.randomNumber(2097152,33554431)*8;
-				this.firstLineAdress = "0" + this.convertNumber(beginning, 10, 16).toUpperCase();
-				this.intro = 'Pomocí nějakého ladícího nástroje jsme zíkali následující text výpis obsahu 24 bajtů paměti od adresy 0x' + this.firstLineAdress +':'
-				this.secondLineAdress = "0" + this.convertNumber(beginning + 8, 10, 16).toUpperCase();
-				this.thirdLineAdress = "0" + this.convertNumber(beginning + 16, 10, 16).toUpperCase();
+				this.firstLineAddress = "0" + this.convertNumber(beginning, 10, 16).toUpperCase();
+				this.intro = 'Pomocí nějakého ladícího nástroje jsme získali následující výpis obsahu 24 bajtů paměti od adresy 0x' + this.firstLineAddress +':'
+				this.secondLineAddress = "0" + this.convertNumber(beginning + 8, 10, 16).toUpperCase();
+				this.thirdLineAddress = "0" + this.convertNumber(beginning + 16, 10, 16).toUpperCase();
 
 				var firstPos = this.randomNumber(0, 7);
-				this.firstHintAdress = firstPos; //index of the hint in firstLineStyling
+				this.firstHintAddress = firstPos; //index of the hint in firstLineStyling
 				var secondPos = this.randomNumber(8, 15);
-				this.secondHintAdress = secondPos - 8; //index of the hint in secondLineStyling
+				this.secondHintAddress = secondPos - 8; //index of the hint in secondLineStyling
 				
-				this.firstAdress = "0" + this.convertNumber(beginning + firstPos, 10, 16).toUpperCase();
-				this.secondAdress = "0" + this.convertNumber(beginning + secondPos, 10, 16).toUpperCase();//generate addresses that are used in tasks				
+				this.firstAddress = "0" + this.convertNumber(beginning + firstPos, 10, 16).toUpperCase();
+				this.secondAddress = "0" + this.convertNumber(beginning + secondPos, 10, 16).toUpperCase();//generate addresses that are used in tasks				
 
-				var firstline = this.firstLineAdress + " | ";
-				var secondline = this.secondLineAdress + " | ";
-				var thirdline = this.thirdLineAdress + " | ";
+				var firstline = this.firstLineAddress + " | ";
+				var secondline = this.secondLineAddress + " | ";
+				var thirdline = this.thirdLineAddress + " | ";
 
 				for (let i = 0; i < 24; i++) {
 					this.values[i] = this.convertNumber(this.randomNumber(0, 255), 10, 16).toUpperCase();
@@ -220,8 +222,8 @@
 				this.bits = bytes * 8;
 				this.choices = bytes == 2 ? ['little-endian', 'big-endian'] : ['little-endian', 'big-endian', 'pdp-endian'];
 				var thirdPos = this.randomNumber(0, 24 - bytes);
-				this.thirdhintadress = thirdPos;
-				this.thirdAdress = "0" + this.convertNumber(beginning + thirdPos, 10, 16).toUpperCase();
+				this.thirdHintAddress = thirdPos;
+				this.thirdAddress = "0" + this.convertNumber(beginning + thirdPos, 10, 16).toUpperCase();
 				var endianMode = this.randomNumber(0, bytes == 2 ? 1 : 2);
 				for (let i = 0; i < bytes; i++) {
 					if (endianMode == 0) {
@@ -267,16 +269,16 @@
 			//this method changes the value of the task variable for the next task
 			giveTask() { 
 				if (this.lastTask == 0) {
-					this.task = '8-bitové číslo uložené na adrese 0x' + this.firstAdress + ' interpretujte jako celé číslo ve dvojkovém doplňku a napište jeho hodnotu v desítkové soustavě.';
+					this.task = '8-bitové číslo uložené na adrese 0x' + this.firstAddress + ' interpretujte jako celé číslo ve dvojkovém doplňku a napište jeho hodnotu v desítkové soustavě.';
 				} else if (this.lastTask == 1) {
 					this.firstLineStyling = [];
 					this.firstHint = false;
-					this.task = '8-bitové číslo uložené na adrese 0x' + this.secondAdress + ' považujte za celé číslo ve dvojkovém doplňku a v šestnáctkové soustavě napište hodnotu, která vznikne jeho znaménkovým rozšířením na 16 bitů.';
+					this.task = '8-bitové číslo uložené na adrese 0x' + this.secondAddress + ' považujte za celé číslo ve dvojkovém doplňku a v šestnáctkové soustavě napište hodnotu, která vznikne jeho znaménkovým rozšířením na 16 bitů.';
 				} else if (this.lastTask == 2) {
 					this.secondLineStyling = [];
 					this.secondHint = false;
 					var choices = this.bits == 16 ? "(little-endian nebo big-endian)" : "(little-endian, big-endian nebo pdp-endian)";
-					this.task = 'V jakém uspořádání ' + choices + ' bylo do paměti na adresu 0x' + this.thirdAdress + ' uloženo ' + this.bits +'-bitové číslo 0x' + this.thirdVal + '?'
+					this.task = 'V jakém uspořádání ' + choices + ' bylo do paměti na adresu 0x' + this.thirdAddress + ' uloženo ' + this.bits +'-bitové číslo 0x' + this.thirdVal + '?'
 				}
 				this.taskGiven = true;
 				this.lastTask++;
@@ -288,18 +290,17 @@
 					this.verbalHint = true;
 				}
 				if (this.lastTask == 1) {
-					this.firstLineStyling[this.firstHintAdress] = 'font-weight: bold; color: red;';
+					this.firstLineStyling[this.firstHintAddress] = 'font-weight: bold; color: red;';
 					this.firstHint = true;
 				} else if (this.lastTask == 2) {
-					this.secondLineStyling[this.secondHintAdress] = 'font-weight: bold; color: red;';
+					this.secondLineStyling[this.secondHintAddress] = 'font-weight: bold; color: red;';
 					this.secondHint = true;	
 				} else if (this.lastTask == 3) {
 					this.lastHint = true;
 					var quantity = this.bits / 8;
-					var position = this.thirdhintadress;
-					if (this.thirdhintadress < 8) {
-						console.log('Prvni')
-						for (let i = this.thirdhintadress; i < 8; i++) {
+					var position = this.thirdHintAddress;
+					if (this.thirdHintAddress < 8) {
+						for (let i = this.thirdHintAddress; i < 8; i++) {
 							this.firstLineStyling[i] = 'font-weight: bold; color: red;';
 							position++;
 							quantity--;
@@ -318,9 +319,8 @@
 							}
 							this.secondHint = true;
 						}
-					} else if (this.thirdhintadress < 16) {
-						console.log('druhy')
-						for (let i = this.thirdhintadress; i < 16; i++) {
+					} else if (this.thirdHintAddress < 16) {
+						for (let i = this.thirdHintAddress; i < 16; i++) {
 							this.secondLineStyling[i - 8] = 'font-weight: bold; color: red;';
 							position++;
 							quantity--;
@@ -338,7 +338,6 @@
 							this.thirdHint = true;
 						}
 					} else {
-						console.log('treti')
 						while (quantity != 0) {
 							this.thirdLineStyling[position - 16] = 'font-weight: bold; color: red;';
 							position++;

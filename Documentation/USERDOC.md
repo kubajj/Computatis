@@ -7,7 +7,7 @@ Tato tlačítka se nacházejí v levé části tohoto bílého boxu.<br>
 ![Bily box](doc-images/WhiteBox.png "White box")<br>
 V pravé části se vám zobrazují zvolené příklady. Úplně vpravo můžete zadat výsledek do formuláře.<br>
 
-Příklady se generují náhodně, ale jejich výsledek je vždy jednoznačný. Většinou je celočíselný (s výjimkou příkladu "Lineární rovnice", kde je povolen i výsledek končící na .5 a .25) nebo slovní. Po potvrzení výsledku buď klávesou "Enter", nebo tlačítkem vedle formuláře na výsledek, se vám zobrazí zpráva, zda je váš výsledek správný a v případě, že tomu tak není, se vám zobrazí i spravná odpověď.
+Příklady se generují náhodně, ale jejich výsledek je vždy jednoznačný. Většinou je celočíselný (s výjimkou příkladu "Lineární rovnice", kde je povolen i výsledek končící na .5 a .25) nebo slovní. Po potvrzení výsledku buď klávesou "Enter", nebo tlačítkem vedle formuláře na výsledek, se vám zobrazí zpráva, zda je váš výsledek správný a v případě, že tomu tak není, se vám zobrazí i správná odpověď.
 
 Pokud si uživatel/ka není jist/a s postupem řešení, je možné kliknout na tlačítko nápovědy. Nápovědy se od sebe liší. Některé zobrazí část postupu, jiné zobrazí formulář, který má červený okraj. Tento okraj zezelená, pokud je váš mezivýsledek správný (tento typ můžete najít například v příkladu "[Násobení](https://kubajj.gitlab.io/computatis/#/procvicovani/nasobeni)").
 
@@ -17,7 +17,7 @@ V dolní levé části bílého boxu se nacházejí tlačítka Zpět a Další.<
 <h2>Nápovědy a funkce</h2>
 Tato část dokumentace popisuje nápovědy a funkce jednotlivých příkladů.
 <h3>Nápovědy v příkladu Kvadratická rovnice</h3>
-První nápověda vám ukáže rovnici uplavenou do obvyklého tvaru: ax<sup>2</sup> + bx + c = 0.<br>
+První nápověda vám ukáže rovnici upravenou do obvyklého tvaru: ax<sup>2</sup> + bx + c = 0.<br>
 ![Zakladni tvar](doc-images/zakladnitvar.png "Základní tvar")<br>
 Další nápovědy se liší v závislosti na tom, jak rovnice vyšla.<br>
 a) Diskriminant<br>
@@ -50,7 +50,7 @@ Po stlačení nápisu "Chci násobit pod sebou" se zobrazí formuláře s červe
 Pokud uživatel vyplnil poslední řádek formulářů správně, je to považováno za výsledek a může postoupit k dalšímu příkladu.<br>
 ![Plne](doc-images/multifull.png "Plné a zelené")<br>
 <h3>Lineární rovnice</h3>
-Zobrazí linerání rovnici. Po stisknutí tlačítka nápovědy jsou všechny lineární členy převedeny vlevo a absolutní vpravo. Uživatel už pouze udělá podíl dvou čísel, která vycházejí buď jako celé číslo nebo zlomek s číslem 2 nebo 4 ve jmenovateli.<br>
+Zobrazí lineární rovnici. Po stisknutí tlačítka nápovědy jsou všechny lineární členy převedeny vlevo a absolutní vpravo. Uživatel už pouze udělá podíl dvou čísel, která vycházejí buď jako celé číslo nebo zlomek s číslem 2 nebo 4 ve jmenovateli.<br>
 <h3>Adresy v paměti</h3>
 Tento příklad generuje náhodných 24 bajtů paměti. Uživatel je musí analyzovat a splnit postupně 3 úkoly, které se vážou k jedné tabulce.<br>
 a) dvojkový doplněk<br>

@@ -89,7 +89,7 @@
 		name: 'long-multiplication',
 		introduction: 'Long multiplication component',
 		description: `
-			Task to practice multicplication.
+			Task to practice multiplication.
 		`,
 		token: "<long-multiplication/>",
 		data() {

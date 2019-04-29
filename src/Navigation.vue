@@ -1,6 +1,6 @@
 <template>
 	<b-navbar toggleable="md" type="danger" variant="dark" class="navigation"><!-- Creates navigation bar with logo and a link to "Practice" part -->
-		<b-navbar-toggle target="nav_collapse"><img src="./assets/menuicon.png" style="height:35px;"></b-navbar-toggle><!-- This makes the menu collapsable, so it is more responsive -->
+		<b-navbar-toggle target="nav_collapse"><img src="./assets/menuicon.png" style="height:35px;"></b-navbar-toggle><!-- This makes the menu collapsible, so it is more responsive -->
 		<b-collapse is-nav id="nav_collapse">
 		<logo></logo><!-- Imports logo -->
 		<b-navbar-nav>

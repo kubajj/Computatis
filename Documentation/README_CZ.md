@@ -24,7 +24,7 @@ Aplikace je psána ve Vue.js. Předpokladem pro úspěšný vývoj rozšíření
 
 [Vue](https://vuejs.org/v2/guide/) [JS](https://www.w3schools.com/js/) [HTML](https://www.w3schools.com/html/)
 
-Jděte na [Computatis Development Project](https://github.com/kubajj/ComputatisDevelopmentProject), kde naleznete projekt pro snažší vývoj.
+Jděte na [Computatis Development Project](https://github.com/kubajj/ComputatisDevelopmentProject), kde naleznete projekt pro snazší vývoj.
 
 Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vrstva, která se nachází ve složce PracContentFiles, kde se nacházejí jednotlivé složky s příklady.
 Úkolem vývojáře je nezasahovat do ničeho jiného, než do jednotlivých komponentů nebo složek s komponenty (můžete si vytvořit vaši vlastní).
@@ -46,7 +46,7 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 				<span v-if='!hinted' @click='hint' class='hintstyle'>Nápovědu prosím</span>
 				<span v-else><vue-mathjax :formula="hintValue1"/></span>
 			</b-col>
-			<b-col cols="3"><!--následující část vygeneruje fomrulář pro zapsání a kontrolu 
+			<b-col cols="3"><!--následující část vygeneruje formulář pro zapsání a kontrolu 
 			výsledku -->
 				<b-form-input
 		                type="text"
@@ -213,7 +213,7 @@ Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší vr
 					this.genTask();
 					return;
 				}
-				if (this.usersResult == this.result) { /*zkrontroluje, jestli je výsledek, 
+				if (this.usersResult == this.result) { /*zkontroluje, jestli je výsledek, 
 					který uživatel zadal, správný*/
 					this.checked = 'right';
 				} else {
@@ -245,7 +245,7 @@ V následující části dokumentace bude podrobně rozebrán.\
 První část definuje uspořádání stránky. Tedy spíše následujícího bílého boxu na stránce:\
 ![White box](doc-images/WhiteBox.png "Bílý box")
 
-Tato část je ohraničena dvěmi značkami:
+Tato část je ohraničena dvěma značkami:
 ```html
 <template>
 	...
@@ -279,7 +279,7 @@ Veškeré texty, které chcete vypsat v LATEXu musíte [nabindovat](#Bind) do to
 ```
 
 \*vámi zvolená proměnná - specifikujete ji v sekci [data](#data)\
-Proměnná musí být v platném LATEXovém tvaru.\
+Proměnná musí být v platném LaTeXovém tvaru.\
 Začne '$$ a skončí $$'.\
 Všechna zpětná lomítka `\` musí být zdvojena.\
 Příklad takovéto proměnné:
@@ -309,7 +309,7 @@ jednotlivých příkladů. -->
 </heading>
 ```
 
-**Pozor! Je důležité všechny vývojařské komponenty správně naimportovat (bude vysvětleno následovně).** 
+**Pozor! Je důležité všechny vývojářské komponenty správně naimportovat (bude vysvětleno následovně).** 
 
 ## Import
 Část komponentu, která mu říká, které další komponenty a soubory si musí naimportovat je vkládána přímo za tuto značku:
@@ -405,7 +405,7 @@ Props:
 ```javascript
 props: ['head'],
 ```
-Funkce: Upraví vámi nabindovaný nadpis do LATEXového tvaru a tím z něj vytvoří stylový nadpis, který vypadá jako všechno ostatní. \
+Funkce: Upraví vámi nabindovaný nadpis do LaTeXového tvaru a tím z něj vytvoří stylový nadpis, který vypadá jako všechno ostatní. \
 *Používejte prosím značku `\\text {}` pro zachování mezer*
 
 ## CheckAlerts.vue
@@ -454,7 +454,7 @@ Jejich class pro stylování je `class="inputWithBorder"`.
 Klasicky u nich funguje zapisování do proměnných pomocí `v-model`.
 
 V případě touhy po vytvoření vlastního vývojářského komponentu není žádný problém. Vytvořte ho a následně pošlete pull-request.
-*Prosím, o specifikování názvu a přiložení části dokumentace v syntaxu markdown.*
+*Prosím, o specifikování názvu a přiložení části dokumentace v syntaxi markdown.*
 
 ## Metody
 V této části můžete vytvořit jednotlivé metody, které lze volat v reakci na akce uživatele.
@@ -500,7 +500,7 @@ check() {
 		this.genTask();
 		return;
 	}
-	if (this.usersResult == this.result) { /*zkrontroluje, jestli je výsledek, 
+	if (this.usersResult == this.result) { /*zkontroluje, jestli je výsledek, 
 		který uživatel zadal, správný*/
 		this.checked = 'right';
 	} else {
@@ -509,7 +509,7 @@ check() {
 	document.getElementById("inputForm").value = '';
 },
 ```
-Pokud nepoužívate [vývojářský projekt](https://github.com/kubajj/ComputatisDevelopmentProject), kde je již naimplementována, je nutné ji implementovat.
+Pokud nepoužíváte [vývojářský projekt](https://github.com/kubajj/ComputatisDevelopmentProject), kde je již naimplementována, je nutné ji implementovat.
 
 ## Grade
 Umožní vám zjistit nejvyšší řád čísla:
@@ -603,7 +603,7 @@ mounted() {
     bus.$on('next', this.genTask);
 },
 
-//Příklad jiného použítí:
+//Příklad jiného použití:
 mounted() {
 	this.resultsOfUnitInputs = this.correctUnit.map(() => '');
 	this.resultsOfDecInputs = this.correctDec.map(() => '');

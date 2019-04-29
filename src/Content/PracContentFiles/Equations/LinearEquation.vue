@@ -43,7 +43,7 @@
 		name: 'linear-equation',
 		introduction: 'Linear equation component',
 		description: `
-			Task to practice the solution of liear equations.
+			Task to practice the solution of linear equations.
 		`,
 		token: "<linear-equation/>",
 		data() {

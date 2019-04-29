@@ -142,7 +142,7 @@ Toto je můj maturitní projekt.
 \section{Vývoj}\label{vuxfdvoj}}
 
 Aplikace je psána ve Vue.js. Předpokladem pro úspěšný vývoj rozšíření je
-ale pouze znalost JavaScriptu a HTML.
+ale pouze znalost javascriptu a HTML.
 
 \href{https://vuejs.org/v2/guide/}{Vue}
 \href{https://www.w3schools.com/js/}{JS}
@@ -150,7 +150,7 @@ ale pouze znalost JavaScriptu a HTML.
 
 Jděte na
 \href{https://github.com/kubajj/ComputatisDevelopmentProject}{Computatis
-Development Project}, kde naleznete projekt pro snazší vývoj.
+Development Project}, kde naleznete projekt pro snažší vývoj.
 
 Aplikace je rozdělena na několik vrstev. Nejdůležitější je nejnižší
 vrstva, která se nachází ve složce PracContentFiles, kde se nacházejí
@@ -176,7 +176,7 @@ si vytvořit vaši vlastní).
                 \KeywordTok{<span}\OtherTok{ v-if=}\StringTok{'!hinted'} \ErrorTok{@click}\OtherTok{=}\StringTok{'hint'}\OtherTok{ class=}\StringTok{'hintstyle'}\KeywordTok{>}\NormalTok{Nápovědu prosím}\KeywordTok{</span>}
                 \KeywordTok{<span}\OtherTok{ v-else}\KeywordTok{><vue-mathjax}\OtherTok{ :formula=}\StringTok{"hintValue1"}\KeywordTok{/></span>}
             \KeywordTok{</b-col>}
-            \KeywordTok{<b-col}\OtherTok{ cols=}\StringTok{"3"}\KeywordTok{>}\CommentTok{<!--následující část vygeneruje formulář pro zapsání a kontrolu }
+            \KeywordTok{<b-col}\OtherTok{ cols=}\StringTok{"3"}\KeywordTok{>}\CommentTok{<!--následující část vygeneruje fomrulář pro zapsání a kontrolu }
 \CommentTok{            výsledku -->}
                 \KeywordTok{<b-form-input}
 \OtherTok{                        type=}\StringTok{"text"}
@@ -343,7 +343,7 @@ si vytvořit vaši vlastní).
                     \KeywordTok{this}\NormalTok{.}\AttributeTok{genTask}\NormalTok{()}\OperatorTok{;}
                     \ControlFlowTok{return}\OperatorTok{;}
                 \OperatorTok{\}}
-                \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{this}\NormalTok{.}\AttributeTok{usersResult} \OperatorTok{==} \KeywordTok{this}\NormalTok{.}\AttributeTok{result}\NormalTok{) }\OperatorTok{\{} \CommentTok{/*zkontroluje, jestli je výsledek, }
+                \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{this}\NormalTok{.}\AttributeTok{usersResult} \OperatorTok{==} \KeywordTok{this}\NormalTok{.}\AttributeTok{result}\NormalTok{) }\OperatorTok{\{} \CommentTok{/*zkrontroluje, jestli je výsledek, }
 \CommentTok{                    který uživatel zadal, správný*/}
 \CommentTok{                    this.checked = 'right';}
 \CommentTok{                \} else \{}
@@ -379,7 +379,7 @@ První část definuje uspořádání stránky. Tedy spíše následujícího b�
 boxu na stránce:\\
 \includegraphics{../../doc-images/WhiteBox.png}
 
-Tato část je ohraničena dvěma značkami:
+Tato část je ohraničena dvěmi značkami:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -429,7 +429,7 @@ Veškeré texty, které chcete vypsat v LATEXu musíte
 
 *vámi zvolená proměnná - specifikujete ji v sekci
 \protect\hyperlink{data}{data}\\
-Proměnná musí být v platném LaTeXovém tvaru.\\
+Proměnná musí být v platném LATEXovém tvaru.\\
 Začne "\$\$ a skončí \$\$".\\
 Všechna zpětná lomítka \texttt{\textbackslash{}} musí být zdvojena.\\
 Příklad takovéto proměnné:
@@ -470,7 +470,7 @@ komponenty}:
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Pozor! Je důležité všechny vývojářské komponenty správně
+\textbf{Pozor! Je důležité všechny vývojařské komponenty správně
 naimportovat (bude vysvětleno následovně).}
 
 \hypertarget{import}{%
@@ -620,7 +620,7 @@ Props:\\
 \end{Highlighting}
 \end{Shaded}
 
-Funkce: Upraví vámi nabindovaný nadpis do LaTeXového tvaru a tím z něj
+Funkce: Upraví vámi nabindovaný nadpis do LATEXového tvaru a tím z něj
 vytvoří stylový nadpis, který vypadá jako všechno ostatní.\\
 \emph{Používejte prosím značku
 \texttt{\textbackslash{}\textbackslash{}text\ \{\}} pro zachování mezer}
@@ -691,7 +691,7 @@ zapisování do proměnných pomocí \texttt{v-model}.
 V případě touhy po vytvoření vlastního vývojářského komponentu není
 žádný problém. Vytvořte ho a následně pošlete pull-request.
 \emph{Prosím, o specifikování názvu a přiložení části dokumentace v
-syntaxi markdown.}
+syntaxu markdown.}
 
 \hypertarget{metody}{%
 \subsection{Metody}\label{metody}}
@@ -761,7 +761,7 @@ Umožní vám zkontrolovat výsledek uživatele:
         \KeywordTok{this}\NormalTok{.}\AttributeTok{genTask}\NormalTok{()}\OperatorTok{;}
         \ControlFlowTok{return}\OperatorTok{;}
     \OperatorTok{\}}
-    \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{this}\NormalTok{.}\AttributeTok{usersResult} \OperatorTok{==} \KeywordTok{this}\NormalTok{.}\AttributeTok{result}\NormalTok{) }\OperatorTok{\{} \CommentTok{/*zkontroluje, jestli je výsledek, }
+    \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{this}\NormalTok{.}\AttributeTok{usersResult} \OperatorTok{==} \KeywordTok{this}\NormalTok{.}\AttributeTok{result}\NormalTok{) }\OperatorTok{\{} \CommentTok{/*zkrontroluje, jestli je výsledek, }
 \CommentTok{        který uživatel zadal, správný*/}
 \CommentTok{        this.checked = 'right';}
 \CommentTok{    \} else \{}
@@ -772,7 +772,7 @@ Umožní vám zkontrolovat výsledek uživatele:
 \end{Highlighting}
 \end{Shaded}
 
-Pokud nepoužíváte
+Pokud nepoužívate
 \href{https://github.com/kubajj/ComputatisDevelopmentProject}{vývojářský
 projekt}, kde je již naimplementována, je nutné ji implementovat.
 
@@ -905,7 +905,7 @@ př. užití:
     \VariableTok{bus}\NormalTok{.}\AttributeTok{$on}\NormalTok{(}\StringTok{'next'}\OperatorTok{,} \KeywordTok{this}\NormalTok{.}\AttributeTok{genTask}\NormalTok{)}\OperatorTok{;}
 \OperatorTok{\},}
 
-\CommentTok{//Příklad jiného použití:}
+\CommentTok{//Příklad jiného použítí:}
 \AttributeTok{mounted}\NormalTok{() }\OperatorTok{\{}
     \KeywordTok{this}\NormalTok{.}\AttributeTok{resultsOfUnitInputs} \OperatorTok{=} \KeywordTok{this}\NormalTok{.}\VariableTok{correctUnit}\NormalTok{.}\AttributeTok{map}\NormalTok{(() }\KeywordTok{=>} \StringTok{''}\NormalTok{)}\OperatorTok{;}
     \KeywordTok{this}\NormalTok{.}\AttributeTok{resultsOfDecInputs} \OperatorTok{=} \KeywordTok{this}\NormalTok{.}\VariableTok{correctDec}\NormalTok{.}\AttributeTok{map}\NormalTok{(() }\KeywordTok{=>} \StringTok{''}\NormalTok{)}\OperatorTok{;}

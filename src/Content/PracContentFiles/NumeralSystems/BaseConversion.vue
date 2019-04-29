@@ -79,7 +79,7 @@
 		name: 'base-conversion',
 		introduction: 'Base conversion component',
 		description: `
-			Task to practice conversion between numeral systems. Binary, decimal and hexadecimal system was implmented.
+			Task to practice conversion between numeral systems. Binary, decimal and hexadecimal system was implemented.
 		`,
 		token: "<base-conversion/>",
 		data() {
@@ -201,7 +201,7 @@
 				this.result = this.convertNumber(this.number, modeFrom, modeTo).toUpperCase();//the assign correct result to this.result
 			},
 			// @vuese
-			//this method chooses the proper method fro the hint and set variable to correct values, so everything works properly
+			//this method chooses the proper method for the hint and set variable to correct values, so everything works properly
 			hints() { 
 				if (!this.showFirstHint) {
 					var hintMode = '' + this.from + this.to;

@@ -1,5 +1,5 @@
 <template>
-	<div class="navbar-header"><!-- Creates button in logo of apllication -->
+	<div class="navbar-header"><!-- Creates button in logo of application -->
 		<router-link to='/' class='menu'><img src="./assets/logo.png" class="logo"></router-link>
 	</div>
 </template>
@@ -12,7 +12,7 @@
 		name: 'logo',
 		introduction: 'Page logo',
 		description: `
-			Renders button in logo of apllication.
+			Renders button in logo of application.
 		`,
 		token: "<logo/>",
 	}

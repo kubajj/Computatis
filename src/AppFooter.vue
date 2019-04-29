@@ -15,7 +15,7 @@
 		name: 'app-footer',
 		introduction: 'Page footer',
 		description: `
-			Renders footer of the apllication with a link to my schools webpage.
+			Renders footer of the application with a link to my schools webpage.
 		`,
 		token: "<app-footer/>",
 	}
