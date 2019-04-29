@@ -34,6 +34,7 @@ Renders input form (with 12px width) whose border changes between red and green 
 <!-- @vuese:hint-form-small:methods:end -->
 
 
+
 ## Code
 
 ```html

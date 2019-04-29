@@ -11,7 +11,6 @@ Renders a heading of a component with the same styling for all.
 
 <!-- @vuese:heading:props:end -->
 
-
 ## Code
 
 ```html
